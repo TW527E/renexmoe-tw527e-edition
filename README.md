@@ -1,4 +1,4 @@
-# renexmoe-tw527e-edtion
+# renexmoe-tw527e-edition
 
 此主題為 [qkqpttgf/OneManager-php](https://github.com/qkqpttgf/OneManager-php) 專案的主題，此主題源專案為 [186526/onemanager-theme-renexmoe](https://github.com/186526/onemanager-theme-renexmoe)，則我的版本修改自 [jssycszyj/renexmoe-cdn](https://github.com/jssycszyj/renexmoe-cdn)。
 
@@ -22,14 +22,14 @@
 
 ### 方法1: 下載至目錄
 
-1. 下載 **`renexmoe-tw527e-edtion`**
-2. 將 **`renexmoe-tw527e-edtion`** 複製至 **`/OneManager 根目錄/theme`**
+1. 下載 **`renexmoe-tw527e-edition`**
+2. 將 **`renexmoe-tw527e-edition`** 複製至 **`/OneManager 根目錄/theme`**
 
 ### 方法2: 透過 customTheme 選項
 
 1. 登入您的 OneManager 後台，並進入設定
 2. 選擇 **`平台變數`** 頁面
-3. 在 **`customTheme`** 選項內，輸入 **`https://raw.githubusercontent.com/TW527E/renexmoe-tw527e-edtion/main/renexmoe-tw527e-edtion.html`** `(jsDelivr: https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edtion@main/renexmoe-tw527e-edtion.html)`
+3. 在 **`customTheme`** 選項內，輸入 **`https://raw.githubusercontent.com/TW527E/renexmoe-tw527e-edition/main/renexmoe-tw527e-edition.html`** `(jsDelivr: https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@main/renexmoe-tw527e-edition.html)`
 4. 套用設定
 5. 等待緩存刷新，完成
 
@@ -41,9 +41,9 @@
 4. 套用設定
 5. 等待緩存刷新，完成
 
-# renexmoe-tw527e-edtion
+# renexmoe-tw527e-edition
 
-This theme is the theme of the [qkqpttgf/OneManager-php](https://github.com/qkqpttgf/OneManager-php) project, and the source project of this theme is [186526/onemanager-theme-renexmoe](https://github. com/186526/onemanager-theme-renexmoe), my version is modified from [jssycszyj/renexmoe-cdn](https://github.com/jssycszyj/renexmoe-cdn).
+This theme is the theme of the [qkqpttgf/OneManager-php](https://github.com/qkqpttgf/OneManager-php) project, and the source project of this theme is [186526/onemanager-theme-renexmoe](https://github.com/186526/onemanager-theme-renexmoe), my version is modified from [jssycszyj/renexmoe-cdn](https://github.com/jssycszyj/renexmoe-cdn).
 
 Display page: [MineDrive](https://d.tw527e.eu.org)
 
@@ -65,14 +65,14 @@ Display page: [MineDrive](https://d.tw527e.eu.org)
 
 ### Method 1: Download to directory
 
-1. Download **`renexmoe-tw527e-edtion`**
-2. Copy **`renexmoe-tw527e-edtion`** to **`/OneManager root directory/theme`**
+1. Download **`renexmoe-tw527e-edition`**
+2. Copy **`renexmoe-tw527e-edition`** to **`/OneManager root directory/theme`**
 
 ### Method 2: Via customTheme option
 
 1. Log in to your OneManager backend and enter the settings
 2. Select the **`Platform Variables`** page
-3. In the **`customTheme`** option, enter **`https://raw.githubusercontent.com/TW527E/renexmoe-tw527e-edtion/main/renexmoe-tw527e-edtion.html`** `(jsDelivr: https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edtion@main/renexmoe-tw527e-edtion.html)`
+3. In the **`customTheme`** option, enter **`https://raw.githubusercontent.com/TW527E/renexmoe-tw527e-edition/main/renexmoe-tw527e-edition.html`** `(jsDelivr: https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@main/renexmoe-tw527e-edition.html)`
 4. Apply settings
 5. Wait for the cache to refresh, complete
 
