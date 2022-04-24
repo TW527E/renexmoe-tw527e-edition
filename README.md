@@ -37,7 +37,7 @@
 
 1. 登入您的 OneManager 後台，並進入設定
 2. 選擇 **`平台變數`** 頁面
-3. 在 **`customScript`** 選項內，輸入 **`<script>document.getElementById("footer").innerHTML="頁腳內容";</script>`**
+3. 在 **`customScript`** 選項內，輸入 **`<script>document.getElementById("footer").innerHTML='頁腳內容';</script>`**
 4. 套用設定
 5. 等待緩存刷新，完成
 
@@ -80,6 +80,6 @@ Display page: [MineDrive](https://d.tw527e.eu.org)
 
 1. Log in to your OneManager backend and enter the settings
 2. Select the **`Platform Variables`** page
-3. In the **`customScript`** option, enter **`<script>document.getElementById("footer").innerHTML="footer content";</script>`**
+3. In the **`customScript`** option, enter **`<script>document.getElementById("footer").innerHTML='footer content';</script>`**
 4. Apply settings
 5. Wait for the cache to refresh, complete
