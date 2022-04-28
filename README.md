@@ -1,5 +1,11 @@
 # renexmoe-tw527e-edition
 
+![GitHub Release](https://img.shields.io/github/release/TW527E/renexmoe-tw527e-edition/all.svg?style=flat)
+<a href="https://t.me/Cheng_Group">
+  <img src="https://img.shields.io/badge/-Chat%20on%20Telegram-blue" alt="Chat on Telegram">
+</a><br>
+Made by 誠誠 <img src="https://img.shields.io/badge/-Taiwan-ff1f4b" alt="Taiwan">
+
 此主題為 [qkqpttgf/OneManager-php](https://github.com/qkqpttgf/OneManager-php) 專案的主題，此主題源專案為 [186526/onemanager-theme-renexmoe](https://github.com/186526/onemanager-theme-renexmoe)，則我的版本修改自 [jssycszyj/renexmoe-cdn](https://github.com/jssycszyj/renexmoe-cdn)。
 
 展示網頁: [MineDrive](https://d.tw527e.eu.org)
@@ -18,14 +24,14 @@
 10. 將 **`字體`** 更改為 [Noto Sans Traditional Chinese](https://fonts.google.com/noto/specimen/Noto+Sans+TC)
 11. 新增 頁腳
 
-## 使用方式如下: (說實在，我不確定他能不能直接用連結使用，但我猜可以吧w)
+## 使用方式如下:
 
 ### 方法1: 下載至目錄
 
 1. 下載 **`renexmoe-tw527e-edition`**
 2. 將 **`renexmoe-tw527e-edition`** 複製至 **`/OneManager 根目錄/theme`**
 
-### 方法2: 透過 customTheme 選項
+### 方法2: 透過 customTheme 選項 (說實在，我不確定他能不能直接用連結使用，但我猜可以吧w)
 
 1. 登入您的 OneManager 後台，並進入設定
 2. 選擇 **`平台變數`** 頁面
@@ -61,14 +67,14 @@ Display page: [MineDrive](https://d.tw527e.eu.org)
 10. Change **`font`** to [Noto Sans Traditional Chinese](https://fonts.google.com/noto/specimen/Noto+Sans+TC)
 11. Add footer
 
-## The usage is as follows: (To be honest, I'm not sure if he can use the link directly, but I guess it can w)
+## The usage is as follows:
 
 ### Method 1: Download to directory
 
 1. Download **`renexmoe-tw527e-edition`**
 2. Copy **`renexmoe-tw527e-edition`** to **`/OneManager root directory/theme`**
 
-### Method 2: Via customTheme option
+### Method 2: Via customTheme option (To be honest, I'm not sure if he can use the link directly, but I guess it can w)
 
 1. Log in to your OneManager backend and enter the settings
 2. Select the **`Platform Variables`** page
