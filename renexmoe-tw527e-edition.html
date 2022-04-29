@@ -409,18 +409,6 @@
         </div>
       </div>
       <script>
-        function loaded() {
-          path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/'));
-          document.getElementById("openpot").href = "potplayer://" + window.location.origin + path + "/" + "<!--FileDownUrl-->";
-          document.getElementById("openvlc").href = "vlc://" + window.location.origin + path + "/" + "<!--FileDownUrl-->";
-          document.getElementById("openmxpro").href = "intent:" + window.location.origin + path + "/" + "<!--FileDownUrl-->" + "#Intent;package=com.mxtech.videoplayer.pro;end";
-          document.getElementById("openmxfree").href = "intent:" + window.location.origin + path + "/" + "<!--FileDownUrl-->" + "#Intent;package=com.mxtech.videoplayer.ad;end";
-          document.getElementById("opennp").href = "nplayer-" + window.location.origin + path + "/" + "<!--FileDownUrl-->";
-        }
-
-        window.onload = loaded()
-      </script>
-      <script>
         dp = new DPlayer({
             container: document.getElementById('dplayer'),
             lang:'zh-tw',
@@ -433,6 +421,13 @@
                 type: 'auto'
             }
         });
+      </script>
+      <script>
+        document.getElementById("openpot").href = "potplayer://" + window.location.protocol + "//" + window.location.host + window.location.pathname;
+        document.getElementById("openvlc").href = "vlc://" + window.location.protocol + "//" + window.location.host + window.location.pathname;
+        document.getElementById("openmxpro").href = "intent:" + window.location.protocol + "//" + window.location.host + window.location.pathname + "#Intent;package=com.mxtech.videoplayer.pro;end";
+        document.getElementById("openmxfree").href = "intent:" + window.location.protocol + "//" + window.location.host + window.location.pathname + "#Intent;package=com.mxtech.videoplayer.ad;end";
+        document.getElementById("opennp").href = "nplayer-" + window.location.protocol + "//" + window.location.host + window.location.pathname;
       </script>
       <!--IsvideoFileEnd-->
       <!--IsofficeFileStart-->
