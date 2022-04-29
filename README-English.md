@@ -14,17 +14,17 @@ Display page: [MineDrive](https://d.tw527e.eu.org)
 
 ## Modifications are as follows: (Comparison object [186526/onemanager-theme-renexmoe](https://github.com/186526/onemanager-theme-renexmoe))
 
-1. Change **`language`** to **`Chinese Traditional`**
+1. Change **`Language`** to **`Chinese Traditional`**
 2. Call the **`backgroundm`** option to **`Web Icon`**
-3. Modify **`theme overall color`** `(milk tea color)`
+3. Modify **`Theme overall color`** `(Milk tea color)`
 4. Fix **`PDF preview`**
 5. Fix **`OFFICE preview layout`**
 6. Proxy **`Javascript, CSS`** through [jsDelivr](https://www.jsdelivr.com)
-7. Change **`movie player`** to [DPlayer](https://dplayer.js.org)
+7. Change **`Video player`** to [DPlayer](https://dplayer.js.org)
 8. Add **`Call local player`** in **`Video playback page`**
 9. Added **`Dark background mode`**, and changed **`Dark mode`** to **`Dark background mode`**
-10. Change **`font`** to [Noto Sans Traditional Chinese](https://fonts.google.com/noto/specimen/Noto+Sans+TC)
-11. Add footer
+10. Change **`Font`** to [Noto Sans Traditional Chinese](https://fonts.google.com/noto/specimen/Noto+Sans+TC)
+11. Add **`Footer`**
 12. Fix **`Path does not show disk name`**
 
 ## The usage is as follows:
