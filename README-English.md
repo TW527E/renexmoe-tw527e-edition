@@ -25,6 +25,7 @@ Display page: [MineDrive](https://d.tw527e.eu.org)
 9. Added **`Dark background mode`**, and changed **`Dark mode`** to **`Dark background mode`**
 10. Change **`font`** to [Noto Sans Traditional Chinese](https://fonts.google.com/noto/specimen/Noto+Sans+TC)
 11. Add footer
+12. Fix **`Path does not show disk name`**
 
 ## The usage is as follows:
 

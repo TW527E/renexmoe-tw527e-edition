@@ -25,6 +25,7 @@ Made by 誠誠 <img src="https://img.shields.io/badge/-Taiwan-ff1f4b" alt="Taiwa
 9. 新增 **`深色背景模式`**，並且將 **`深色模式`** 更改為 **`深色背景模式`**
 10. 將 **`字體`** 更改為 [Noto Sans Traditional Chinese](https://fonts.google.com/noto/specimen/Noto+Sans+TC)
 11. 新增 頁腳
+12. 修復 **`路徑未顯示盤名`**
 
 ## 使用方式如下:
 
