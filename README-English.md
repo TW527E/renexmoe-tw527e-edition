@@ -1,16 +1,56 @@
 # renexmoe-tw527e-edition
 
-[**中文版的給我回來!!!**](README.md)
+[**中文的給我回來!!!**](README.md)
 
+Made by 誠誠 <img src="https://img.shields.io/badge/-Taiwan-blue?style=for-the-badge&logo=Fandom" alt="Taiwan"><br>
 ![GitHub Release](https://img.shields.io/github/v/release/TW527E/renexmoe-tw527e-edition.svg?include_prereleases&logo=Acclaim&style=for-the-badge)
 <a href="https://t.me/Cheng_Group">
   <img src="https://img.shields.io/badge/-Chat%20on%20Telegram-blue?style=for-the-badge&logo=Telegram" alt="Chat on Telegram">
-</a><br>
-Made by 誠誠 <img src="https://img.shields.io/badge/-Taiwan-ff1f4b?style=for-the-badge&logo=Headspace" alt="Taiwan">
+</a>
 
 This theme is the theme of the [qkqpttgf/OneManager-php](https://github.com/qkqpttgf/OneManager-php) project, and the source project of this theme is [186526/onemanager-theme-renexmoe](https://github.com/186526/onemanager-theme-renexmoe), my version is modified from [jssycszyj/renexmoe-cdn](https://github.com/jssycszyj/renexmoe-cdn).
 
 Display page: [MineDrive](https://d.tw527e.eu.org)
+
+## Preview image `(v1.0.9)`
+
+<Details>
+  <Summary>Computer</Summary>
+  <Pre><Code>
+    Folder List <br>
+    <img src="https://raw.githubusercontent.com/TW527E/renexmoe-tw527e-edition/main/Readme/PC - 1.png" alt="Readme/PC - 1"> <br>
+    Folder List - Close Sidebar <br>
+    <img src="https://raw.githubusercontent.com/TW527E/renexmoe-tw527e-edition/main/Readme/PC - 2.png" alt="Readme/PC - 2"> <br>
+    Footer Effects <br>
+    <img src="https://raw.githubusercontent.com/TW527E/renexmoe-tw527e-edition/main/Readme/PC - 3.png" alt="Readme/PC - 3"> <br>
+    Video List <br>
+    <img src="https://raw.githubusercontent.com/TW527E/renexmoe-tw527e-edition/main/Readme/PC - 4.png" alt="Readme/PC - 4"> <br>
+    Video Page <br>
+    <img src="https://raw.githubusercontent.com/TW527E/renexmoe-tw527e-edition/main/Readme/PC - 5.png" alt="Readme/PC - 5"> <br>
+    Video Pages - Dark Background Mode <br>
+    <img src="https://raw.githubusercontent.com/TW527E/renexmoe-tw527e-edition/main/Readme/PC - 5 - Dark.png" alt="Readme/PC - 5 - Dark"> <br>
+    Video Page - Close Sidebar <br>
+    <img src="https://raw.githubusercontent.com/TW527E/renexmoe-tw527e-edition/main/Readme/PC-6.png" alt="Readme/PC-6">
+  </Code></Pre>
+</Details>
+
+<Details>
+  <Summary>Mobile</Summary>
+  <Pre><Code>
+    Folder List <br>
+    <img src="https://raw.githubusercontent.com/TW527E/renexmoe-tw527e-edition/main/Readme/Mobile - 1.png" alt="Readme/Mobile - 1"> <br>
+    Folder List - Open Sidebar <br>
+    <img src="https://raw.githubusercontent.com/TW527E/renexmoe-tw527e-edition/main/Readme/Mobile - 2.png" alt="Readme/Mobile - 2"> <br>
+    Footer Effects <br>
+    <img src="https://raw.githubusercontent.com/TW527E/renexmoe-tw527e-edition/main/Readme/Mobile - 3.png" alt="Readme/Mobile - 3"> <br>
+    Video List <br>
+    <img src="https://raw.githubusercontent.com/TW527E/renexmoe-tw527e-edition/main/Readme/Mobile - 4.png" alt="Readme/Mobile - 4"> <br>
+    Video Page <br>
+    <img src="https://raw.githubusercontent.com/TW527E/renexmoe-tw527e-edition/main/Readme/Mobile - 5.png" alt="Readme/Mobile - 5"> <br>
+    Video Pages - Dark Background Mode <br>
+    <img src="https://raw.githubusercontent.com/TW527E/renexmoe-tw527e-edition/main/Readme/Mobile - 5 - Dark.png" alt="Readme/Mobile - 5 - Dark">
+  </Code></Pre>
+</Details>
 
 ## Modifications are as follows: (Comparison object [186526/onemanager-theme-renexmoe](https://github.com/186526/onemanager-theme-renexmoe))
 
@@ -37,7 +77,7 @@ Display page: [MineDrive](https://d.tw527e.eu.org)
 
 1. Log in to your OneManager backend and enter the settings
 2. Select the **`Platform Variables`** page
-3. In the **`customTheme`** option, enter **`https://raw.githubusercontent.com/TW527E/renexmoe-tw527e-edition/main/renexmoe-tw527e-edition.html`** `(jsDelivr: https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@main/renexmoe-tw527e-edition.html)`
+3. In the **`customTheme`** option, enter **`https://raw.githubusercontent.com/TW527E/renexmoe-tw527e-edition/master/renexmoe-tw527e-edition.html`** `(jsDelivr: https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@master/renexmoe-tw527e-edition.html)`
 4. Apply settings
 5. Wait for the cache to refresh, complete
 
@@ -48,37 +88,3 @@ Display page: [MineDrive](https://d.tw527e.eu.org)
 3. In the **`customScript`** option, enter **`<script>document.getElementById("footer").innerHTML='footer content';</script>`**
 4. Apply settings
 5. Wait for the cache to refresh, complete
-
-## Preview image `(v1.0.9)`
-
-### PC
-
-Folder List <br>
-<img src="Readme/PC - 1.png" alt="Readme/PC - 1"> <br>
-Folder List - Close Sidebar <br>
-<img src="Readme/PC - 2.png" alt="Readme/PC - 2"> <br>
-Footer Effects <br>
-<img src="Readme/PC - 3.png" alt="Readme/PC - 3"> <br>
-Video List <br>
-<img src="Readme/PC - 4.png" alt="Readme/PC - 4"> <br>
-Video Page <br>
-<img src="Readme/PC - 5.png" alt="Readme/PC - 5"> <br>
-Video Pages - Dark Background Mode <br>
-<img src="Readme/PC - 5 - Dark.png" alt="Readme/PC - 5 - Dark"> <br>
-Video Page - Close Sidebar <br>
-<img src="Readme/PC - 6.png" alt="Readme/PC - 6"> <br>
-
-### Mobile
-
-Folder List <br>
-<img src="Readme/Mobile - 1.png" alt="Readme/Mobile - 1"> <br>
-Folder List - Open Sidebar <br>
-<img src="Readme/Mobile - 2.png" alt="Readme/Mobile - 2"> <br>
-Footer Effects <br>
-<img src="Readme/Mobile - 3.png" alt="Readme/Mobile - 3"> <br>
-Video List <br>
-<img src="Readme/Mobile - 4.png" alt="Readme/Mobile - 4"> <br>
-Video Page <br>
-<img src="Readme/Mobile - 5.png" alt="Readme/Mobile - 5"> <br>
-Video Pages - Dark Background Mode <br>
-<img src="Readme/Mobile - 5 - Dark.png" alt="Readme/Mobile - 5 - Dark">
