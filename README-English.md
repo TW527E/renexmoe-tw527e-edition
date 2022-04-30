@@ -22,10 +22,9 @@ Display page: [MineDrive](https://d.tw527e.eu.org)
 6. Proxy **`Javascript, CSS`** through [jsDelivr](https://www.jsdelivr.com)
 7. Change **`Video player`** to [DPlayer](https://dplayer.js.org)
 8. Add **`Call local player`** in **`Video playback page`**
-9. Added **`Dark background mode`**, and changed **`Dark mode`** to **`Dark background mode`**
-10. Change **`Font`** to [Noto Sans Traditional Chinese](https://fonts.google.com/noto/specimen/Noto+Sans+TC)
-11. Add **`Footer`**
-12. Fix **`Path does not show disk name`**
+9. Change **`Font`** to [Noto Sans TC SC HK](https://fonts.google.com/noto/fonts)
+10. Add **`Footer`**
+11. Fix **`Path does not show disk name`**
 
 ## The usage is as follows:
 
@@ -55,31 +54,31 @@ Display page: [MineDrive](https://d.tw527e.eu.org)
 ### PC
 
 Folder List <br>
-<img src="PC - 1.png" alt="PC - 1"> <br>
+<img src="Readme/PC - 1.png" alt="Readme/PC - 1"> <br>
 Folder List - Close Sidebar <br>
-<img src="PC - 2.png" alt="PC - 2"> <br>
+<img src="Readme/PC - 2.png" alt="Readme/PC - 2"> <br>
 Footer Effects <br>
-<img src="PC - 3.png" alt="PC - 3"> <br>
+<img src="Readme/PC - 3.png" alt="Readme/PC - 3"> <br>
 Video List <br>
-<img src="PC - 4.png" alt="PC - 4"> <br>
+<img src="Readme/PC - 4.png" alt="Readme/PC - 4"> <br>
 Video Page <br>
-<img src="PC - 5.png" alt="PC - 5"> <br>
+<img src="Readme/PC - 5.png" alt="Readme/PC - 5"> <br>
 Video Pages - Dark Background Mode <br>
-<img src="PC - 5 - Dark.png" alt="PC - 5 - Dark"> <br>
+<img src="Readme/PC - 5 - Dark.png" alt="Readme/PC - 5 - Dark"> <br>
 Video Page - Close Sidebar <br>
-<img src="PC - 6.png" alt="PC - 6"> <br>
+<img src="Readme/PC - 6.png" alt="Readme/PC - 6"> <br>
 
 ### Mobile
 
 Folder List <br>
-<img src="Mobile - 1.png" alt="Mobile - 1"> <br>
+<img src="Readme/Mobile - 1.png" alt="Readme/Mobile - 1"> <br>
 Folder List - Open Sidebar <br>
-<img src="Mobile - 2.png" alt="Mobile - 2"> <br>
+<img src="Readme/Mobile - 2.png" alt="Readme/Mobile - 2"> <br>
 Footer Effects <br>
-<img src="Mobile - 3.png" alt="Mobile - 3"> <br>
+<img src="Readme/Mobile - 3.png" alt="Readme/Mobile - 3"> <br>
 Video List <br>
-<img src="Mobile - 4.png" alt="Mobile - 4"> <br>
+<img src="Readme/Mobile - 4.png" alt="Readme/Mobile - 4"> <br>
 Video Page <br>
-<img src="Mobile - 5.png" alt="Mobile - 5"> <br>
+<img src="Readme/Mobile - 5.png" alt="Readme/Mobile - 5"> <br>
 Video Pages - Dark Background Mode <br>
-<img src="Mobile - 5 - Dark.png" alt="Mobile - 5 - Dark">
+<img src="Readme/Mobile - 5 - Dark.png" alt="Readme/Mobile - 5 - Dark">
