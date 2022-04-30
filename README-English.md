@@ -2,11 +2,11 @@
 
 [**中文版的給我回來!!!**](README.md)
 
-![GitHub Release](https://img.shields.io/github/release/TW527E/renexmoe-tw527e-edition/all.svg?style=flat)
+![GitHub Release](https://img.shields.io/github/v/release/TW527E/renexmoe-tw527e-edition.svg?include_prereleases&logo=Acclaim&style=for-the-badge)
 <a href="https://t.me/Cheng_Group">
-  <img src="https://img.shields.io/badge/-Chat%20on%20Telegram-blue" alt="Chat on Telegram">
+  <img src="https://img.shields.io/badge/-Chat%20on%20Telegram-blue?style=for-the-badge&logo=Telegram" alt="Chat on Telegram">
 </a><br>
-Made by 誠誠 <img src="https://img.shields.io/badge/-Taiwan-ff1f4b" alt="Taiwan">
+Made by 誠誠 <img src="https://img.shields.io/badge/-Taiwan-ff1f4b?style=for-the-badge&logo=Headspace" alt="Taiwan">
 
 This theme is the theme of the [qkqpttgf/OneManager-php](https://github.com/qkqpttgf/OneManager-php) project, and the source project of this theme is [186526/onemanager-theme-renexmoe](https://github.com/186526/onemanager-theme-renexmoe), my version is modified from [jssycszyj/renexmoe-cdn](https://github.com/jssycszyj/renexmoe-cdn).
 
