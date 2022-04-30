@@ -19,7 +19,7 @@ Made by 誠誠 <img src="https://img.shields.io/badge/-Taiwan-ff1f4b?style=for-t
 3. 修改 **`主題整體配色`** `(奶茶色)`
 4. 修復 **`PDF 預覽`**
 5. 修復 **`OFFICE 預覽排版`**
-6. 將 **`Javascript、CSS`** 透過 [jsDelivr](https://www.jsdelivr.com) 代理
+6. 將 **`Javascript、CSS`** 透過 [Statically](https://statically.io) 代理 `(因應大陸地區 jsDelivr 遭到限制)`
 7. 將 **`影片播放器`** 更改為 [DPlayer](https://dplayer.js.org)
 8. 在 **`影片播放頁面`** 增加 **`呼叫本地播放器`**
 9. 將 **`字體`** 更改為 [Noto Sans TC SC HK](https://fonts.google.com/noto/fonts)
@@ -33,7 +33,7 @@ Made by 誠誠 <img src="https://img.shields.io/badge/-Taiwan-ff1f4b?style=for-t
 1. 下載 **`renexmoe-tw527e-edition`**
 2. 將 **`renexmoe-tw527e-edition`** 複製至 **`/OneManager 根目錄/theme`**
 
-### 方法2: 透過 customTheme 選項 (說實在，我不確定他能不能直接用連結使用，但我猜可以吧w)
+### 方法2: 透過 customTheme 選項 (好像不行w)
 
 1. 登入您的 OneManager 後台，並進入設定
 2. 選擇 **`平台變數`** 頁面
