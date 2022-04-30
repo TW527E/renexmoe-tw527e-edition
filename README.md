@@ -49,3 +49,37 @@ Made by 誠誠 <img src="https://img.shields.io/badge/-Taiwan-ff1f4b" alt="Taiwa
 3. 在 **`customScript`** 選項內，輸入 **`<script>document.getElementById("footer").innerHTML='頁腳內容';</script>`**
 4. 套用設定
 5. 等待緩存刷新，完成
+
+## 預覽圖 `(v1.0.9)`
+
+### 電腦
+
+資料夾列表 <br>
+<img src="PC - 1.png" alt="PC - 1"> <br>
+資料夾列表 - 關閉側列 <br>
+<img src="PC - 2.png" alt="PC - 2"> <br>
+頁腳效果 <br>
+<img src="PC - 3.png" alt="PC - 3"> <br>
+影片列表 <br>
+<img src="PC - 4.png" alt="PC - 4"> <br>
+影片頁面 <br>
+<img src="PC - 5.png" alt="PC - 5"> <br>
+影片頁面 - 深色背景模式 <br>
+<img src="PC - 5 - Dark.png" alt="PC - 5 - Dark"> <br>
+影片頁面 - 關閉側列 <br>
+<img src="PC - 6.png" alt="PC - 6"> <br>
+
+### 手機
+
+資料夾列表 <br>
+<img src="Mobile - 1.png" alt="Mobile - 1"> <br>
+資料夾列表 - 開啟側列 <br>
+<img src="Mobile - 2.png" alt="Mobile - 2"> <br>
+頁腳效果 <br>
+<img src="Mobile - 3.png" alt="Mobile - 3"> <br>
+影片列表 <br>
+<img src="Mobile - 4.png" alt="Mobile - 4"> <br>
+影片頁面 <br>
+<img src="Mobile - 5.png" alt="Mobile - 5"> <br>
+影片頁面 - 深色背景模式 <br>
+<img src="Mobile - 5 - Dark.png" alt="Mobile - 5 - Dark">

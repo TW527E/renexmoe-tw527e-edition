@@ -49,3 +49,37 @@ Display page: [MineDrive](https://d.tw527e.eu.org)
 3. In the **`customScript`** option, enter **`<script>document.getElementById("footer").innerHTML='footer content';</script>`**
 4. Apply settings
 5. Wait for the cache to refresh, complete
+
+## Preview image `(v1.0.9)`
+
+### PC
+
+Folder List <br>
+<img src="PC - 1.png" alt="PC - 1"> <br>
+Folder List - Close Sidebar <br>
+<img src="PC - 2.png" alt="PC - 2"> <br>
+Footer Effects <br>
+<img src="PC - 3.png" alt="PC - 3"> <br>
+Video List <br>
+<img src="PC - 4.png" alt="PC - 4"> <br>
+Video Page <br>
+<img src="PC - 5.png" alt="PC - 5"> <br>
+Video Pages - Dark Background Mode <br>
+<img src="PC - 5 - Dark.png" alt="PC - 5 - Dark"> <br>
+Video Page - Close Sidebar <br>
+<img src="PC - 6.png" alt="PC - 6"> <br>
+
+### Mobile
+
+Folder List <br>
+<img src="Mobile - 1.png" alt="Mobile - 1"> <br>
+Folder List - Open Sidebar <br>
+<img src="Mobile - 2.png" alt="Mobile - 2"> <br>
+Footer Effects <br>
+<img src="Mobile - 3.png" alt="Mobile - 3"> <br>
+Video List <br>
+<img src="Mobile - 4.png" alt="Mobile - 4"> <br>
+Video Page <br>
+<img src="Mobile - 5.png" alt="Mobile - 5"> <br>
+Video Pages - Dark Background Mode <br>
+<img src="Mobile - 5 - Dark.png" alt="Mobile - 5 - Dark">
