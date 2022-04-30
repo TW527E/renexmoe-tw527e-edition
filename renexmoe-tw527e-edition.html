@@ -5,46 +5,42 @@
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500&family=Noto+Sans+HK:wght@500&family=Noto+Sans+SC:wght@500&display=swap" rel="stylesheet">
 
   <meta charset="utf-8" />
   <meta http-equiv="" content="IE=edge,chrome=1" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no" />
-  <link rel="shortcut icon" href="<!--base_path-->favicon.ico" type="image/x-icon" />
-
-  <title><!--Title--></title>
-  <meta name="description" content="A Cloud Drive built by OneManager with the theme renexmoe-tw527e-edition" />
-
   <!--BackgroundMStart-->
   <link rel="icon" href="<!--BackgroundMUrl-->" type="image/x-icon">
   <!--BackgroundMEnd-->
 
+  <title><!--Title--></title>
+  <meta name="description" content="A Cloud Drive built by OneManager with the theme renexmoe-tw527e-edition" />
+
+
   <meta name="theme-color" content="#fff" />
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.9/css/app1@uw34ru4ehdn4pywddmebm79dnnb2jyei.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.9/css/app2@eqge353pwpgivauvcvzejwrki4mdissj.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.10/css/app1@uw34ru4ehdn4pywddmebm79dnnb2jyei.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.10/css/app2@eqge353pwpgivauvcvzejwrki4mdissj.css">
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/css/mdui.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/fira-code@4.2.2/400.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/noto-sans-sc@12.0.0/noto_sans_sc_regular/css.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.7.2/build/styles/github.min.css">
 
-  <script>
-    window.disableddarkmode = false;
-  </script>
-
   <link class="dplayer-css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dplayer/dist/DPlayer.min.css">
   <script src="https://cdn.jsdelivr.net/npm/dplayer/dist/DPlayer.min.js"></script>
-  <script> const dp = 0; </script>
-  
 
+  <script>
+    const dp = 0; 
+    window.disableddarkmode = true;
+  </script>
+  
   <style>
     <!--BackgroundStart-->
     html {
-      --bg: url("/DSF/Background/PC/7.png"),#303030;
-      background: var(--bg);
+      background: url("<!--BackgroundUrl-->"), #303030;;
       margin: 0;
-      height: auto;
       background-attachment: fixed;
       background-size: cover;
       background-repeat: no-repeat;
@@ -52,24 +48,20 @@
     <!--BackgroundEnd-->
 
     body {
-      margin: 0; 
-      height: auto;
-      background-color: rgba(0,0,0,0);
+      background: inherit;
+      margin: 0;
+      background-attachment: fixed;
+      background-size: cover;
+      background-repeat: no-repeat;
     }
 
     *{
       color: #ffd2b3;
-      font-family: 'Noto Sans TC',sans-serif;
+      font-family: 'Noto Sans TC','Noto Sans SC','Noto Sans HK',sans-serif;
     }
 
     #footer{
       color: #fff;
-    }
-
-    @media (max-width: 599px){
-      a.mdui-fab.mdui-fab-fixed.mdui-ripple.mdui-color-theme-accent {
-        display: none;
-      }
     }
 
     .mdui-typo code,.mdui-typo kbd{
@@ -98,6 +90,10 @@
       color: black;
     }
 
+    div#file{
+      background-color: rgb(22 22 22 / 43%);
+    }
+
     a strong code,a code{
       color: #ff4d7e !important;
     }
@@ -105,11 +101,6 @@
     .mdui-theme-layout-dark .mdui-list-item {
       color: #ffd2b3;
     }
-
-    h1 code,h1 strong code,h2 code,h2 strong code,h3 code,h3 strong code,h4 code,h4 strong code,h5 code,h5 strong code,h6 code,h6 strong code{
-      color: #ff7eef !important;
-    }
-
   </style>
   
 
@@ -235,14 +226,14 @@
     </div>
     <!--HeadomfEnd-->
     <!--HeadmdStart-->
-    <div class="mdui-chip mdui-ripple mdui-hidden-xs">
+    <div class="mdui-chip mdui-ripple mdui-hidden-xs" style="margin-top: 20px;">
       <span class="mdui-chip-icon">
         <i class="mdui-icon material-icons">face</i>
       </span>
       <span class="mdui-chip-title">HEAD.md</span>
     </div>
     <div class="mdui-typo mdui-shadow-3 markdown" style="padding: 20px; margin: 20px 0; overflow-x: scroll" id="head">
-      <pre><code id="head-md"><!--HeadmdContent--></code></pre>
+      <textarea id="head-md"><!--HeadmdContent--></textarea>
     </div>
     <!--HeadmdEnd-->
     <div class="mdui-row mdui-shadow-3" style="margin: 20px 0; border-radius: 8px; background-color: rgb(22 22 22 / 43%);">
@@ -336,7 +327,7 @@
         class="mdui-chip-title">README.md</span>
     </div>
     <div class="mdui-typo mdui-shadow-3 markdown" style="padding: 20px; margin: 20px 0; overflow-x: scroll; background-color: rgb(22 22 22 / 43%);" id="readme">
-      <pre><code id="readme-md"><!--ReadmemdContent--></code></pre>
+      <textarea id="readme-md"><!--ReadmemdContent--></textarea>
     </div>
     <!--ReadmemdEnd-->
     <!--FootomfStart-->
@@ -550,15 +541,15 @@
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.7.2/build/highlight.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sha-1@1.0.0/dist/sha1.umd.min.js"></script>
 
-<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.9/js/extra.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.10/js/extra.js"></script>
 
-<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.9/js/app@qm97ssij9cnii7x8fnbkpq4hcgq35dyr.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.9/js/app@59467336fgwnpx8qbfvtmpyeefv35e5i.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.9/js/app@a7r8jgn2qe3eyfrkahwdnqcjf7uba95k.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.9/js/app@keaxctnyw29nuzpsh66g7ki4h5wzy8zn.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.9/js/app@pe2nahunr9aihucdgc2ssjbgnaccr5rz.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.9/js/app@tsjmiafbhksy5pyb5tchy765wshmwwnd.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.9/js/webpack-runtime@cx4vgpbaggjuhg8rh6m3yarhkkxy4dm3.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.10/js/app@qm97ssij9cnii7x8fnbkpq4hcgq35dyr.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.10/js/app@59467336fgwnpx8qbfvtmpyeefv35e5i.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.10/js/app@a7r8jgn2qe3eyfrkahwdnqcjf7uba95k.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.10/js/app@keaxctnyw29nuzpsh66g7ki4h5wzy8zn.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.10/js/app@pe2nahunr9aihucdgc2ssjbgnaccr5rz.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.10/js/app@tsjmiafbhksy5pyb5tchy765wshmwwnd.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.10/js/webpack-runtime@cx4vgpbaggjuhg8rh6m3yarhkkxy4dm3.js"></script>
 
 <!--customScript-->
 </html>

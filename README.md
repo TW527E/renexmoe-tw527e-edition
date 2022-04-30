@@ -22,10 +22,9 @@ Made by 誠誠 <img src="https://img.shields.io/badge/-Taiwan-ff1f4b?style=for-t
 6. 將 **`Javascript、CSS`** 透過 [jsDelivr](https://www.jsdelivr.com) 代理
 7. 將 **`影片播放器`** 更改為 [DPlayer](https://dplayer.js.org)
 8. 在 **`影片播放頁面`** 增加 **`呼叫本地播放器`**
-9. 新增 **`深色背景模式`**，並且將 **`深色模式`** 更改為 **`深色背景模式`**
-10. 將 **`字體`** 更改為 [Noto Sans Traditional Chinese](https://fonts.google.com/noto/specimen/Noto+Sans+TC)
-11. 新增 **`頁腳`**
-12. 修復 **`路徑未顯示盤名`**
+9. 將 **`字體`** 更改為 [Noto Sans TC SC HK](https://fonts.google.com/noto/fonts)
+10. 新增 **`頁腳`**
+11. 修復 **`路徑未顯示盤名`**
 
 ## 使用方式如下:
 
@@ -55,31 +54,31 @@ Made by 誠誠 <img src="https://img.shields.io/badge/-Taiwan-ff1f4b?style=for-t
 ### 電腦
 
 資料夾列表 <br>
-<img src="PC - 1.png" alt="PC - 1"> <br>
+<img src="Readme/PC - 1.png" alt="Readme/PC - 1"> <br>
 資料夾列表 - 關閉側列 <br>
-<img src="PC - 2.png" alt="PC - 2"> <br>
+<img src="Readme/PC - 2.png" alt="Readme/PC - 2"> <br>
 頁腳效果 <br>
-<img src="PC - 3.png" alt="PC - 3"> <br>
+<img src="Readme/PC - 3.png" alt="Readme/PC - 3"> <br>
 影片列表 <br>
-<img src="PC - 4.png" alt="PC - 4"> <br>
+<img src="Readme/PC - 4.png" alt="Readme/PC - 4"> <br>
 影片頁面 <br>
-<img src="PC - 5.png" alt="PC - 5"> <br>
+<img src="Readme/PC - 5.png" alt="Readme/PC - 5"> <br>
 影片頁面 - 深色背景模式 <br>
-<img src="PC - 5 - Dark.png" alt="PC - 5 - Dark"> <br>
+<img src="Readme/PC - 5 - Dark.png" alt="Readme/PC - 5 - Dark"> <br>
 影片頁面 - 關閉側列 <br>
-<img src="PC - 6.png" alt="PC - 6"> <br>
+<img src="Readme/PC - 6.png" alt="Readme/PC - 6"> <br>
 
 ### 手機
 
 資料夾列表 <br>
-<img src="Mobile - 1.png" alt="Mobile - 1"> <br>
+<img src="Readme/Mobile - 1.png" alt="Readme/Mobile - 1"> <br>
 資料夾列表 - 開啟側列 <br>
-<img src="Mobile - 2.png" alt="Mobile - 2"> <br>
+<img src="Readme/Mobile - 2.png" alt="Readme/Mobile - 2"> <br>
 頁腳效果 <br>
-<img src="Mobile - 3.png" alt="Mobile - 3"> <br>
+<img src="Readme/Mobile - 3.png" alt="Readme/Mobile - 3"> <br>
 影片列表 <br>
-<img src="Mobile - 4.png" alt="Mobile - 4"> <br>
+<img src="Readme/Mobile - 4.png" alt="Readme/Mobile - 4"> <br>
 影片頁面 <br>
-<img src="Mobile - 5.png" alt="Mobile - 5"> <br>
+<img src="Readme/Mobile - 5.png" alt="Readme/Mobile - 5"> <br>
 影片頁面 - 深色背景模式 <br>
-<img src="Mobile - 5 - Dark.png" alt="Mobile - 5 - Dark">
+<img src="Readme/Mobile - 5 - Dark.png" alt="Readme/Mobile - 5 - Dark">
