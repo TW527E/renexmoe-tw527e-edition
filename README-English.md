@@ -19,7 +19,7 @@ Display page: [MineDrive](https://d.tw527e.eu.org)
 3. Modify **`Theme overall color`** `(Milk tea color)`
 4. Fix **`PDF preview`**
 5. Fix **`OFFICE preview layout`**
-6. Proxy **`Javascript, CSS`** through [jsDelivr](https://www.jsdelivr.com)
+6. Proxy **`Javascript, CSS`** through [Statically](https://statically.io) `(Because jsDelivr is restricted in mainland China)`
 7. Change **`Video player`** to [DPlayer](https://dplayer.js.org)
 8. Add **`Call local player`** in **`Video playback page`**
 9. Change **`Font`** to [Noto Sans TC SC HK](https://fonts.google.com/noto/fonts)
