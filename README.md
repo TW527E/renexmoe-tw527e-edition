@@ -2,11 +2,11 @@
 
 [**English Version is Here!!!**](README-English.md)
 
-![GitHub Release](https://img.shields.io/github/release/TW527E/renexmoe-tw527e-edition/all.svg?style=flat)
+![GitHub Release](https://img.shields.io/github/v/release/TW527E/renexmoe-tw527e-edition.svg?include_prereleases&logo=Acclaim&style=for-the-badge)
 <a href="https://t.me/Cheng_Group">
-  <img src="https://img.shields.io/badge/-%E5%9C%A8%20Telegram%20%E4%B8%8A%E8%81%8A%E5%A4%A9-blue" alt="在 Telegram 上聊天">
+  <img src="https://img.shields.io/badge/-%E5%9C%A8%20Telegram%20%E4%B8%8A%E8%81%8A%E5%A4%A9-blue?style=for-the-badge&logo=Telegram" alt="在 Telegram 上聊天">
 </a><br>
-Made by 誠誠 <img src="https://img.shields.io/badge/-Taiwan-ff1f4b" alt="Taiwan">
+Made by 誠誠 <img src="https://img.shields.io/badge/-Taiwan-ff1f4b?style=for-the-badge&logo=Headspace" alt="Taiwan">
 
 此主題為 [qkqpttgf/OneManager-php](https://github.com/qkqpttgf/OneManager-php) 專案的主題，此主題源專案為 [186526/onemanager-theme-renexmoe](https://github.com/186526/onemanager-theme-renexmoe)，則我的版本修改自 [jssycszyj/renexmoe-cdn](https://github.com/jssycszyj/renexmoe-cdn)。
 
