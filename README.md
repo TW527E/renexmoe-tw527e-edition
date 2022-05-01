@@ -92,7 +92,7 @@
 
 ## 📜 開源許可
 
-依據源專案之開源許可，本專案採用 [GPT-3.0](https://spdx.org/licenses/GPL-3.0-only.html)
+依據源專案之開源許可，本專案採用 [GPL-3.0 License](https://spdx.org/licenses/GPL-3.0-only.html)
 
 
 ## 🔴 靈感來源
