@@ -89,3 +89,8 @@ Display page: [MineDrive](https://d.tw527e.eu.org)
 3. In the **`customScript`** option, enter **`<script>document.getElementById("footer").innerHTML='footer content';</script>`**
 4. Apply settings
 5. Wait for the cache to refresh, complete
+
+## Known bugs so far:
+
+1. Some types of cloud will trigger anti-leech, and the backup solution has been set to restore the original player (known: Alibaba Cloud Disk)
+2. If your network bandwidth is too slow or you are located in the mainland area, you may experience slow loading speed, this is a normal phenomenon
