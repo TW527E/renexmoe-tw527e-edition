@@ -30,7 +30,9 @@
 - 📶 **`路徑`** 顯示於畫面最上方
 
 
-## 🛠️ 修改項目
+<Details>
+<Summary>🛠️ 修改項目</Summary>
+<Pre>
 
  🔴 比較對象 [186526/onemanager-theme-renexmoe](https://github.com/186526/onemanager-theme-renexmoe)
 
@@ -46,6 +48,9 @@
 - 🔠 將 **`字體`** 更改為 [Noto Sans TC SC HK](https://fonts.google.com/noto/fonts)
 - ⏏️ 新增 **`頁腳`**
 - 📶 修復 **`路徑未顯示盤名`**
+
+</Pre>
+</Details>
 
 
 ## 📚 使用方法
