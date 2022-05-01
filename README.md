@@ -34,7 +34,7 @@
 <Summary>🛠️ 修改項目</Summary>
 <Pre>
 
- 🔴 比較對象 [186526/onemanager-theme-renexmoe](https://github.com/186526/onemanager-theme-renexmoe)
+🔴 比較對象 [186526/onemanager-theme-renexmoe](https://github.com/186526/onemanager-theme-renexmoe)
 
 - 🌏 將 **`語言`** 更改為 **`繁體中文`**
 - 📍 將 **`backgroundm`** 選項內容調用至 **`網頁 Icon`**
@@ -106,35 +106,35 @@ Readme 寫法及圖片做法來自 [qier222/YesPlayMusic](https://github.com/qie
 - [qkqpttgf/OneManager-php](https://github.com/qkqpttgf/OneManager-php)
 
 
-## 🖼️ 截圖 `(v1.0.9)`
+## 🖼️ 截圖 `(v1.0.15)`
 
 <Details>
 <Summary>💻 電腦</Summary>
 <Pre>
-<img src="https://raw.githubusercontent.com/TW527E/renexmoe-tw527e-edition/main/Readme/PC - 1.png" alt="Readme/PC - 1"> <br>
-<img src="https://raw.githubusercontent.com/TW527E/renexmoe-tw527e-edition/main/Readme/PC - 2.png" alt="Readme/PC - 2"> <br>
-<img src="https://raw.githubusercontent.com/TW527E/renexmoe-tw527e-edition/main/Readme/PC - 3.png" alt="Readme/PC - 3"> <br>
-<img src="https://raw.githubusercontent.com/TW527E/renexmoe-tw527e-edition/main/Readme/PC - 4.png" alt="Readme/PC - 4"> <br>
-<img src="https://raw.githubusercontent.com/TW527E/renexmoe-tw527e-edition/main/Readme/PC - 5.png" alt="Readme/PC - 5"> <br>
-<img src="https://raw.githubusercontent.com/TW527E/renexmoe-tw527e-edition/main/Readme/PC - 5 - Dark.png" alt="Readme/PC - 5 - Dark"> <br>
-<img src="https://raw.githubusercontent.com/TW527E/renexmoe-tw527e-edition/main/Readme/PC - 6.png" alt="Readme/PC - 6">
+
+![PC-Home](Readme/PC-Home.png)
+![PC-HEAD.md](Readme/PC-HEAD.md.png)
+![PC-README.md](Readme/PC-README.md.png)
+![PC-Picture](Readme/PC-Picture.png)
+![PC-Video](Readme/PC-Video.png)
+![PC-Music](Readme/PC-Music.png)
+![PC-About](Readme/PC-About.png)
+
 </Pre>
 </Details>
 
 <Details>
 <Summary>📱 手機</Summary>
 <Pre>
-資料夾列表 <br>
-<img src="https://raw.githubusercontent.com/TW527E/renexmoe-tw527e-edition/main/Readme/Mobile - 1.png" alt="Readme/Mobile - 1"> <br>
-資料夾列表 - 開啟側列 <br>
-<img src="https://raw.githubusercontent.com/TW527E/renexmoe-tw527e-edition/main/Readme/Mobile - 2.png" alt="Readme/Mobile - 2"> <br>
-頁腳效果 <br>
-<img src="https://raw.githubusercontent.com/TW527E/renexmoe-tw527e-edition/main/Readme/Mobile - 3.png" alt="Readme/Mobile - 3"> <br>
-影片列表 <br>
-<img src="https://raw.githubusercontent.com/TW527E/renexmoe-tw527e-edition/main/Readme/Mobile - 4.png" alt="Readme/Mobile - 4"> <br>
-影片頁面 <br>
-<img src="https://raw.githubusercontent.com/TW527E/renexmoe-tw527e-edition/main/Readme/Mobile - 5.png" alt="Readme/Mobile - 5"> <br>
-影片頁面 - 深色背景模式 <br>
-<img src="https://raw.githubusercontent.com/TW527E/renexmoe-tw527e-edition/main/Readme/Mobile - 5 - Dark.png" alt="Readme/Mobile - 5 - Dark">
+
+![Mobile-Home](Readme/Mobile-Home.png)
+![Mobile-HEAD.md](Readme/Mobile-HEAD.md.png)
+![Mobile-README.md](Readme/Mobile-README.md.png)
+![Mobile-Picture](Readme/Mobile-Picture.png)
+![Mobile-Video](Readme/Mobile-Video.png)
+![Mobile-Music](Readme/Mobile-Music.png)
+![Mobile-About](Readme/Mobile-About.png)
+![Mobile-About](Readme/Mobile-SideBar.png)
+
 </Pre>
 </Details>
