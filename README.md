@@ -89,3 +89,8 @@ Made by 誠誠 <img src="https://img.shields.io/badge/-Taiwan-blue?style=for-the
 3. 在 **`customScript`** 選項內，輸入 **`<script>document.getElementById("footer").innerHTML='頁腳內容';</script>`**
 4. 套用設定
 5. 等待緩存刷新，完成
+
+## 目前已知Bug:
+
+1. 部分種類雲端會觸發防盜鏈，已將備用方案設為恢復原本播放器 (已知: 阿里雲盤)
+2. 如您的網路帶寬過慢或處在大陸地區，將有可能會遇到載入速度很慢，此為正常現象
