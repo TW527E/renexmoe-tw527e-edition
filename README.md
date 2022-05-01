@@ -55,7 +55,7 @@
 
 ## 📚 使用方法
 
-此版本由 [@TW527E](https://github.com/TW527E) 維護，支持 OneManager
+此版本由 [@TW527E](https://github.com/TW527E) 維護，作用於 OneManager-php
 
 訪問此項目的 [Releases](releases) 頁面下載主題檔案
 
