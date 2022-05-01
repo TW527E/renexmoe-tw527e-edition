@@ -17,11 +17,10 @@
   <title><!--Title--></title>
   <meta name="description" content="A Cloud Drive built by OneManager with the theme renexmoe-tw527e-edition" />
 
-
   <meta name="theme-color" content="#fff" />
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.13/css/app1@uw34ru4ehdn4pywddmebm79dnnb2jyei.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.13/css/app2@eqge353pwpgivauvcvzejwrki4mdissj.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.14/css/app1@uw34ru4ehdn4pywddmebm79dnnb2jyei.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.14/css/app2@eqge353pwpgivauvcvzejwrki4mdissj.css">
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/css/mdui.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/fira-code@4.2.2/400.css">
@@ -30,9 +29,12 @@
 
   <link class="dplayer-css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dplayer/dist/DPlayer.min.css">
   <script src="https://cdn.jsdelivr.net/npm/dplayer/dist/DPlayer.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/aadsm/jsmediatags@master/dist/jsmediatags.min.js"></script>
 
   <script>
-    const dp = 0; 
+    const jsmediatags = window.jsmediatags;
     window.disableddarkmode = true;
   </script>
   
@@ -102,9 +104,12 @@
     .mdui-theme-layout-dark .mdui-list-item {
       color: #ffd2b3;
     }
+
+    div#aplayer * {
+      color: #666;
+    }
   </style>
   
-
   <!--customCss-->
 </head>
 
@@ -363,8 +368,74 @@
       <img class="mdui-img-fluid mdui-center" src="<!--FileDownUrl-->" />
       <!--IsimgFileEnd-->
       <!--IsmusicFileStart-->
-      <audio class="mdui-center" src="<!--FileDownUrl-->" controls autoplay
-        style="width: 100%; margin-top: 10%; margin-bottom: 10%"></audio>
+      <div id="aplayer" class="mdui-text-center">音樂載入中...</div>
+      <script>
+        path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/'));
+
+        jsmediatags.read(window.location.origin + path + "/" + "<!--FileDownUrl-->", {
+          onSuccess: function(tag) { 
+            coverr = null;
+            titlee = null;
+            artistt = null;
+
+            if(tag.tags.picture != undefined){
+              const data = tag.tags.picture.data;
+              const format = tag.tags.picture.format;
+              let base64String = "";
+              for (let i = 0; i < data.length; i++) {
+                base64String += String.fromCharCode(data[i]);
+              }
+              coverr = `data:${format};base64,${window.btoa(base64String)}`;
+            }
+
+            if(tag.tags.title != undefined){
+              titlee = tag.tags.title;
+            }else{
+              titlee = "<!--FileDownUrl-->".substring(0, "<!--FileDownUrl-->".lastIndexOf('.'));
+            }
+
+            if(tag.tags.artist != undefined){
+              artistt = tag.tags.artist;
+            }else{
+              artistt = "　";
+            }
+
+            ap = new APlayer({
+              container: document.getElementById('aplayer'),
+              theme: 'rgb(242, 200, 171)',
+              audio: [{
+                name: titlee,
+                artist: artistt,
+                url: '<!--FileDownUrl-->',
+                cover: coverr
+              }]
+            });
+          },
+          onError: function(error) {
+            p = document.getElementById('aplayer');
+            parent = p.parentNode;
+            audio = document.createElement('audio');
+            audio.className = 'mdui-center';
+            audio.src = "<!--FileDownUrl-->";
+            audio.controls = true;
+            audio.autoplay = true;
+            audio.style = 'width: 100%';
+            parent.replaceChild(audio, p);
+          }
+        });
+
+        function AudioPause(){
+          if(window.location.href != oldURL){
+            if(ap != undefined){
+              ap.pause();
+            }
+            oldURL = window.location.href;
+          }
+        }
+
+        var oldURL = window.location.href;
+        setInterval(AudioPause, 1000);
+      </script>
       <!--IsmusicFileEnd-->
       <!--IsvideoFileStart-->
       <div id="dplayer"></div>
@@ -401,30 +472,25 @@
         </div>
       </div>
       <script>
-        dp = new DPlayer({
-            container: document.getElementById('dplayer'),
-            lang:'zh-tw',
-            screenshot: true,
-            airplay: true,
-            preload: 'auto',
-            volume: 0.7,
-            video: {
-                url: '<!--FileDownUrl-->',
-                type: 'auto'
-            }
-        });
-      </script>
-      <script>
-        function loaded() {
-          path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/'));
-          document.getElementById("openpot").href = "potplayer://" + window.location.origin + path + "/" + "<!--FileDownUrl-->";
-          document.getElementById("openvlc").href = "vlc://" + window.location.origin + path + "/" + "<!--FileDownUrl-->";
-          document.getElementById("openmxpro").href = "intent:" + window.location.origin + path + "/" + "<!--FileDownUrl-->" + "#Intent;package=com.mxtech.videoplayer.pro;end";
-          document.getElementById("openmxfree").href = "intent:" + window.location.origin + path + "/" + "<!--FileDownUrl-->" + "#Intent;package=com.mxtech.videoplayer.ad;end";
-          document.getElementById("opennp").href = "nplayer-" + window.location.origin + path + "/" + "<!--FileDownUrl-->";
-        }
+        path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/'));
+        
+        document.getElementById("openpot").href = "potplayer://" + window.location.origin + path + "/" + "<!--FileDownUrl-->";
+        document.getElementById("openvlc").href = "vlc://" + window.location.origin + path + "/" + "<!--FileDownUrl-->";
+        document.getElementById("openmxpro").href = "intent:" + window.location.origin + path + "/" + "<!--FileDownUrl-->" + "#Intent;package=com.mxtech.videoplayer.pro;end";
+        document.getElementById("openmxfree").href = "intent:" + window.location.origin + path + "/" + "<!--FileDownUrl-->" + "#Intent;package=com.mxtech.videoplayer.ad;end";
+        document.getElementById("opennp").href = "nplayer-" + window.location.origin + path + "/" + "<!--FileDownUrl-->";
 
-        window.onload = loaded()
+        new DPlayer({
+        container: document.getElementById('dplayer'),
+        lang:'zh-tw',
+        screenshot: true,
+        airplay: true,
+        preload: 'auto',
+        volume: 0.7,
+        video: {
+          url: '<!--FileDownUrl-->',
+          type: 'auto'
+        }});
       </script>
       <!--IsvideoFileEnd-->
       <!--IsofficeFileStart-->
@@ -542,15 +608,15 @@
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.7.2/build/highlight.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sha-1@1.0.0/dist/sha1.umd.min.js"></script>
 
-<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.13/js/extra.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.14/js/extra.js"></script>
 
-<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.13/js/app@qm97ssij9cnii7x8fnbkpq4hcgq35dyr.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.13/js/app@59467336fgwnpx8qbfvtmpyeefv35e5i.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.13/js/app@a7r8jgn2qe3eyfrkahwdnqcjf7uba95k.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.13/js/app@keaxctnyw29nuzpsh66g7ki4h5wzy8zn.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.13/js/app@pe2nahunr9aihucdgc2ssjbgnaccr5rz.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.13/js/app@tsjmiafbhksy5pyb5tchy765wshmwwnd.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.13/js/webpack-runtime@cx4vgpbaggjuhg8rh6m3yarhkkxy4dm3.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.14/js/app@qm97ssij9cnii7x8fnbkpq4hcgq35dyr.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.14/js/app@59467336fgwnpx8qbfvtmpyeefv35e5i.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.14/js/app@a7r8jgn2qe3eyfrkahwdnqcjf7uba95k.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.14/js/app@keaxctnyw29nuzpsh66g7ki4h5wzy8zn.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.14/js/app@pe2nahunr9aihucdgc2ssjbgnaccr5rz.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.14/js/app@tsjmiafbhksy5pyb5tchy765wshmwwnd.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.14/js/webpack-runtime@cx4vgpbaggjuhg8rh6m3yarhkkxy4dm3.js"></script>
 
 <!--customScript-->
 </html>

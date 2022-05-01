@@ -61,10 +61,11 @@ Display page: [MineDrive](https://d.tw527e.eu.org)
 5. Fix **`OFFICE preview layout`**
 6. Proxy **`Javascript, CSS`** through [jsDelivr](https://jsdelivr.com)
 7. Change **`Video player`** to [DPlayer](https://dplayer.js.org)
-8. Add **`Call local player`** in **`Video playback page`**
-9. Change **`Font`** to [Noto Sans TC SC HK](https://fonts.google.com/noto/fonts)
-10. Add **`Footer`**
-11. Fix **`Path does not show disk name`**
+8. Change **`Audio player`** to [APlayer](https://aplayer.js.org)
+9. Add **`Call local player`** in **`Video playback page`**
+10. Change **`Font`** to [Noto Sans TC SC HK](https://fonts.google.com/noto/fonts)
+11. Add **`Footer`**
+12. Fix **`Path does not show disk name`**
 
 ## The usage is as follows:
 

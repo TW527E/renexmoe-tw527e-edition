@@ -61,10 +61,11 @@ Made by 誠誠 <img src="https://img.shields.io/badge/-Taiwan-blue?style=for-the
 5. 修復 **`OFFICE 預覽排版`**
 6. 將 **`Javascript、CSS`** 透過 [jsDelivr](https://jsdelivr.com) 代理
 7. 將 **`影片播放器`** 更改為 [DPlayer](https://dplayer.js.org)
-8. 在 **`影片播放頁面`** 增加 **`呼叫本地播放器`**
-9. 將 **`字體`** 更改為 [Noto Sans TC SC HK](https://fonts.google.com/noto/fonts)
-10. 新增 **`頁腳`**
-11. 修復 **`路徑未顯示盤名`**
+8. 將 **`音訊播放器`** 更改為 [APlayer](https://aplayer.js.org)
+9. 在 **`影片播放頁面`** 增加 **`呼叫本地播放器`**
+10. 將 **`字體`** 更改為 [Noto Sans TC SC HK](https://fonts.google.com/noto/fonts)
+11. 新增 **`頁腳`**
+12. 修復 **`路徑未顯示盤名`**
 
 ## 使用方式如下:
 
