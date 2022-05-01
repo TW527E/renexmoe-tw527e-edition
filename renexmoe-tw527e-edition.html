@@ -19,8 +19,8 @@
 
   <meta name="theme-color" content="#fff" />
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.14/css/app1@uw34ru4ehdn4pywddmebm79dnnb2jyei.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.14/css/app2@eqge353pwpgivauvcvzejwrki4mdissj.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.15/css/app1@uw34ru4ehdn4pywddmebm79dnnb2jyei.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.15/css/app2@eqge353pwpgivauvcvzejwrki4mdissj.css">
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/css/mdui.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/fira-code@4.2.2/400.css">
@@ -40,9 +40,9 @@
   
   <style>
     html {
-      background-color: #303030;
+      background-color: #222222;
       <!--BackgroundStart-->
-      background: url("<!--BackgroundUrl-->"), #303030;
+      background: url("<!--BackgroundUrl-->"), #222222;
       <!--BackgroundEnd-->
       margin: 0;
       background-attachment: fixed;
@@ -97,12 +97,28 @@
       background-color: rgb(22 22 22 / 43%);
     }
 
-    a strong code,a code{
+    .mdui-typo p{
+      margin: 0 0 0 0;
+    }
+
+    .markdown p{
+      margin: 0 0 1.2em 0;
+    }
+
+    .mdui-typo{
+      line-height: 1.8;
+    }
+
+    .markdown a strong code, .markdown a code, .markdown a strong, .markdown a code, .markdown a, .mdui-typo p a strong code, .mdui-typo p a code, .mdui-typo p a strong, .mdui-typo p a code, .mdui-typo p a{
       color: #ff4d7e !important;
     }
 
     .mdui-theme-layout-dark .mdui-list-item {
       color: #ffd2b3;
+    }
+
+    .mdui-list-item:hover {
+      background-color: #ffffff29;
     }
 
     div#aplayer * {
@@ -369,8 +385,46 @@
       <!--IsimgFileEnd-->
       <!--IsmusicFileStart-->
       <div id="aplayer" class="mdui-text-center">音樂載入中...</div>
+      <div class="mdui-row">
+        <hr />
+      </div>
+      <br />
+      <div class="mdui-row">
+        <div class="mdui-typo-subheading" style="margin-bottom: 15px;">呼叫本地播放器</div>
+      </div>
+      <div class="mdui-row" style="line-height: 36px;">
+        <div class="mdui-col-xs-12 mdui-col-sm-2">
+          <div class="mdui-typo-subheading">Android:</div>
+        </div>
+        <div class="mdui-col-xs-12 mdui-col-sm-3">
+          <a id="openmxfree" href="" type="button" class="mdui-btn mdui-ripple">MxPlayer</a>
+        </div>
+        <div class="mdui-col-xs-12 mdui-col-sm-3">
+          <a id="openmxpro" href="" type="button" class="mdui-btn mdui-ripple">MxPlayerPro</a>
+        </div>
+        <div class="mdui-col-xs-12 mdui-col-sm-3">
+          <a id="opennp" href="" type="button" class="mdui-btn mdui-ripple">nPlayer</a>
+        </div>
+      </div>
+      <div class="mdui-row" style="line-height: 36px;">
+        <div class="mdui-col-xs-12 mdui-col-sm-2">
+          <div class="mdui-typo-subheading">Windows:</div>
+        </div>
+        <div class="mdui-col-xs-12 mdui-col-sm-3">
+          <a id="openpot" href="" type="button" class="mdui-btn mdui-ripple">PotPlayer</a>
+        </div>
+        <div class="mdui-col-xs-12 mdui-col-sm-3">
+          <a id="openvlc" href="" type="button" class="mdui-btn mdui-ripple">VLC</a>
+        </div>
+      </div>
       <script>
         path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/'));
+        
+        document.getElementById("openpot").href = "potplayer://" + window.location.origin + path + "/" + "<!--FileDownUrl-->";
+        document.getElementById("openvlc").href = "vlc://" + window.location.origin + path + "/" + "<!--FileDownUrl-->";
+        document.getElementById("openmxpro").href = "intent:" + window.location.origin + path + "/" + "<!--FileDownUrl-->" + "#Intent;package=com.mxtech.videoplayer.pro;end";
+        document.getElementById("openmxfree").href = "intent:" + window.location.origin + path + "/" + "<!--FileDownUrl-->" + "#Intent;package=com.mxtech.videoplayer.ad;end";
+        document.getElementById("opennp").href = "nplayer-" + window.location.origin + path + "/" + "<!--FileDownUrl-->";
 
         jsmediatags.read(window.location.origin + path + "/" + "<!--FileDownUrl-->", {
           onSuccess: function(tag) { 
@@ -403,12 +457,14 @@
             ap = new APlayer({
               container: document.getElementById('aplayer'),
               theme: 'rgb(242, 200, 171)',
-              audio: [{
+              audio: [
+                {
                 name: titlee,
                 artist: artistt,
                 url: '<!--FileDownUrl-->',
                 cover: coverr
-              }]
+                }
+              ]
             });
           },
           onError: function(error) {
@@ -608,15 +664,15 @@
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.7.2/build/highlight.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sha-1@1.0.0/dist/sha1.umd.min.js"></script>
 
-<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.14/js/extra.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.15/js/extra.js"></script>
 
-<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.14/js/app@qm97ssij9cnii7x8fnbkpq4hcgq35dyr.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.14/js/app@59467336fgwnpx8qbfvtmpyeefv35e5i.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.14/js/app@a7r8jgn2qe3eyfrkahwdnqcjf7uba95k.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.14/js/app@keaxctnyw29nuzpsh66g7ki4h5wzy8zn.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.14/js/app@pe2nahunr9aihucdgc2ssjbgnaccr5rz.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.14/js/app@tsjmiafbhksy5pyb5tchy765wshmwwnd.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.14/js/webpack-runtime@cx4vgpbaggjuhg8rh6m3yarhkkxy4dm3.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.15/js/app@qm97ssij9cnii7x8fnbkpq4hcgq35dyr.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.15/js/app@59467336fgwnpx8qbfvtmpyeefv35e5i.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.15/js/app@a7r8jgn2qe3eyfrkahwdnqcjf7uba95k.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.15/js/app@keaxctnyw29nuzpsh66g7ki4h5wzy8zn.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.15/js/app@pe2nahunr9aihucdgc2ssjbgnaccr5rz.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.15/js/app@tsjmiafbhksy5pyb5tchy765wshmwwnd.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.15/js/webpack-runtime@cx4vgpbaggjuhg8rh6m3yarhkkxy4dm3.js"></script>
 
 <!--customScript-->
 </html>
