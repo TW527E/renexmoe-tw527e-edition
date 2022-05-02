@@ -86,8 +86,8 @@
 
 ## 🧿 已知問題
 
-1. 部分種類雲端會觸發防盜鏈，已將備用方案設為恢復原本播放器 (已知: 阿里雲盤)
-2. 將有可能會遇到載入速度很慢，此為正常現象
+- 部分種類雲端會觸發防盜鏈，已將備用方案設為恢復原本播放器 (已知: 阿里雲盤)
+- iOS 某部分內容支援不佳
 
 
 ## 📜 開源許可
@@ -104,6 +104,24 @@
 Readme 寫法及圖片做法來自 [qier222/YesPlayMusic](https://github.com/qier222/YesPlayMusic)
 
 - [qkqpttgf/OneManager-php](https://github.com/qkqpttgf/OneManager-php)
+
+- [zdhxiong/mdui](https://github.com/zdhxiong/mdui)
+
+- [DIYgod/DPlayer](https://github.com/DIYgod/DPlayer)
+
+- [DIYgod/APlayer](https://github.com/DIYgod/APlayer)
+
+- [aadsm/jsmediatags](https://github.com/aadsm/jsmediatags)
+
+- [fontsource/fontsource](https://github.com/fontsource/fontsource)
+
+- [highlightjs/cdn-release](https://github.com/highlightjs/cdn-release)
+
+- [mozilla/pdf.js](https://github.com/mozilla/pdf.js)
+
+- [linkgod/SHA-1](https://github.com/linkgod/SHA-1)
+
+- [google/fonts](https://github.com/google/fonts)
 
 
 ## 🖼️ 截圖 `(v1.0.15)`
