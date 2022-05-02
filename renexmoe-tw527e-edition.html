@@ -19,8 +19,8 @@
 
   <meta name="theme-color" content="#fff" />
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.16/css/app1@uw34ru4ehdn4pywddmebm79dnnb2jyei.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.16/css/app2@eqge353pwpgivauvcvzejwrki4mdissj.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.17/css/app1@uw34ru4ehdn4pywddmebm79dnnb2jyei.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.17/css/app2@eqge353pwpgivauvcvzejwrki4mdissj.css">
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/css/mdui.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/fira-code@4.2.2/400.css">
@@ -134,6 +134,34 @@
 
     label.mdui-textfield-label {
     color: #e91e63 !important;
+    }
+    
+    div#clp{
+      line-height: 36px !important;
+      display: flex !important;
+      justify-content: center !important;
+      flex-direction: column !important;
+      align-items: center !important;
+    }
+
+    @media (min-width: 600px) {
+      div#clpp{
+        line-height: 36px !important;
+        display: flex !important;
+        justify-content: center !important;
+        flex-direction: row !important;
+        align-items: center !important;
+      }
+    }
+
+    @media (max-width: 599px) {
+      div#clpp{
+        line-height: 36px !important;
+        display: flex !important;
+        justify-content: center !important;
+        flex-direction: column !important;
+        align-items: center !important;
+      }
     }
   </style>
   
@@ -403,28 +431,20 @@
       <div class="mdui-row mdui-text-center">
         <div class="mdui-typo-subheading" style="margin-bottom: 15px;">呼叫本地播放器</div>
       </div>
-      <div class="mdui-row mdui-text-center" style="line-height: 36px;">
-        <div class="mdui-col-xs-12 mdui-col-sm-2">
-          <div class="mdui-typo-subheading">Android:</div>
-        </div>
-        <div class="mdui-col-xs-12 mdui-col-sm-3">
+      <div class="mdui-row" id="clpp">
+        <div class="mdui-col-xs-12 mdui-col-sm-2" id="clp">
           <a id="openmxfree" href="" type="button" class="mdui-btn mdui-ripple">MxPlayer</a>
         </div>
-        <div class="mdui-col-xs-12 mdui-col-sm-3">
+        <div class="mdui-col-xs-12 mdui-col-sm-2" id="clp">
           <a id="openmxpro" href="" type="button" class="mdui-btn mdui-ripple">MxPlayerPro</a>
         </div>
-        <div class="mdui-col-xs-12 mdui-col-sm-3">
+        <div class="mdui-col-xs-12 mdui-col-sm-2" id="clp">
           <a id="opennp" href="" type="button" class="mdui-btn mdui-ripple">nPlayer</a>
         </div>
-      </div>
-      <div class="mdui-row mdui-text-center" style="line-height: 36px;">
-        <div class="mdui-col-xs-12 mdui-col-sm-2">
-          <div class="mdui-typo-subheading">Windows:</div>
-        </div>
-        <div class="mdui-col-xs-12 mdui-col-sm-3">
+        <div class="mdui-col-xs-12 mdui-col-sm-2" id="clp">
           <a id="openpot" href="" type="button" class="mdui-btn mdui-ripple">PotPlayer</a>
         </div>
-        <div class="mdui-col-xs-12 mdui-col-sm-3">
+        <div class="mdui-col-xs-12 mdui-col-sm-2" id="clp">
           <a id="openvlc" href="" type="button" class="mdui-btn mdui-ripple">VLC</a>
         </div>
       </div>
@@ -454,10 +474,6 @@
 
         window.jsmediatags.read(window.location.origin + path + "/" + "<!--FileDownUrl-->", {
           onSuccess: function(tag) { 
-            coverr = null;
-            titlee = null;
-            artistt = null;
-
             if(tag.tags.picture != undefined){
               const data = tag.tags.picture.data;
               const format = tag.tags.picture.format;
@@ -509,31 +525,23 @@
         <hr />
       </div>
       <br />
-      <div class="mdui-row">
+      <div class="mdui-row mdui-text-center">
         <div class="mdui-typo-subheading" style="margin-bottom: 15px;">呼叫本地播放器</div>
       </div>
-      <div class="mdui-row" style="line-height: 36px;">
-        <div class="mdui-col-xs-12 mdui-col-sm-2">
-          <div class="mdui-typo-subheading">Android:</div>
-        </div>
-        <div class="mdui-col-xs-12 mdui-col-sm-3">
+      <div class="mdui-row" id="clpp">
+        <div class="mdui-col-xs-12 mdui-col-sm-2" id="clp">
           <a id="openmxfree" href="" type="button" class="mdui-btn mdui-ripple">MxPlayer</a>
         </div>
-        <div class="mdui-col-xs-12 mdui-col-sm-3">
+        <div class="mdui-col-xs-12 mdui-col-sm-2" id="clp">
           <a id="openmxpro" href="" type="button" class="mdui-btn mdui-ripple">MxPlayerPro</a>
         </div>
-        <div class="mdui-col-xs-12 mdui-col-sm-3">
+        <div class="mdui-col-xs-12 mdui-col-sm-2" id="clp">
           <a id="opennp" href="" type="button" class="mdui-btn mdui-ripple">nPlayer</a>
         </div>
-      </div>
-      <div class="mdui-row" style="line-height: 36px;">
-        <div class="mdui-col-xs-12 mdui-col-sm-2">
-          <div class="mdui-typo-subheading">Windows:</div>
-        </div>
-        <div class="mdui-col-xs-12 mdui-col-sm-3">
+        <div class="mdui-col-xs-12 mdui-col-sm-2" id="clp">
           <a id="openpot" href="" type="button" class="mdui-btn mdui-ripple">PotPlayer</a>
         </div>
-        <div class="mdui-col-xs-12 mdui-col-sm-3">
+        <div class="mdui-col-xs-12 mdui-col-sm-2" id="clp">
           <a id="openvlc" href="" type="button" class="mdui-btn mdui-ripple">VLC</a>
         </div>
       </div>
@@ -674,15 +682,15 @@
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.7.2/build/highlight.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sha-1@1.0.0/dist/sha1.umd.min.js"></script>
 
-<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.16/js/extra.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.17/js/extra.js"></script>
 
-<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.16/js/app@qm97ssij9cnii7x8fnbkpq4hcgq35dyr.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.16/js/app@59467336fgwnpx8qbfvtmpyeefv35e5i.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.16/js/app@a7r8jgn2qe3eyfrkahwdnqcjf7uba95k.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.16/js/app@keaxctnyw29nuzpsh66g7ki4h5wzy8zn.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.16/js/app@pe2nahunr9aihucdgc2ssjbgnaccr5rz.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.16/js/app@tsjmiafbhksy5pyb5tchy765wshmwwnd.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.16/js/webpack-runtime@cx4vgpbaggjuhg8rh6m3yarhkkxy4dm3.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.17/js/app@qm97ssij9cnii7x8fnbkpq4hcgq35dyr.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.17/js/app@59467336fgwnpx8qbfvtmpyeefv35e5i.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.17/js/app@a7r8jgn2qe3eyfrkahwdnqcjf7uba95k.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.17/js/app@keaxctnyw29nuzpsh66g7ki4h5wzy8zn.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.17/js/app@pe2nahunr9aihucdgc2ssjbgnaccr5rz.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.17/js/app@tsjmiafbhksy5pyb5tchy765wshmwwnd.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.17/js/webpack-runtime@cx4vgpbaggjuhg8rh6m3yarhkkxy4dm3.js"></script>
 
 <script>
   window.renexmoe.toggle_theme();
