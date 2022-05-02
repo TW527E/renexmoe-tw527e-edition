@@ -19,8 +19,8 @@
 
   <meta name="theme-color" content="#fff" />
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.15/css/app1@uw34ru4ehdn4pywddmebm79dnnb2jyei.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.15/css/app2@eqge353pwpgivauvcvzejwrki4mdissj.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.16/css/app1@uw34ru4ehdn4pywddmebm79dnnb2jyei.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.16/css/app2@eqge353pwpgivauvcvzejwrki4mdissj.css">
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/css/mdui.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/fira-code@4.2.2/400.css">
@@ -34,7 +34,6 @@
   <script src="https://cdn.jsdelivr.net/gh/aadsm/jsmediatags@master/dist/jsmediatags.min.js"></script>
 
   <script>
-    const jsmediatags = window.jsmediatags;
     window.disableddarkmode = true;
   </script>
   
@@ -56,6 +55,10 @@
       background-attachment: fixed;
       background-size: cover;
       background-repeat: no-repeat;
+    }
+
+    .mdui-theme-layout-dark{
+      background-color: #222222 !important;
     }
 
     *{
@@ -124,6 +127,14 @@
     div#aplayer * {
       color: #666;
     }
+
+    input#url-input {
+    color: rgb(103 95 217);
+    }
+
+    label.mdui-textfield-label {
+    color: #e91e63 !important;
+    }
   </style>
   
   <!--customCss-->
@@ -135,7 +146,7 @@
       <span class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white"
         onclick='mdui.$("body").toggleClass("mdui-drawer-body-left");' id="toggle-drawer"><i
           class="mdui-icon material-icons">menu</i></span>
-      <a class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white mdui-hidden-sm-up" onclick="window.history.back()">
+      <a class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white" onclick="window.history.back()">
         <i class="mdui-icon material-icons">arrow_back</i>
       </a>
       <a href="<!--base_path-->" class="mdui-typo-headline">
@@ -153,12 +164,12 @@
   <div class="mdui-drawer" id="main-drawer">
     <div class="mdui-list" mdui-collapse="{accordion: true}">
       <!--LoginStart-->
-      <li class="mdui-list-item mdui-ripple" href="javascript:void(0);" mdui-dialog='{target: "#login_input"}'>
+      <li class="mdui-list-item mdui-ripple" mdui-dialog='{target: "#login_input"}'>
         <a class="mdui-list-item-icon mdui-icon material-icons">account_circle</a><a
           class="mdui-list-item-content">登錄</a>
       </li>
       <!--LoginEnd-->
-      <li class="mdui-list-item mdui-ripple" href="javascript:void(0);" onclick="renexmoe.toggle_theme();">
+      <li class="mdui-list-item mdui-ripple" onclick="renexmoe.toggle_theme();">
         <a class="mdui-list-item-icon mdui-icon material-icons">brightness_4</a><a
           class="mdui-list-item-content">深色背景模式</a>
       </li>
@@ -184,7 +195,7 @@
           class="mdui-list-item-icon mdui-icon material-icons">code</i>
         <div class="mdui-list-item-content">Github</div>
       </a>
-      <li class="mdui-list-item mdui-ripple" href="javascript:void(0);" id="about_theme">
+      <li class="mdui-list-item mdui-ripple" id="about_theme">
         <i class="mdui-list-item-icon mdui-icon material-icons">info</i>
         <div class="mdui-list-item-content">關於主題</div>
       </li>
@@ -359,7 +370,7 @@
     <!--FootomfEnd-->
     <script>
       document.querySelector("#admin-menu").innerHTML +=
-        '<li class="mdui-menu-item"><a href="javascript:void(0);"class="mdui-ripple getalllink"><i class="mdui-menu-item-icon mdui-icon material-icons">link</i>批量鏈接</a></li>';
+        '<li class="mdui-menu-item"><a class="mdui-ripple getalllink"><i class="mdui-menu-item-icon mdui-icon material-icons">link</i>批量鏈接</a></li>';
     </script>
     <script>
       window.MorePage = undefined;
@@ -389,10 +400,10 @@
         <hr />
       </div>
       <br />
-      <div class="mdui-row">
+      <div class="mdui-row mdui-text-center">
         <div class="mdui-typo-subheading" style="margin-bottom: 15px;">呼叫本地播放器</div>
       </div>
-      <div class="mdui-row" style="line-height: 36px;">
+      <div class="mdui-row mdui-text-center" style="line-height: 36px;">
         <div class="mdui-col-xs-12 mdui-col-sm-2">
           <div class="mdui-typo-subheading">Android:</div>
         </div>
@@ -406,7 +417,7 @@
           <a id="opennp" href="" type="button" class="mdui-btn mdui-ripple">nPlayer</a>
         </div>
       </div>
-      <div class="mdui-row" style="line-height: 36px;">
+      <div class="mdui-row mdui-text-center" style="line-height: 36px;">
         <div class="mdui-col-xs-12 mdui-col-sm-2">
           <div class="mdui-typo-subheading">Windows:</div>
         </div>
@@ -419,14 +430,29 @@
       </div>
       <script>
         path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/'));
-        
-        document.getElementById("openpot").href = "potplayer://" + window.location.origin + path + "/" + "<!--FileDownUrl-->";
-        document.getElementById("openvlc").href = "vlc://" + window.location.origin + path + "/" + "<!--FileDownUrl-->";
+
         document.getElementById("openmxpro").href = "intent:" + window.location.origin + path + "/" + "<!--FileDownUrl-->" + "#Intent;package=com.mxtech.videoplayer.pro;end";
         document.getElementById("openmxfree").href = "intent:" + window.location.origin + path + "/" + "<!--FileDownUrl-->" + "#Intent;package=com.mxtech.videoplayer.ad;end";
         document.getElementById("opennp").href = "nplayer-" + window.location.origin + path + "/" + "<!--FileDownUrl-->";
+        document.getElementById("openpot").href = "potplayer://" + window.location.origin + path + "/" + "<!--FileDownUrl-->";
+        document.getElementById("openvlc").href = "vlc://" + window.location.origin + path + "/" + "<!--FileDownUrl-->";
 
-        jsmediatags.read(window.location.origin + path + "/" + "<!--FileDownUrl-->", {
+        ap = new APlayer({
+          container: document.getElementById('aplayer'),
+          theme: 'rgb(242, 200, 171)',
+          audio: [
+            {
+            name: "<!--FileDownUrl-->".substring(0, "<!--FileDownUrl-->".lastIndexOf('.')),
+            artist: "",
+            url: '<!--FileDownUrl-->',
+            cover: "　"
+            }
+          ]
+        });
+
+        document.querySelector('.aplayer-author').innerHTML = "";
+
+        window.jsmediatags.read(window.location.origin + path + "/" + "<!--FileDownUrl-->", {
           onSuccess: function(tag) { 
             coverr = null;
             titlee = null;
@@ -439,33 +465,17 @@
               for (let i = 0; i < data.length; i++) {
                 base64String += String.fromCharCode(data[i]);
               }
-              coverr = `data:${format};base64,${window.btoa(base64String)}`;
+              document.querySelector('.aplayer-pic').style.backgroundImage = `url("data:${format};base64,${window.btoa(base64String)}")`;
             }
 
             if(tag.tags.title != undefined){
-              titlee = tag.tags.title;
-            }else{
-              titlee = "<!--FileDownUrl-->".substring(0, "<!--FileDownUrl-->".lastIndexOf('.'));
+              document.querySelector('.aplayer-title').innerHTML = tag.tags.title;
             }
 
             if(tag.tags.artist != undefined){
-              artistt = tag.tags.artist;
-            }else{
-              artistt = "　";
+              document.querySelector('.aplayer-author').innerHTML = " - " + tag.tags.artist;
             }
 
-            ap = new APlayer({
-              container: document.getElementById('aplayer'),
-              theme: 'rgb(242, 200, 171)',
-              audio: [
-                {
-                name: titlee,
-                artist: artistt,
-                url: '<!--FileDownUrl-->',
-                cover: coverr
-                }
-              ]
-            });
           },
           onError: function(error) {
             p = document.getElementById('aplayer');
@@ -627,11 +637,11 @@
   "><code id="code"><!--TxtContent--></code></pre>
       <script>
         document.querySelector("#admin-menu").innerHTML +=
-          '<li class="mdui-menu-item"><a href="javascript:void(0);"class="mdui-ripple highlight"><i class="mdui-menu-item-icon mdui-icon material-icons">style</i>markdown解析</a></li>';
+          '<li class="mdui-menu-item"><a class="mdui-ripple highlight"><i class="mdui-menu-item-icon mdui-icon material-icons">style</i>markdown解析</a></li>';
         document.querySelector(
           ".mdui-toolbar"
         ).innerHTML +=
-          '<a href="javascript:;" class="mdui-btn mdui-btn-icon mdui-ripple mdui-hidden-sm-up highlight"><i class="mdui-icon material-icons">style</i></a>';
+          '<a class="mdui-btn mdui-btn-icon mdui-ripple mdui-hidden-sm-up highlight"><i class="mdui-icon material-icons">style</i></a>';
       </script>
 
       <!--IstxtFileEnd-->
@@ -644,11 +654,11 @@
         class="mdui-icon material-icons">file_download</i></a>
     <script>
       document.querySelector("#admin-menu").innerHTML +=
-        '<li class="mdui-menu-item"><a href="javascript:void(0);"class="mdui-ripple downloadurl"><i class="mdui-menu-item-icon mdui-icon material-icons">cloud_download</i>下載鏈接</a></li>';
+        '<li class="mdui-menu-item"><a class="mdui-ripple downloadurl"><i class="mdui-menu-item-icon mdui-icon material-icons">cloud_download</i>下載鏈接</a></li>';
       document.querySelector(
         ".mdui-toolbar"
       ).innerHTML +=
-        '<a href="javascript:;" class="mdui-btn mdui-btn-icon mdui-ripple mdui-hidden-sm-up downloadurl"><i class="mdui-icon material-icons">cloud_download</i></a>';
+        '<a class="mdui-btn mdui-btn-icon mdui-ripple downloadurl"><i class="mdui-icon material-icons">cloud_download</i></a>';
     </script>
     <!--IsFileEnd-->
   </div>
@@ -664,15 +674,19 @@
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.7.2/build/highlight.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sha-1@1.0.0/dist/sha1.umd.min.js"></script>
 
-<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.15/js/extra.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.16/js/extra.js"></script>
 
-<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.15/js/app@qm97ssij9cnii7x8fnbkpq4hcgq35dyr.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.15/js/app@59467336fgwnpx8qbfvtmpyeefv35e5i.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.15/js/app@a7r8jgn2qe3eyfrkahwdnqcjf7uba95k.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.15/js/app@keaxctnyw29nuzpsh66g7ki4h5wzy8zn.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.15/js/app@pe2nahunr9aihucdgc2ssjbgnaccr5rz.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.15/js/app@tsjmiafbhksy5pyb5tchy765wshmwwnd.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.15/js/webpack-runtime@cx4vgpbaggjuhg8rh6m3yarhkkxy4dm3.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.16/js/app@qm97ssij9cnii7x8fnbkpq4hcgq35dyr.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.16/js/app@59467336fgwnpx8qbfvtmpyeefv35e5i.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.16/js/app@a7r8jgn2qe3eyfrkahwdnqcjf7uba95k.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.16/js/app@keaxctnyw29nuzpsh66g7ki4h5wzy8zn.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.16/js/app@pe2nahunr9aihucdgc2ssjbgnaccr5rz.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.16/js/app@tsjmiafbhksy5pyb5tchy765wshmwwnd.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.16/js/webpack-runtime@cx4vgpbaggjuhg8rh6m3yarhkkxy4dm3.js"></script>
+
+<script>
+  window.renexmoe.toggle_theme();
+</script>
 
 <!--customScript-->
 </html>
