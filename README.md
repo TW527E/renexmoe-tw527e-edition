@@ -78,12 +78,29 @@
 
 ## 🔧 主題設定
 
-### ⏏️ 頁腳
+<Details>
+<Summary>🔲 背景毛玻璃</Summary>
+<Pre>
+
+1. 登入您的 OneManager 後台，並進入設定
+2. 選擇 **`平台變數`** 頁面
+3. 在 **`customScript`** 選項內，輸入 **`<script>document.querySelector('.blur').style = "backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px)"</script>`**
+4. 套用設定
+5. 等待緩存刷新，完成
+</Pre>
+</Details>
+
+<Details>
+<Summary>⏏️ 頁腳</Summary>
+<Pre>
+
 1. 登入您的 OneManager 後台，並進入設定
 2. 選擇 **`平台變數`** 頁面
 3. 在 **`customScript`** 選項內，輸入 **`<script>document.getElementById("footer").innerHTML='頁腳內容';</script>`**
 4. 套用設定
 5. 等待緩存刷新，完成
+</Pre>
+</Details>
 
 
 ## 🧿 已知問題
@@ -104,7 +121,7 @@
 
 - 🎵 **`音樂播放器`**: 在不特定的情況下，因連結跳轉導致 iOS 拒絕存取
 - 📺 **`影片播放器`**: 在尚未快取完成時，就開始播放，導致看起來好像已經開始播放，卻無畫面，直到快取完成時，才重新播放
-- ⬛ **`背景圖片`**: 在眾多檔案的頁面中，背景會被拉長
+- 🔳 **`背景圖片`**: 在眾多檔案的頁面中，背景會被拉長 [Safari Bug 219324](https://webkit.org/b/219324)
 </Pre>
 </Details>
 
