@@ -23,6 +23,7 @@
 - 📟 增加 **`呼叫本地播放器`**
 - ⏏️ 新增 **`頁腳`**
 - 📍 **`backgroundm`** 選項調用至 **`網頁 Icon`**
+- 🔲 增加 **`背景毛玻璃`**
 - 🎨 **`主題顏色`** 調整為 **`奶茶色`**
 - 📦 **`CDN`** 透過 [**`jsDelivr`**](https://jsdelivr.com) 代理
 - 📺 **`影片播放器`** 更改為 [**`DPlayer`**](https://dplayer.js.org)
@@ -39,6 +40,7 @@
 
 - 🌏 將 **`語言`** 更改為 **`繁體中文`**
 - 📍 將 **`backgroundm`** 選項內容調用至 **`網頁 Icon`**
+- 🔲 增加 **`背景毛玻璃`**
 - 🎨 **`主題顏色`** 調整為 **`奶茶色`**
 - 📜 修復 **`PDF 預覽`**
 - 📑 修復 **`OFFICE 預覽排版`**
@@ -86,7 +88,7 @@
 2. 選擇 **`平台變數`** 頁面
 3. 在 **`customScript`** 選項內，輸入 **`<script>document.querySelector('.blur').style = "backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px)"</script>`**
 4. 套用設定
-5. 等待緩存刷新，完成
+5. 等待緩存刷新，完成 **`(請等待至少30分鐘，使customScript選項生效)`**
 </Pre>
 </Details>
 
@@ -98,7 +100,7 @@
 2. 選擇 **`平台變數`** 頁面
 3. 在 **`customScript`** 選項內，輸入 **`<script>document.getElementById("footer").innerHTML='頁腳內容';</script>`**
 4. 套用設定
-5. 等待緩存刷新，完成
+5. 等待緩存刷新，完成 **`(請等待至少30分鐘，使customScript選項生效)`**
 </Pre>
 </Details>
 
