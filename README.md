@@ -167,11 +167,12 @@ Readme 寫法及圖片做法來自 [qier222/YesPlayMusic](https://github.com/qie
 目前可以以下列方式支持我
 
 - ⭐ Star 這個專案
+- 🪛 Fork 這個專案
 - 👥 <a href="https://t.me/Cheng_Group">加入 Telegram 群組</a>
 - 🔴 目前還無法透過贊助的方式支持我 `(未成年又沒有銀行帳戶w)`
 
 
-## 🖼️ 截圖 `(v1.0.15)`
+## 🖼️ 截圖 `(v1.0.22)`
 
 <Details>
 <Summary>💻 電腦</Summary>
