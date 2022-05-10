@@ -52,6 +52,7 @@
 - 🔠 將 **`字體`** 更改為 [Noto Sans TC SC HK](https://fonts.google.com/noto/fonts)
 - ⏏️ 新增 **`頁腳`**
 - 📶 修復 **`路徑未顯示盤名`**
+- 🪛 修復 **`登入按鈕`**
 
 </Pre>
 </Details>
