@@ -218,9 +218,9 @@
   <div class="mdui-drawer" id="main-drawer">
     <div class="mdui-list" mdui-collapse="{accordion: true}">
       <!--LoginStart-->
-      <li class="mdui-list-item mdui-ripple" href="?login=admin" >
-        <a class="mdui-list-item-icon mdui-icon material-icons">account_circle</a><a
-        <a class="mdui-list-item-content" href="?login=admin">登录</a>
+      <li class="mdui-list-item mdui-ripple" mdui-dialog="{target: '#login_input'}" >
+        <a class="mdui-list-item-icon mdui-icon material-icons">account_circle</a>
+        <a class="mdui-list-item-content" mdui-dialog="{target: '#login_input'}">登入</a>
       </li>
       <!--LoginEnd-->
       <li class="mdui-list-item mdui-ripple" onclick="renexmoe.toggle_theme();">
@@ -264,10 +264,11 @@
     </ul>
     <i id="mouseplace" style="position: absolute"></i>
 
+    <!--LoginStart-->
     <div class="mdui-dialog" id="login_input">
-      <div class="mdui-dialog-title">登錄</div>
+      <div class="mdui-dialog-title">登入</div>
       <div class="mdui-dialog-content" style="height: 108px">
-        <form action="<!--IsPreview?-->admin" method="post" onsubmit="return sha1loginpass(this);">
+        <form action="<!--IsPreview?-->login=admin" method="post" onsubmit="return sha1loginpass(this);">
           <div class="mdui-textfield mdui-textfield-floating-label">
             <i class="mdui-icon material-icons">lock</i><label class="mdui-textfield-label">密碼</label>
             <input class="mdui-textfield-input" id="login_input" name="password1" type="password">
@@ -277,11 +278,12 @@
       <div class="mdui-dialog-actions">
         <button class="mdui-btn mdui-ripple" mdui-dialog-close="" id="login_close">取消</button>
         <button id="login_btn_bak" class="mdui-btn mdui-ripple" type="submit" value="<!--constStr@Login-->">
-          登錄
+          登入
         </button>
         </form>
       </div>
     </div>
+    <!--LoginEnd-->
     <!--EncryptedStart-->
     <div class="mdui-center" style="margin: 20px auto;max-width: 600px;">
       <br />
