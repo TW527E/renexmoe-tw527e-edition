@@ -1,5 +1,18 @@
+<!--IconValuesStart-->
+{ 
+  "music":"audiotrack",
+  "video":"ondemand_video",
+  "img":"image",
+  "pdf":"picture_as_pdf",
+  "txt":"description",
+  "apk":"android",
+  "exe":"desktop_windows",
+  "default":"insert_drive_file"
+}
+<!--IconValuesEnd-->
+
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="<!--constStr@language-->">
 
 <head>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
@@ -15,7 +28,8 @@
   <!--BackgroundMEnd-->
 
   <title><!--Title--></title>
-  <meta name="description" content="A Cloud Drive built by OneManager with the theme renexmoe-tw527e-edition" />
+  <meta name="keywords" content="<!--Keywords-->">
+  <meta name="description" content="<!--Description-->">
 
   <meta name="theme-color" content="#fff" />
 
@@ -177,13 +191,17 @@
       filter: blur(0px);
     }
 
-    ul.mdui-menu {
-    position: fixed !important;
+    ul.mdui-menu{
+      position: fixed !important;
     }
 
     .aplayer, .aplayer-pic {
       padding: inherit;
       border-radius: 10px;
+    }
+
+    .mdui-menu{
+      width: auto;  
     }
   </style>
   
@@ -220,7 +238,7 @@
       <!--LoginStart-->
       <li class="mdui-list-item mdui-ripple" mdui-dialog="{target: '#login_input'}" >
         <a class="mdui-list-item-icon mdui-icon material-icons">account_circle</a>
-        <a class="mdui-list-item-content" mdui-dialog="{target: '#login_input'}">登入</a>
+        <a class="mdui-list-item-content" mdui-dialog="{target: '#login_input'}"><!--constStr@Login--></a>
       </li>
       <!--LoginEnd-->
       <li class="mdui-list-item mdui-ripple" onclick="renexmoe.toggle_theme();">
@@ -245,32 +263,56 @@
       <!--MultiDisksEnd-->
       <div class="mdui-divider"></div>
       <!--MultiDiskAreaEnd-->
-      <a target="_blank" href="https://github.com/qkqpttgf/OneManager-php" class="mdui-list-item mdui-ripple"><i
-          class="mdui-list-item-icon mdui-icon material-icons">code</i>
+      <a target="_blank" href="https://github.com/qkqpttgf/OneManager-php" class="mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons">code</i>
         <div class="mdui-list-item-content">Github</div>
       </a>
       <li class="mdui-list-item mdui-ripple" id="about_theme">
         <i class="mdui-list-item-icon mdui-icon material-icons">info</i>
         <div class="mdui-list-item-content">關於主題</div>
       </li>
+      <div class="mdui-divider"></div>
+      <li class="mdui-list-item mdui-ripple" id="select_language" style="overflow: visible;">
+        <i class="mdui-list-item-icon mdui-icon material-icons">language</i>
+        <div class="mdui-list-item-content" style="padding-top: 10px;padding-bottom: 10px;">
+          <select class="mdui-select" name="language" mdui-select onchange="changelanguage(this.options[this.options.selectedIndex].value)">
+          <!--SelectLanguageStart-->
+            <option value="<!--SelectLanguageKey-->" <!--SelectLanguageSelected-->><!--SelectLanguageValue--></option>
+          <!--SelectLanguageEnd-->
+        </select>
+      </div>
+      </li>
+      <script>
+        function changelanguage(str)
+        {
+          if (str=='Language') str = '';
+          var expd = new Date();
+          expd.setTime(expd.getTime()+(2*60*60*1000));
+          var expires = "expires="+expd.toGMTString();
+          document.cookie='language='+str+'; path=/; '+expires;
+          location.href = location.href;
+        }
+      </script>
     </div>
   </div>
   <div class="mdui-container" style="position: relative;">
     <ul class="mdui-menu" id="admin-menu">
       <li class="mdui-menu-item">
-        <a href="javascript:;" class="mdui-ripple back"><i
-            class="mdui-menu-item-icon mdui-icon material-icons">arrow_back</i>返回上一頁</a>
+        <a href="javascript:;" class="mdui-ripple back">
+          <i class="mdui-menu-item-icon mdui-icon material-icons">arrow_back</i>
+          返回上一頁
+        </a>
       </li>
     </ul>
-    <i id="mouseplace" style="position: absolute"></i>
+    <i id="mouseplace" style="position: fixed"></i>
 
     <!--LoginStart-->
     <div class="mdui-dialog" id="login_input">
-      <div class="mdui-dialog-title">登入</div>
+      <div class="mdui-dialog-title"><!--constStr@Login--></div>
       <div class="mdui-dialog-content" style="height: 108px">
         <form action="<!--IsPreview?-->login=admin" method="post" onsubmit="return sha1loginpass(this);">
           <div class="mdui-textfield mdui-textfield-floating-label">
-            <i class="mdui-icon material-icons">lock</i><label class="mdui-textfield-label">密碼</label>
+            <i class="mdui-icon material-icons">lock</i><label class="mdui-textfield-label"><!--constStr@InputPassword--></label>
             <input class="mdui-textfield-input" id="login_input" name="password1" type="password">
             <input name="timestamp" type="hidden" value="">
           </div>
@@ -278,7 +320,7 @@
       <div class="mdui-dialog-actions">
         <button class="mdui-btn mdui-ripple" mdui-dialog-close="" id="login_close">取消</button>
         <button id="login_btn_bak" class="mdui-btn mdui-ripple" type="submit" value="<!--constStr@Login-->">
-          登入
+          <!--constStr@Login-->
         </button>
         </form>
       </div>
@@ -425,8 +467,7 @@
     </div>
     <!--FootomfEnd-->
     <script>
-      document.querySelector("#admin-menu").innerHTML +=
-        '<li class="mdui-menu-item"><a class="mdui-ripple getalllink"><i class="mdui-menu-item-icon mdui-icon material-icons">link</i>批量鏈接</a></li>';
+      document.querySelector("#admin-menu").innerHTML += '<li class="mdui-menu-item"><a class="mdui-ripple getalllink"><i class="mdui-menu-item-icon mdui-icon material-icons">link</i><!--constStr@CopyAllDownloadUrl--></a></li>';
     </script>
     <script>
       window.MorePage = undefined;
@@ -443,9 +484,31 @@
       ];
     </script>
     <!--MorePageEnd-->
-
     <!--IsFolderEnd-->
+    
+
     <!--IsFileStart-->
+    <script>
+      path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/'));
+
+      function copyURL() {
+        copyText = document.createElement("input");
+        copyText.id = "copyText";
+        copyText.value = window.location.origin + path + "/" + "<!--FileDownUrl-->";
+        p = document.querySelector('body');
+        parent = p.parentNode;
+        parent.appendChild(copyText);
+        copyText.focus();
+        copyText.select();
+        document.execCommand("copy");
+        document.getElementById("copyText").remove();
+        mdui.snackbar("已複製到剪貼簿");
+      }
+
+      document.querySelector("#admin-menu").innerHTML += '<li class="mdui-menu-item"><a class="mdui-ripple" onclick="copyURL()"><i class="mdui-menu-item-icon mdui-icon material-icons">link</i><!--constStr@CopyUrl--></a></li>';
+
+      document.querySelector(".mdui-toolbar").innerHTML += '<a class="mdui-btn mdui-btn-icon mdui-ripple downloadurl"><i class="mdui-icon material-icons">cloud_download</i></a>';
+    </script>
     <div id="file" class="mdui-shadow-3" style="margin: 20px 0px; padding: 20px; border-radius: 8px">
       <!--IsimgFileStart-->
       <img class="mdui-img-fluid mdui-center" src="<!--FileDownUrl-->" />
@@ -477,8 +540,6 @@
         </div>
       </div>
       <script>
-        path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/'));
-
         document.getElementById("openmxpro").href = "intent:" + window.location.origin + path + "/" + "<!--FileDownUrl-->" + "#Intent;package=com.mxtech.videoplayer.pro;end";
         document.getElementById("openmxfree").href = "intent:" + window.location.origin + path + "/" + "<!--FileDownUrl-->" + "#Intent;package=com.mxtech.videoplayer.ad;end";
         document.getElementById("opennp").href = "nplayer-" + window.location.origin + path + "/" + "<!--FileDownUrl-->";
@@ -602,8 +663,6 @@
         </div>
       </div>
       <script>
-        path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/'));
-
         document.getElementById("openpot").href = "potplayer://" + window.location.origin + path + "/" + "<!--FileDownUrl-->";
         document.getElementById("openvlc").href = "vlc://" + window.location.origin + path + "/" + "<!--FileDownUrl-->";
         document.getElementById("openmxpro").href = "intent:" + window.location.origin + path + "/" + "<!--FileDownUrl-->" + "#Intent;package=com.mxtech.videoplayer.pro;end";
@@ -612,7 +671,6 @@
 
         dp = new DPlayer({
         container: document.getElementById('dplayer'),
-        lang:'zh-tw',
         screenshot: true,
         airplay: true,
         preload: 'auto',
@@ -718,11 +776,7 @@
       </script>
       <!--IspdfFileEnd-->
       <!--IstxtFileStart-->
-      <pre id="editor" style="
-    white-space: pre-wrap;
-    font-family: JetBrains Mono, Fira Code, Sarasa Mono SC, Cascadia Code, Menlo,
-      Consolas, monaco, Noto Sans SC;
-  "><code id="code"><!--TxtContent--></code></pre>
+      <pre id="editor" style="white-space: pre-wrap; font-family: JetBrains Mono, Fira Code, Sarasa Mono SC, Cascadia Code, Menlo, Consolas, monaco, Noto Sans SC;"><code id="code"><!--TxtContent--></code></pre>
       <script>
         document.querySelector("#admin-menu").innerHTML +=
           '<li class="mdui-menu-item"><a class="mdui-ripple highlight"><i class="mdui-menu-item-icon mdui-icon material-icons">style</i>markdown解析</a></li>';
@@ -731,49 +785,16 @@
         ).innerHTML +=
           '<a class="mdui-btn mdui-btn-icon mdui-ripple mdui-hidden-sm-up highlight"><i class="mdui-icon material-icons">style</i></a>';
       </script>
-
       <!--IstxtFileEnd-->
       <!--IsOtherFileStart-->
       <!--constStr@FileNotSupport-->
       <!--IsOtherFileEnd-->
     </div>
-    <a href="<!--FileEncodeReplaceUrl-->" target="_blank"
-      class="mdui-fab mdui-fab-fixed mdui-ripple mdui-color-theme-accent"><i
-        class="mdui-icon material-icons">file_download</i></a>
-    <script>
-      path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/'));
-
-      function copyURL() {
-        copyText = document.createElement("input");
-        copyText.id = "copyText";
-        copyText.value = window.location.origin + path + "/" + "<!--FileDownUrl-->";
-        p = document.querySelector('body');
-        parent = p.parentNode;
-        parent.appendChild(copyText);
-        copyText.focus();
-        copyText.select();
-        document.execCommand("copy");
-        document.getElementById("copyText").remove();
-        mdui.snackbar("已複製到剪貼簿");
-      }
-
-      document.querySelector("#admin-menu").innerHTML += '<li class="mdui-menu-item"><a class="mdui-ripple" onclick="copyURL()"><i class="mdui-menu-item-icon mdui-icon material-icons">link</i>複製直鏈</a></li>';
-
-      document.querySelector("#admin-menu").innerHTML +=
-        '<li class="mdui-menu-item"><a class="mdui-ripple downloadurl"><i class="mdui-menu-item-icon mdui-icon material-icons">cloud_download</i>下載鏈接</a></li>';
-      document.querySelector(
-        ".mdui-toolbar"
-      ).innerHTML +=
-        '<a class="mdui-btn mdui-btn-icon mdui-ripple downloadurl"><i class="mdui-icon material-icons">cloud_download</i></a>';
-    </script>
+    <a href="<!--FileEncodeReplaceUrl-->" target="_blank" class="mdui-fab mdui-fab-fixed mdui-ripple mdui-color-theme-accent"><i class="mdui-icon material-icons">file_download</i></a>
     <!--IsFileEnd-->
   </div>
   <div class="mdui-text-center mdui-typo" id="footer"  style="position: relative;"></div>
 </body>
-<!--IconValuesStart-->
-{ "music":"audiotrack", "video":"ondemand_video", "img":"image",
-"pdf":"picture_as_pdf", "default":"insert_drive_file"}
-<!--IconValuesEnd-->
 
 
 <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@2.5.207/es5/build/pdf.min.js"></script>
