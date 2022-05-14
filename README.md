@@ -1,6 +1,6 @@
 <br />
 <p align="center">
-  <a href="https://d.tw527e.eu.org" target="blank">
+  <a href="https://replit-d.tw527e.eu.org" target="blank">
     <img src="Readme/Icon.png" alt="Logo" width="156" height="156">
   </a>
   <h2 align="center" style="font-weight: 600">renexmoe-tw527e-edition</h2>
@@ -8,7 +8,7 @@
   <p align="center">
     高顏值 OneManager 主題
     <br /><br />
-    <a href="https://d.tw527e.eu.org"><img src="https://img.shields.io/badge/%E9%A0%90%E8%A6%BD-DEMO-blue?style=for-the-badge&logo=Cockpit" alt="預覽 DEMO"></a>&nbsp;&nbsp;<a href="https://github.com/TW527E/renexmoe-tw527e-edition/releases/latest"><img src="https://img.shields.io/github/v/release/TW527E/renexmoe-tw527e-edition.svg?include_prereleases&logo=Acclaim&style=for-the-badge" alt="GitHub Release"></a>&nbsp;&nbsp;
+    <a href="https://replit-d.tw527e.eu.org"><img src="https://img.shields.io/badge/%E9%A0%90%E8%A6%BD-DEMO-blue?style=for-the-badge&logo=Cockpit" alt="預覽 DEMO"></a>&nbsp;&nbsp;<a href="https://github.com/TW527E/renexmoe-tw527e-edition/releases/latest"><img src="https://img.shields.io/github/v/release/TW527E/renexmoe-tw527e-edition.svg?include_prereleases&logo=Acclaim&style=for-the-badge" alt="GitHub Release"></a>&nbsp;&nbsp;
     <a href="https://t.me/Cheng_Group"><img src="https://img.shields.io/badge/Telegram-Group-blue?style=for-the-badge&logo=Telegram" alt="Telegran Gruop"></a>
     <br />
     <br />
@@ -25,7 +25,7 @@
 - 📍 **`backgroundm`** 選項調用至 **`網頁 Icon`**
 - 🔲 增加 **`背景毛玻璃`**
 - 🎨 **`主題顏色`** 調整為 **`奶茶色`**
-- 📦 **`CDN`** 透過 [**`jsDelivr`**](https://jsdelivr.com) 代理
+- 📦 **`CDN`** 透過 [**`UNPKG`**](https://unpkg.com) 代理
 - 📺 **`影片播放器`** 更改為 [**`DPlayer`**](https://dplayer.js.org)
 - 🎵 **`音訊播放器`** 更改為 [**`APlayer`**](https://aplayer.js.org)
 - 🕓 增加 **`自動恢復上次播放時間`**
@@ -44,7 +44,7 @@
 - 🎨 **`主題顏色`** 調整為 **`奶茶色`**
 - 📜 修復 **`PDF 預覽`**
 - 📑 修復 **`OFFICE 預覽排版`**
-- 📦 **`CDN`** 透過 [jsDelivr](https://jsdelivr.com) 代理
+- 📦 **`CDN`** 透過 [**`UNPKG`**](https://unpkg.com) 代理
 - 📺 **`影片播放器`** 更改為 [DPlayer](https://dplayer.js.org)
 - 🎵 **`音訊播放器`** 更改為 [APlayer](https://aplayer.js.org)
 - 🕓 增加 **`自動恢復上次播放時間`**
