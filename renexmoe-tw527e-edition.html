@@ -15,37 +15,35 @@
 <html lang="<!--constStr@language-->">
 
 <head>
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500&family=Noto+Sans+HK:wght@500&family=Noto+Sans+SC:wght@500&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="//unpkg.com" />
 
   <meta charset="utf-8" />
   <meta http-equiv="" content="IE=edge,chrome=1" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no" />
-  <!--BackgroundMStart-->
-  <link rel="icon" href="<!--BackgroundMUrl-->" type="image/x-icon">
-  <!--BackgroundMEnd-->
-
-  <title><!--Title--></title>
-  <meta name="keywords" content="<!--Keywords-->">
-  <meta name="description" content="<!--Description-->">
-
   <meta name="theme-color" content="#fff" />
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.25/css/app1@uw34ru4ehdn4pywddmebm79dnnb2jyei.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.25/css/app2@eqge353pwpgivauvcvzejwrki4mdissj.css">
+  <!--BackgroundMStart-->
+  <link rel="icon" href="<!--BackgroundMUrl-->" type="image/x-icon" />
+  <!--BackgroundMEnd-->
+  <title><!--Title--></title>
+  <meta name="keywords" content="<!--Keywords-->" />
+  <meta name="description" content="<!--Description-->" />
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/css/mdui.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/fira-code@4.2.2/400.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/noto-sans-sc@12.0.0/noto_sans_sc_regular/css.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.7.2/build/styles/github.min.css">
+  <link rel="stylesheet" href="//unpkg.com/renexmoe-tw527e-edition@1.1.0/css/app1@uw34ru4ehdn4pywddmebm79dnnb2jyei.css" />
+  <link rel="stylesheet" href="//unpkg.com/renexmoe-tw527e-edition@1.1.0/css/app2@eqge353pwpgivauvcvzejwrki4mdissj.css" />
 
-  <link class="dplayer-css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dplayer/dist/DPlayer.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/dplayer/dist/DPlayer.min.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/aadsm/jsmediatags@master/dist/jsmediatags.min.js"></script>
+  <link rel="stylesheet" href="//unpkg.com/@fontsource/noto-sans-tc/500.css" />
+  <link rel="stylesheet" href="//unpkg.com/@fontsource/noto-sans-sc/500.css" />
+  <link rel="stylesheet" href="//unpkg.com/@fontsource/noto-sans-hk/500.css" />
+
+  <link rel="stylesheet" href="//unpkg.com/mdui@1.0.1/dist/css/mdui.min.css" />
+  <link rel="stylesheet" href="//unpkg.com/@fontsource/fira-code@4.2.2/400.css" />
+  <link rel="stylesheet" href="//unpkg.com/@highlightjs/cdn-assets/styles/github.min.css" />
+
+  <script src="//unpkg.com/dplayer/dist/DPlayer.min.js"></script>
+  <link rel="stylesheet" href="//unpkg.com/aplayer/dist/APlayer.min.css" />
+  <script src="//unpkg.com/aplayer/dist/APlayer.min.js"></script>
+  <script src="//unpkg.com/jsmediatags/dist/jsmediatags.min.js"></script>
 
   <script>
     window.disableddarkmode = true;
@@ -126,6 +124,7 @@
     }
 
     .markdown code, .mdui-typo code {
+      padding: 2px 4px !important;
       color: #e3adff !important;
       background-color: #464646 !important;
     }
@@ -154,32 +153,54 @@
     color: #e91e63 !important;
     }
     
-    div#clp {
-      line-height: 36px !important;
-      display: flex !important;
-      justify-content: center !important;
-      flex-direction: column !important;
-      align-items: center !important;
+    .clp {
+      margin: 0.25rem;
+      color: #1A202C;
+      font-weight: bold;
+      border-radius: 0.375rem;
+      height: 2.5rem;
+      width: auto;
+      line-height: 1.2;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
     }
 
-    @media (min-width: 600px) {
-      div#clpp{
-        line-height: 36px !important;
-        display: flex !important;
-        justify-content: center !important;
-        flex-direction: row !important;
-        align-items: center !important;
-      }
+    #openiina {
+      background: #D6BCFA;
     }
 
-    @media (max-width: 599px) {
-      div#clpp{
-        line-height: 36px !important;
-        display: flex !important;
-        justify-content: center !important;
-        flex-direction: column !important;
-        align-items: center !important;
-      }
+    #openpot {
+      background: #FAF089;
+    }
+
+    #openvlc {
+      background: #FBD38D;
+    }
+
+    #opennp {
+      background: #81E6D9;
+    }
+
+    #openmxfree {
+      background: #90cdf4;
+    }
+
+    #openmxpro {
+      background: #90cdf4;
+    }
+
+    #clpp {
+      line-height: 1.2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      -webkit-box-pack: center;
+      list-style-type: none;
+      align-items: center;
+      padding: 0px;
+      margin: -0.25rem;
     }
 
     .blur{
@@ -400,7 +421,7 @@
         <!--BackArrowEnd-->
         <!--FolderListStart-->
         <li class="mdui-list-item mdui-ripple" data-sort data-sort-name="<!--FileEncodeReplaceName-->"
-          data-sort-date="<!--lastModifiedDateTime-->" data-sort-size="<!--size-->" style="padding-right: 36px">
+          data-sort-date="<!--lastModifiedDateTime-->" data-sort-size="<!--size-->" style="padding-right: 3.3rem">
           <a href="<!--FileEncodeReplaceUrl-->/">
             <div class="mdui-row mdui-col-sm-12">
               <div class="mdui-col-xs-12 mdui-col-sm-7 mdui-text-truncate">
@@ -515,36 +536,22 @@
       <!--IsimgFileEnd-->
       <!--IsmusicFileStart-->
       <div id="aplayer" class="mdui-text-center">音樂載入中...</div>
-      <div class="mdui-row">
-        <hr />
-      </div>
       <br />
-      <div class="mdui-row mdui-text-center">
-        <div class="mdui-typo-subheading" style="margin-bottom: 15px;">呼叫本地播放器</div>
-      </div>
       <div class="mdui-row" id="clpp">
-        <div class="mdui-col-xs-12 mdui-col-sm-2" id="clp">
-          <a id="openmxfree" href="" type="button" class="mdui-btn mdui-ripple">MxPlayer</a>
-        </div>
-        <div class="mdui-col-xs-12 mdui-col-sm-2" id="clp">
-          <a id="openmxpro" href="" type="button" class="mdui-btn mdui-ripple">MxPlayerPro</a>
-        </div>
-        <div class="mdui-col-xs-12 mdui-col-sm-2" id="clp">
-          <a id="opennp" href="" type="button" class="mdui-btn mdui-ripple">nPlayer</a>
-        </div>
-        <div class="mdui-col-xs-12 mdui-col-sm-2" id="clp">
-          <a id="openpot" href="" type="button" class="mdui-btn mdui-ripple">PotPlayer</a>
-        </div>
-        <div class="mdui-col-xs-12 mdui-col-sm-2" id="clp">
-          <a id="openvlc" href="" type="button" class="mdui-btn mdui-ripple">VLC</a>
-        </div>
+        <a id="openiina" href="" type="button" class="clp mdui-btn mdui-ripple">IINA</a>
+        <a id="openpot" href="" type="button" class="clp mdui-btn mdui-ripple">PotPlayer</a>
+        <a id="openvlc" href="" type="button" class="clp mdui-btn mdui-ripple">VLC</a>
+        <a id="opennp" href="" type="button" class="clp mdui-btn mdui-ripple">nPlayer</a>
+        <a id="openmxfree" href="" type="button" class="clp mdui-btn mdui-ripple">MXPlayer</a>
+        <a id="openmxpro" href="" type="button" class="clp mdui-btn mdui-ripple">MXPlayer Pro</a>
       </div>
       <script>
-        document.getElementById("openmxpro").href = "intent:" + window.location.origin + path + "/" + "<!--FileDownUrl-->" + "#Intent;package=com.mxtech.videoplayer.pro;end";
-        document.getElementById("openmxfree").href = "intent:" + window.location.origin + path + "/" + "<!--FileDownUrl-->" + "#Intent;package=com.mxtech.videoplayer.ad;end";
-        document.getElementById("opennp").href = "nplayer-" + window.location.origin + path + "/" + "<!--FileDownUrl-->";
+        document.getElementById("openiina").href = "iina://weblink?url=" + window.location.origin + path + "/" + "<!--FileDownUrl-->";
         document.getElementById("openpot").href = "potplayer://" + window.location.origin + path + "/" + "<!--FileDownUrl-->";
         document.getElementById("openvlc").href = "vlc://" + window.location.origin + path + "/" + "<!--FileDownUrl-->";
+        document.getElementById("opennp").href = "nplayer-" + window.location.origin + path + "/" + "<!--FileDownUrl-->";
+        document.getElementById("openmxfree").href = "intent:" + window.location.origin + path + "/" + "<!--FileDownUrl-->" + "#Intent;package=com.mxtech.videoplayer.ad;end";
+        document.getElementById("openmxpro").href = "intent:" + window.location.origin + path + "/" + "<!--FileDownUrl-->" + "#Intent;package=com.mxtech.videoplayer.pro;end";
 
         ap = new APlayer({
           container: document.getElementById('aplayer'),
@@ -638,47 +645,34 @@
       <!--IsmusicFileEnd-->
       <!--IsvideoFileStart-->
       <div id="dplayer"></div>
-      <div class="mdui-row">
-        <hr />
-      </div>
       <br />
-      <div class="mdui-row mdui-text-center">
-        <div class="mdui-typo-subheading" style="margin-bottom: 15px;">呼叫本地播放器</div>
-      </div>
       <div class="mdui-row" id="clpp">
-        <div class="mdui-col-xs-12 mdui-col-sm-2" id="clp">
-          <a id="openmxfree" href="" type="button" class="mdui-btn mdui-ripple">MxPlayer</a>
-        </div>
-        <div class="mdui-col-xs-12 mdui-col-sm-2" id="clp">
-          <a id="openmxpro" href="" type="button" class="mdui-btn mdui-ripple">MxPlayerPro</a>
-        </div>
-        <div class="mdui-col-xs-12 mdui-col-sm-2" id="clp">
-          <a id="opennp" href="" type="button" class="mdui-btn mdui-ripple">nPlayer</a>
-        </div>
-        <div class="mdui-col-xs-12 mdui-col-sm-2" id="clp">
-          <a id="openpot" href="" type="button" class="mdui-btn mdui-ripple">PotPlayer</a>
-        </div>
-        <div class="mdui-col-xs-12 mdui-col-sm-2" id="clp">
-          <a id="openvlc" href="" type="button" class="mdui-btn mdui-ripple">VLC</a>
-        </div>
+        <a id="openiina" href="" type="button" class="clp mdui-btn mdui-ripple">IINA</a>
+        <a id="openpot" href="" type="button" class="clp mdui-btn mdui-ripple">PotPlayer</a>
+        <a id="openvlc" href="" type="button" class="clp mdui-btn mdui-ripple">VLC</a>
+        <a id="opennp" href="" type="button" class="clp mdui-btn mdui-ripple">nPlayer</a>
+        <a id="openmxfree" href="" type="button" class="clp mdui-btn mdui-ripple">MXPlayer</a>
+        <a id="openmxpro" href="" type="button" class="clp mdui-btn mdui-ripple">MXPlayer Pro</a>
       </div>
       <script>
+        document.getElementById("openiina").href = "iina://weblink?url=" + window.location.origin + path + "/" + "<!--FileDownUrl-->";
         document.getElementById("openpot").href = "potplayer://" + window.location.origin + path + "/" + "<!--FileDownUrl-->";
         document.getElementById("openvlc").href = "vlc://" + window.location.origin + path + "/" + "<!--FileDownUrl-->";
-        document.getElementById("openmxpro").href = "intent:" + window.location.origin + path + "/" + "<!--FileDownUrl-->" + "#Intent;package=com.mxtech.videoplayer.pro;end";
-        document.getElementById("openmxfree").href = "intent:" + window.location.origin + path + "/" + "<!--FileDownUrl-->" + "#Intent;package=com.mxtech.videoplayer.ad;end";
         document.getElementById("opennp").href = "nplayer-" + window.location.origin + path + "/" + "<!--FileDownUrl-->";
+        document.getElementById("openmxfree").href = "intent:" + window.location.origin + path + "/" + "<!--FileDownUrl-->" + "#Intent;package=com.mxtech.videoplayer.ad;end";
+        document.getElementById("openmxpro").href = "intent:" + window.location.origin + path + "/" + "<!--FileDownUrl-->" + "#Intent;package=com.mxtech.videoplayer.pro;end";
 
         dp = new DPlayer({
-        container: document.getElementById('dplayer'),
-        screenshot: true,
-        airplay: true,
-        preload: 'auto',
-        volume: 0.7,
-        video: {
-          url: "<!--FileDownUrl-->",
-          type: 'auto'
-        }});
+          container: document.getElementById('dplayer'),
+          theme: '#ffd2b3',
+          screenshot: true,
+          preload: 'auto',
+          playbackSpeed: [0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6],
+          video: {
+            url: "<!--FileDownUrl-->",
+            type: 'auto'
+          }
+        });
 
         isRecover = false;
 
@@ -749,10 +743,10 @@
 
         function loadpdf() {
           pdfjsLib.GlobalWorkerOptions.workerSrc =
-            "https://cdn.jsdelivr.net/npm/pdfjs-dist@2.5.207/es5/build/pdf.worker.js";
+            "//unpkg.com/pdfjs-dist@2.5.207/es5/build/pdf.worker.js";
           var loadingTask = pdfjsLib.getDocument({
             url: "<!--FileDownUrl-->",
-            cMapUrl: "https://cdn.jsdelivr.net/npm/pdfjs-dist@2.5.207/cmaps/",
+            cMapUrl: "//unpkg.com/pdfjs-dist@2.5.207/cmaps/",
             cMapPacked: true,
             rangeChunkSize: 65535
           });
@@ -797,20 +791,21 @@
 </body>
 
 
-<script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@2.5.207/es5/build/pdf.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/js/mdui.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.7.2/build/highlight.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sha-1@1.0.0/dist/sha1.umd.min.js"></script>
+<script src="//unpkg.com/pdfjs-dist@2.5.207/es5/build/pdf.js"></script>
+<script src="//unpkg.com/mdui@1.0.1/dist/js/mdui.min.js"></script>
+<script src="//unpkg.com/sha-1@1.0.0/dist/sha1.umd.js"></script>
+<script src="//unpkg.com/jquery"></script>
+<script src="//unpkg.com/@highlightjs/cdn-assets/highlight.min.js"></script>
 
-<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.25/js/extra.js"></script>
+<script src="//unpkg.com/renexmoe-tw527e-edition@1.1.0/js/extra.js"></script>
 
-<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.25/js/app@qm97ssij9cnii7x8fnbkpq4hcgq35dyr.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.25/js/app@59467336fgwnpx8qbfvtmpyeefv35e5i.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.25/js/app@a7r8jgn2qe3eyfrkahwdnqcjf7uba95k.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.25/js/app@keaxctnyw29nuzpsh66g7ki4h5wzy8zn.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.25/js/app@pe2nahunr9aihucdgc2ssjbgnaccr5rz.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.25/js/app@tsjmiafbhksy5pyb5tchy765wshmwwnd.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@v1.0.25/js/webpack-runtime@cx4vgpbaggjuhg8rh6m3yarhkkxy4dm3.js"></script>
+<script src="//unpkg.com/renexmoe-tw527e-edition@1.1.0/js/app@qm97ssij9cnii7x8fnbkpq4hcgq35dyr.js"></script>
+<script src="//unpkg.com/renexmoe-tw527e-edition@1.1.0/js/app@59467336fgwnpx8qbfvtmpyeefv35e5i.js"></script>
+<script src="//unpkg.com/renexmoe-tw527e-edition@1.1.0/js/app@a7r8jgn2qe3eyfrkahwdnqcjf7uba95k.js"></script>
+<script src="//unpkg.com/renexmoe-tw527e-edition@1.1.0/js/app@keaxctnyw29nuzpsh66g7ki4h5wzy8zn.js"></script>
+<script src="//unpkg.com/renexmoe-tw527e-edition@1.1.0/js/app@pe2nahunr9aihucdgc2ssjbgnaccr5rz.js"></script>
+<script src="//unpkg.com/renexmoe-tw527e-edition@1.1.0/js/app@tsjmiafbhksy5pyb5tchy765wshmwwnd.js"></script>
+<script src="//unpkg.com/renexmoe-tw527e-edition@1.1.0/js/webpack-runtime@cx4vgpbaggjuhg8rh6m3yarhkkxy4dm3.js"></script>
 
 <script>
   window.renexmoe.toggle_theme();

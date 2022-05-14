@@ -1,0 +1,20 @@
+{
+  "name": "renexmoe-tw527e-edition",
+  "version": "1.1.0",
+  "description": "高顏值 OneManager 主題，作用於 OneManager-php",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TW527E/renexmoe-tw527e-edition.git"
+  },
+  "keywords": [],
+  "author": "TW527E",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/TW527E/renexmoe-tw527e-edition/issues"
+  },
+  "homepage": "https://github.com/TW527E/renexmoe-tw527e-edition#readme"
+}
