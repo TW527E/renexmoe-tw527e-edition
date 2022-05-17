@@ -74,6 +74,7 @@
 1. 登入您的 OneManager 後台，並進入設定
 2. 選擇 **`首頁`** 頁面
 3. 在 **`Update from`** 選擇 `Github` `TW527E` `OneManager-php` `master`
+- (僅提供 **`UNPKG`** 、 **`JsDelivr OriginFastly`** 版本)
 4. 點擊 **`一鍵更新`**
 5. 等待更新，完成
 
