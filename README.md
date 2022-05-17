@@ -25,7 +25,7 @@
 - 📍 **`backgroundm`** 選項調用至 **`網頁 Icon`**
 - 🔲 增加 **`背景毛玻璃`**
 - 🎨 **`主題顏色`** 調整為 **`奶茶色`**
-- 📦 **`CDN`** 透過 [**`UNPKG`**](https://unpkg.com) 代理
+- 📦 **`CDN`** 透過 [**`多種`**](releases) 使用
 - 📺 **`影片播放器`** 更改為 [**`DPlayer`**](https://dplayer.js.org)
 - 🎵 **`音訊播放器`** 更改為 [**`APlayer`**](https://aplayer.js.org)
 - 🕓 增加 **`自動恢復上次播放時間`**
@@ -44,7 +44,7 @@
 - 🎨 **`主題顏色`** 調整為 **`奶茶色`**
 - 📜 修復 **`PDF 預覽`**
 - 📑 修復 **`OFFICE 預覽排版`**
-- 📦 **`CDN`** 透過 [**`UNPKG`**](https://unpkg.com) 代理
+- 📦 **`CDN`** 提供 [**`多種`**](releases) 使用
 - 📺 **`影片播放器`** 更改為 [DPlayer](https://dplayer.js.org)
 - 🎵 **`音訊播放器`** 更改為 [APlayer](https://aplayer.js.org)
 - 🕓 增加 **`自動恢復上次播放時間`**
@@ -69,12 +69,25 @@
 1. 下載 [**`renexmoe-tw527e-edition`**](https://github.com/TW527E/renexmoe-tw527e-edition/releases)
 2. 將 **`renexmoe-tw527e-edition.html`** 複製至 **`/OneManager 根目錄/theme`**
 
-### ⚠️ 2: 透過 customTheme 選項 (好像不行w)
+### 🔧 2: 使用我的 OneManager-php
+
+1. 登入您的 OneManager 後台，並進入設定
+2. 選擇 **`首頁`** 頁面
+3. 在 **`Update from`** 選擇 `Github` `TW527E` `OneManager-php` `master`
+4. 點擊 **`一鍵更新`**
+5. 等待更新，完成
+
+### 🍄 3: 透過 customTheme 選項 (等待 🍄 修復ww)
 
 1. 登入您的 OneManager 後台，並進入設定
 2. 選擇 **`平台變數`** 頁面
-3. 在 **`customTheme`** 選項內，輸入 **`https://raw.githubusercontent.com/TW527E/renexmoe-tw527e-edition/master/renexmoe-tw527e-edition.html`**
-- `(jsDelivr: https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@master/renexmoe-tw527e-edition.html)`
+3. 在 **`customTheme`** 選項內，輸入 **`以下幾個 CDN 的其中一個`**
+- (UNPKG: **`https://unpkg.com/renexmoe-tw527e-edition@latest/renexmoe-tw527e-edition.html`**)
+- (Statically: **`https://raw.githubusercontent.com/TW527E/renexmoe-tw527e-edition/master/renexmoe-tw527e-edition-statically.html`**)
+- (JsDelivr CDN: **`https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@latest/renexmoe-tw527e-edition-jsdelivr-cdn.html`**)
+- (JsDelivr Fastly: **`https://fastly.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@latest/renexmoe-tw527e-edition-jsdelivr-fastly.html`**)
+- (JsDelivr Gcore: **`https://gcore.jsdelivr.net/TW527E/gh/renexmoe-tw527e-edition@latest/renexmoe-tw527e-edition-jsdelivr-gcore.html`**)
+- (JsDelivr OriginFastly: **`https://originfastly.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@latest/renexmoe-tw527e-edition-jsdelivr-originfastly.html`**)
 4. 套用設定
 5. 等待緩存刷新，完成
 
@@ -88,6 +101,7 @@
 1. 登入您的 OneManager 後台，並進入設定
 2. 選擇 **`平台變數`** 頁面
 3. 在 **`customScript`** 選項內，輸入 **`<script>document.querySelector('.blur').style = "backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px)"</script>`**
+- (可自行調整數字 "2" 的大小，越大越模糊，越小越清楚)
 4. 套用設定
 5. 等待緩存刷新，完成 **`(請等待至少30分鐘，使customScript選項生效)`**
 </Pre>
@@ -152,6 +166,10 @@ Readme 寫法及圖片做法來自 [qier222/YesPlayMusic](https://github.com/qie
 
 - [aadsm/jsmediatags](https://github.com/aadsm/jsmediatags)
 
+- [Xhofe/alist](https://github.com/Xhofe/alist)
+
+- [mjackson/unpkg](https://github.com/mjackson/unpkg)
+
 - [fontsource/fontsource](https://github.com/fontsource/fontsource)
 
 - [highlightjs/cdn-release](https://github.com/highlightjs/cdn-release)
@@ -159,8 +177,6 @@ Readme 寫法及圖片做法來自 [qier222/YesPlayMusic](https://github.com/qie
 - [mozilla/pdf.js](https://github.com/mozilla/pdf.js)
 
 - [linkgod/SHA-1](https://github.com/linkgod/SHA-1)
-
-- [google/fonts](https://github.com/google/fonts)
 
 
 ## 🎗️ 支持我
