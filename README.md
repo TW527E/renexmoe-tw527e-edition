@@ -86,7 +86,7 @@
 - (Statically: **`https://raw.githubusercontent.com/TW527E/renexmoe-tw527e-edition/master/renexmoe-tw527e-edition-statically.html`**)
 - (JsDelivr CDN: **`https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@latest/renexmoe-tw527e-edition-jsdelivr-cdn.html`**)
 - (JsDelivr Fastly: **`https://fastly.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@latest/renexmoe-tw527e-edition-jsdelivr-fastly.html`**)
-- (JsDelivr Gcore: **`https://gcore.jsdelivr.net/TW527E/gh/renexmoe-tw527e-edition@latest/renexmoe-tw527e-edition-jsdelivr-gcore.html`**)
+- (JsDelivr Gcore: **`https://gcore.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@latest/renexmoe-tw527e-edition-jsdelivr-gcore.html`**)
 - (JsDelivr OriginFastly: **`https://originfastly.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@latest/renexmoe-tw527e-edition-jsdelivr-originfastly.html`**)
 4. 套用設定
 5. 等待緩存刷新，完成
