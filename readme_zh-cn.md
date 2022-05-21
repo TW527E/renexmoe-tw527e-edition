@@ -137,25 +137,25 @@
 <Pre>
 已知：
 
-- 🎵 **`音樂播放器`**: 在不特定的情況下，因连结跳转 iOS 拒绝存取
-- 📺 **`影片播放器`**: 在尚未快取完成時，就開始播放，導致看起來好像已經開始播放，卻無畫面，直到快取完成時，才重新播放
-- 🔳 **`背景圖片`**: 在眾多檔案的頁面中，背景會被拉長 [Safari Bug 219324](https://webkit.org/b/219324)
+- 🎵 **`音乐播放器`**: 在不特定的情況下，因连结跳转 iOS 拒绝存取
+- 📺 **`影片播放器`**: 在尚未快取完成时，就开始播放，导致看起來好像已经开始播放，却无画面，直到快取完成时，才重新播放
+- 🔳 **`背景圖片`**: 在众多文件的页面中，背景会被拉长 [Safari Bug 219324](https://webkit.org/b/219324)
 </Pre>
 </Details>
 
 
-## 📜 開源許可
+## 📜 开源协议
 
-依據源專案之開源許可，本專案採用 [GPL-3.0 License](https://spdx.org/licenses/GPL-3.0-only.html)
+依据源仓库之开源协议，本仓库采用 [GPL-3.0 协议](https://spdx.org/licenses/GPL-3.0-only.html)进行开源
 
 
-## 🔴 靈感來源
+## 🔴 灵感来源
 
-源代碼來自 [186526/onemanager-theme-renexmoe](https://github.com/186526/onemanager-theme-renexmoe)
+源代码来自 [186526/onemanager-theme-renexmoe](https://github.com/186526/onemanager-theme-renexmoe)
 
-此版本修改來自 [jssycszyj/renexmoe-cdn](https://github.com/jssycszyj/renexmoe-cdn)
+此版本修改来自 [jssycszyj/renexmoe-cdn](https://github.com/jssycszyj/renexmoe-cdn)
 
-Readme 寫法及圖片做法來自 [qier222/YesPlayMusic](https://github.com/qier222/YesPlayMusic)
+Readme 写法及图片做法来自 [qier222/YesPlayMusic](https://github.com/qier222/YesPlayMusic)
 
 - [qkqpttgf/OneManager-php](https://github.com/qkqpttgf/OneManager-php)
 
@@ -184,16 +184,16 @@ Readme 寫法及圖片做法來自 [qier222/YesPlayMusic](https://github.com/qie
 
 目前可以以下列方式支持我
 
-- ⭐ Star 這個專案
-- 🪛 Fork 這個專案
-- 👥 <a href="https://t.me/Cheng_Group">加入 Telegram 群組</a>
-- 🔴 目前還無法透過贊助的方式支持我 `(未成年又沒有銀行帳戶w)`
+- ⭐ Star 这个仓库
+- 🪛 Fork 这个仓库
+- 👥 <a href="https://t.me/Cheng_Group">加入 Telegram 群组</a>
+- 🔴 目前还无法通过赞助的方式支持我 `(未成年又没有银行账户w)`
 
 
-## 🖼️ 截圖 `(v1.0.22)`
+## 🖼️ 截图 `(v1.0.22)`
 
 <Details>
-<Summary>💻 電腦</Summary>
+<Summary>💻 电脑</Summary>
 <Pre>
 
 ![PC-Home](Readme/PC-Home.png)
@@ -208,7 +208,7 @@ Readme 寫法及圖片做法來自 [qier222/YesPlayMusic](https://github.com/qie
 </Details>
 
 <Details>
-<Summary>📱 手機</Summary>
+<Summary>📱 手机</Summary>
 <Pre>
 
 ![Mobile-Home](Readme/Mobile-Home.png)
