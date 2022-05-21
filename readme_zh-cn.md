@@ -100,8 +100,8 @@
 <Pre>
 
 1. 登入您的 OneManager 后台，并进入设置
-2. 選擇 **`平台变量`** 頁面
-3. 在 **`customScript`** 选项内，輸入 **`<script>document.querySelector('.blur').style = "backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px)"</script>`**
+2. 选择 **`平台变量`** 页面
+3. 在 **`customScript`** 选项内，输入 **`<script>document.querySelector('.blur').style = "backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px)"</script>`**
 - (可自行调整数字 "2" 的大小，越大越模糊，越小越清楚)
 4. 套用设置
 5. 等待缓存刷新，完成 **`(请等待至少30分钟，使customScript选项生效)`**
@@ -109,22 +109,22 @@
 </Details>
 
 <Details>
-<Summary>⏏️ 頁腳</Summary>
+<Summary>⏏️ 页脚</Summary>
 <Pre>
 
-1. 登入您的 OneManager 後台，並進入設定
-2. 選擇 **`平台變數`** 頁面
-3. 在 **`customScript`** 選項內，輸入 **`<script>document.getElementById("footer").innerHTML='頁腳內容';</script>`**
-4. 套用設定
-5. 等待緩存刷新，完成 **`(請等待至少30分鐘，使customScript選項生效)`**
+1. 登入您的 OneManager 后台，并进入设置
+2. 选择 **`平台变量`** 页面
+3. 在 **`customScript`** 选择内，输入 **`<script>document.getElementById("footer").innerHTML='頁腳內容';</script>`**
+4. 套用设置
+5. 等待缓存刷新，完成 **`(请等待至少30分钟，使customScript选项生效)`**
 </Pre>
 </Details>
 
 
-## 🧿 已知問題
+## 🧿 已知问题
 
 <Details>
-<Summary><strong><code>音樂播放器</code></strong> 在部分種類雲端會觸發防盜鏈，已將備用方案設為恢復原本播放器</Summary>
+<Summary><strong><code>音乐播放器</code></strong> 在部分種類雲端會觸發防盜鏈，已將備用方案設為恢復原本播放器</Summary>
 <Pre>
 已知：
 
