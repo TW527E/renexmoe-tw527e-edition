@@ -1,3 +1,4 @@
+### [简体中文版readme](readme_zh-cn.md)
 <br />
 <p align="center">
   <a href="https://replit-d.tw527e.eu.org" target="blank">
