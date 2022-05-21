@@ -52,7 +52,7 @@
 - 🔠 將 **`字体`** 更改为 [Noto Sans TC SC HK](https://fonts.google.com/noto/fonts)
 - ⏏️ 新增 **`页脚`**
 - 📶 修復 **`路径未显示盘名`**
-- 🪛 修復 **`登入按鈕`**
+- 🪛 修复 **`登入按鈕`**
 
 </Pre>
 </Details>
