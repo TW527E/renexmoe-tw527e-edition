@@ -41,17 +41,17 @@
 - 🌏 将 **`语言`** 更改为 **`繁体中文`**
 - 📍 将 **`backgroundm`** 选项内容调用至 **`网页 Icon`**
 - 🔲 增加 **`背景毛玻璃`**
-- 🎨 **`主題顏色`** 调整为 **`奶茶色`**
-- 📜 修復 **`PDF 预览`**
-- 📑 修復 **`OFFICE 预览排版`**
+- 🎨 **`主题颜色`** 调整为 **`奶茶色`**
+- 📜 修复 **`PDF 预览`**
+- 📑 修复 **`OFFICE 预览排版`**
 - 📦 **`CDN`** 提供 [**`多重`**](releases) 使用
 - 📺 **`影片播放器`** 更改为 [DPlayer](https://dplayer.js.org)
 - 🎵 **`音频播放器`** 更改为 [APlayer](https://aplayer.js.org)
 - 🕓 增加 **`自动恢复上次播放时间`**
 - 📟 增加 **`呼叫本地播放器`**
-- 🔠 將 **`字体`** 更改为 [Noto Sans TC SC HK](https://fonts.google.com/noto/fonts)
+- 🔠 将 **`字体`** 更改为 [Noto Sans TC SC HK](https://fonts.google.com/noto/fonts)
 - ⏏️ 新增 **`页脚`**
-- 📶 修復 **`路径未显示盘名`**
+- 📶 修复 **`路径未显示盘名`**
 - 🪛 修复 **`登入按鈕`**
 
 </Pre>
