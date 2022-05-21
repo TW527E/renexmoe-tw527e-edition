@@ -99,12 +99,12 @@
 <Summary>🔲 背景毛玻璃</Summary>
 <Pre>
 
-1. 登入您的 OneManager 後台，並進入設定
-2. 選擇 **`平台變數`** 頁面
-3. 在 **`customScript`** 選項內，輸入 **`<script>document.querySelector('.blur').style = "backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px)"</script>`**
-- (可自行調整數字 "2" 的大小，越大越模糊，越小越清楚)
-4. 套用設定
-5. 等待緩存刷新，完成 **`(請等待至少30分鐘，使customScript選項生效)`**
+1. 登入您的 OneManager 后台，并进入设置
+2. 選擇 **`平台变量`** 頁面
+3. 在 **`customScript`** 选项内，輸入 **`<script>document.querySelector('.blur').style = "backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px)"</script>`**
+- (可自行调整数字 "2" 的大小，越大越模糊，越小越清楚)
+4. 套用设置
+5. 等待缓存刷新，完成 **`(请等待至少30分钟，使customScript选项生效)`**
 </Pre>
 </Details>
 
