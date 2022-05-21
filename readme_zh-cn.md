@@ -124,8 +124,8 @@
 ## 🧿 已知问题
 
 <Details>
-<Summary><strong><code>音乐播放器</code></strong> 在部分種類雲端會觸發防盜鏈，已將備用方案設為恢復原本播放器</Summary>
-<Pre>
+<Summary><strong><code>音乐播放器</code></strong> 在部分种类云端会触发防盗链，已将备用方案设为恢复原本播放器</Summary>
+<Pre> 
 已知：
 
 - [x] 🟧 **`阿里云盘`**
@@ -133,7 +133,7 @@
 </Details>
 
 <Details>
-<Summary><strong><code>iOS</code></strong> 在部分內容支援不佳或處理速度異常</Summary>
+<Summary><strong><code>iOS</code></strong> 在部分内容支持不佳或处理速度异常</Summary>
 <Pre>
 已知：
 
