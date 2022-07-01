@@ -25,7 +25,7 @@
 - 📍 **`backgroundm`** 选项调用至 **`网页 Icon`**
 - 🔲 增加 **`背景毛玻璃`**
 - 🎨 **`主題颜色`** 调整为 **`奶茶色`**
-- 📦 **`CDN`** 透过 [**`多重`**](releases) 使用
+- 📦 **`提供`** 多个 [**`CDN`**](releases) 
 - 📺 **`影片播放器`** 更改为 [**`DPlayer`**](https://dplayer.js.org)
 - 🎵 **`音频播放器`** 更改为 [**`APlayer`**](https://aplayer.js.org)
 - 🕓 增加 **`自动恢复上次播放时间`**
@@ -74,7 +74,7 @@
 1. 登录您的 OneManager 后台，并进入设置
 2. 选择 **`首页`** 页面
 3. 在 **`Update from`** 选择 `Github` `TW527E` `OneManager-php` `master`
-- (仅提供 **`UNPKG`** 、 **`JsDelivr OriginFastly`** 版本)
+- (仅提供 **`UNPKG(饿了么中国大陆阿里云cdn反代镜像)`** 、 **`JsDelivr OriginFastly`** 版本)
 4. 点击 **`一鍵更新`**
 5. 等待更新，完成
 
@@ -83,7 +83,7 @@
 1. 登入您的 OneManager 后台，并进入设置
 2. 选择 **`平台变量`** 页面
 3. 在 **`customTheme`** 选项内，输入 **`以下几个cdn中的其中一个`**
-- (UNPKG: **`https://unpkg.com/renexmoe-tw527e-edition@latest/renexmoe-tw527e-edition.html`**)
+- (UNPKG(饿了么中国大陆阿里云cdn反代镜像): **`https://unpkg.com/renexmoe-tw527e-edition@latest/renexmoe-tw527e-edition.html`**)
 - (Statically: **`https://raw.githubusercontent.com/TW527E/renexmoe-tw527e-edition/master/renexmoe-tw527e-edition-statically.html`**)
 - (JsDelivr CDN: **`https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@latest/renexmoe-tw527e-edition-jsdelivr-cdn.html`**)
 - (JsDelivr Fastly: **`https://fastly.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@latest/renexmoe-tw527e-edition-jsdelivr-fastly.html`**)
