@@ -75,7 +75,7 @@
 1. 登入您的 OneManager 後台，並進入設定
 2. 選擇 **`首頁`** 頁面
 3. 在 **`Update from`** 選擇 `Github` `TW527E` `OneManager-php` `master`
-- (僅提供 **`UNPKG`** 、 **`JsDelivr OriginFastly`** 版本)
+- (僅提供 **`UNPKG(餓了麼中國大陸阿里雲cdn反代鏡像)`** 、 **`JsDelivr OriginFastly`** 版本)
 4. 點擊 **`一鍵更新`**
 5. 等待更新，完成
 
@@ -84,7 +84,7 @@
 1. 登入您的 OneManager 後台，並進入設定
 2. 選擇 **`平台變數`** 頁面
 3. 在 **`customTheme`** 選項內，輸入 **`以下幾個 CDN 的其中一個`**
-- (UNPKG: **`https://unpkg.com/renexmoe-tw527e-edition@latest/renexmoe-tw527e-edition.html`**)
+- (UNPKG(餓了麼中國大陸阿里雲cdn反代鏡像): **`https://npm.elemecdn.com/renexmoe-tw527e-edition@latest/renexmoe-tw527e-edition.html`**)
 - (Statically: **`https://raw.githubusercontent.com/TW527E/renexmoe-tw527e-edition/master/renexmoe-tw527e-edition-statically.html`**)
 - (JsDelivr CDN: **`https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@latest/renexmoe-tw527e-edition-jsdelivr-cdn.html`**)
 - (JsDelivr Fastly: **`https://fastly.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@latest/renexmoe-tw527e-edition-jsdelivr-fastly.html`**)

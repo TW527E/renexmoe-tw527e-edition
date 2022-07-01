@@ -83,7 +83,7 @@
 1. 登入您的 OneManager 后台，并进入设置
 2. 选择 **`平台变量`** 页面
 3. 在 **`customTheme`** 选项内，输入 **`以下几个cdn中的其中一个`**
-- (UNPKG(饿了么中国大陆阿里云cdn反代镜像): **`https://unpkg.com/renexmoe-tw527e-edition@latest/renexmoe-tw527e-edition.html`**)
+- (UNPKG(饿了么中国大陆阿里云cdn反代镜像): **`https://npm.elemecdn.com/renexmoe-tw527e-edition@latest/renexmoe-tw527e-edition.html`**)
 - (Statically: **`https://raw.githubusercontent.com/TW527E/renexmoe-tw527e-edition/master/renexmoe-tw527e-edition-statically.html`**)
 - (JsDelivr CDN: **`https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@latest/renexmoe-tw527e-edition-jsdelivr-cdn.html`**)
 - (JsDelivr Fastly: **`https://fastly.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@latest/renexmoe-tw527e-edition-jsdelivr-fastly.html`**)
