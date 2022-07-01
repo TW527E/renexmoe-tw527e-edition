@@ -8,7 +8,7 @@
   <p align="center">
     高颜值 OneManager 主题
     <br /><br />
-    <a href="https://replit-d.tw527e.eu.org"><img src="https://img.shields.io/badge/%E9%A0%90%E8%A6%BD-DEMO-blue?style=for-the-badge&logo=Cockpit" alt="预览 DEMO"></a>&nbsp;&nbsp;<a href="https://github.com/TW527E/renexmoe-tw527e-edition/releases/latest"><img src="https://img.shields.io/github/v/release/TW527E/renexmoe-tw527e-edition.svg?include_prereleases&logo=GitHub&style=for-the-badge" alt="GitHub Release"></a>&nbsp;&nbsp;<a href="https://www.npmjs.com/package/renexmoe-tw527e-edition"><img src="https://img.shields.io/npm/v/renexmoe-tw527e-edition?logo=npm&style=for-the-badge" alt="npm"></a>&nbsp;&nbsp;<a href="https://gitlab.com/TW527E/renexmoe-tw527e-edition/-/releases"><img src="https://img.shields.io/gitlab/v/release/TW527E/renexmoe-tw527e-edition.svg?include_prereleases&logo=GitLab&style=for-the-badge" alt="GitHub Release"></a>&nbsp;&nbsp;
+    <a href="README.md"><img src="https://img.shields.io/badge/%E7%B9%81%E9%AB%94%E4%B8%AD%E6%96%87-README.md-blue?style=for-the-badge&logo=Radar" alt="繁體中文 README.MD"></a>&nbsp;&nbsp;<a href="https://replit-d.tw527e.eu.org"><img src="https://img.shields.io/badge/%E9%A0%90%E8%A6%BD-DEMO-blue?style=for-the-badge&logo=Cockpit" alt="预览 DEMO"></a>&nbsp;&nbsp;<a href="https://github.com/TW527E/renexmoe-tw527e-edition/releases/latest"><img src="https://img.shields.io/github/v/release/TW527E/renexmoe-tw527e-edition.svg?include_prereleases&logo=GitHub&style=for-the-badge" alt="GitHub Release"></a>&nbsp;&nbsp;<a href="https://www.npmjs.com/package/renexmoe-tw527e-edition"><img src="https://img.shields.io/npm/v/renexmoe-tw527e-edition?logo=npm&style=for-the-badge" alt="npm"></a>&nbsp;&nbsp;<a href="https://gitlab.com/TW527E/renexmoe-tw527e-edition/-/releases"><img src="https://img.shields.io/gitlab/v/release/TW527E/renexmoe-tw527e-edition.svg?include_prereleases&logo=GitLab&style=for-the-badge" alt="GitHub Release"></a>&nbsp;&nbsp;
     <a href="https://t.me/Cheng_Group"><img src="https://img.shields.io/badge/Telegram-Group-blue?style=for-the-badge&logo=Telegram" alt="Telegran Gruop"></a>
     <br />
     <br />
@@ -25,7 +25,7 @@
 - 📍 **`backgroundm`** 选项调用至 **`网页 Icon`**
 - 🔲 增加 **`背景毛玻璃`**
 - 🎨 **`主題颜色`** 调整为 **`奶茶色`**
-- 📦 **`CDN`** 透过 [**`多重`**](releases) 使用
+- 📦 **`CDN`** 提供 [**`多種`**](releases) 使用
 - 📺 **`影片播放器`** 更改为 [**`DPlayer`**](https://dplayer.js.org)
 - 🎵 **`音频播放器`** 更改为 [**`APlayer`**](https://aplayer.js.org)
 - 🕓 增加 **`自动恢复上次播放时间`**
@@ -44,7 +44,7 @@
 - 🎨 **`主题颜色`** 调整为 **`奶茶色`**
 - 📜 修复 **`PDF 预览`**
 - 📑 修复 **`OFFICE 预览排版`**
-- 📦 **`CDN`** 提供 [**`多重`**](releases) 使用
+- 📦 **`CDN`** 提供 [**`多種`**](releases) 使用
 - 📺 **`影片播放器`** 更改为 [DPlayer](https://dplayer.js.org)
 - 🎵 **`音频播放器`** 更改为 [APlayer](https://aplayer.js.org)
 - 🕓 增加 **`自动恢复上次播放时间`**
@@ -52,7 +52,7 @@
 - 🔠 将 **`字体`** 更改为 [Noto Sans TC SC HK](https://fonts.google.com/noto/fonts)
 - ⏏️ 新增 **`页脚`**
 - 📶 修复 **`路径未显示盘名`**
-- 🪛 修复 **`登入按鈕`**
+- 📲 修复 **`登入按鈕`**
 
 </Pre>
 </Details>
@@ -74,7 +74,6 @@
 1. 登录您的 OneManager 后台，并进入设置
 2. 选择 **`首页`** 页面
 3. 在 **`Update from`** 选择 `Github` `TW527E` `OneManager-php` `master`
-- (仅提供 **`UNPKG`** 、 **`JsDelivr OriginFastly`** 版本)
 4. 点击 **`一鍵更新`**
 5. 等待更新，完成
 
@@ -84,6 +83,7 @@
 2. 选择 **`平台变量`** 页面
 3. 在 **`customTheme`** 选项内，输入 **`以下几个cdn中的其中一个`**
 - (UNPKG: **`https://unpkg.com/renexmoe-tw527e-edition@latest/renexmoe-tw527e-edition.html`**)
+- (饿了么 CDN: **`https://npm.elemecdn.com/renexmoe-tw527e-edition@latest/renexmoe-tw527e-edition-elemecdn.html`**)
 - (Statically: **`https://raw.githubusercontent.com/TW527E/renexmoe-tw527e-edition/master/renexmoe-tw527e-edition-statically.html`**)
 - (JsDelivr CDN: **`https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@latest/renexmoe-tw527e-edition-jsdelivr-cdn.html`**)
 - (JsDelivr Fastly: **`https://fastly.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@latest/renexmoe-tw527e-edition-jsdelivr-fastly.html`**)
@@ -185,7 +185,7 @@ Readme 写法及图片做法来自 [qier222/YesPlayMusic](https://github.com/qie
 目前可以以下列方式支持我
 
 - ⭐ Star 这个仓库
-- 🪛 Fork 这个仓库
+- 🔌 Fork 这个仓库
 - 👥 <a href="https://t.me/Cheng_Group">加入 Telegram 群组</a>
 - 🔴 目前还无法通过赞助的方式支持我 `(未成年又没有银行账户w)`
 
@@ -222,4 +222,3 @@ Readme 写法及图片做法来自 [qier222/YesPlayMusic](https://github.com/qie
 
 </Pre>
 </Details>
-

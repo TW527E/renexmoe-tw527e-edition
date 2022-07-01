@@ -1,4 +1,3 @@
-#### [简体中文版readme](readme_zh-cn.md)
 <br />
 <p align="center">
   <a href="https://replit-d.tw527e.eu.org" target="blank">
@@ -9,7 +8,7 @@
   <p align="center">
     高顏值 OneManager 主題
     <br /><br />
-    <a href="https://replit-d.tw527e.eu.org"><img src="https://img.shields.io/badge/%E9%A0%90%E8%A6%BD-DEMO-blue?style=for-the-badge&logo=Cockpit" alt="預覽 DEMO"></a>&nbsp;&nbsp;<a href="https://github.com/TW527E/renexmoe-tw527e-edition/releases/latest"><img src="https://img.shields.io/github/v/release/TW527E/renexmoe-tw527e-edition.svg?include_prereleases&logo=GitHub&style=for-the-badge" alt="GitHub Release"></a>&nbsp;&nbsp;<a href="https://www.npmjs.com/package/renexmoe-tw527e-edition"><img src="https://img.shields.io/npm/v/renexmoe-tw527e-edition?logo=npm&style=for-the-badge" alt="npm"></a>&nbsp;&nbsp;<a href="https://gitlab.com/TW527E/renexmoe-tw527e-edition/-/releases"><img src="https://img.shields.io/gitlab/v/release/TW527E/renexmoe-tw527e-edition.svg?include_prereleases&logo=GitLab&style=for-the-badge" alt="GitHub Release"></a>&nbsp;&nbsp;
+    <a href="README_ZH-CN.md"><img src="https://img.shields.io/badge/%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87-README.md-blue?style=for-the-badge&logo=Radar" alt="简体中文 README.MD"></a>&nbsp;&nbsp;<a href="https://replit-d.tw527e.eu.org"><img src="https://img.shields.io/badge/%E9%A0%90%E8%A6%BD-DEMO-blue?style=for-the-badge&logo=Cockpit" alt="預覽 DEMO"></a>&nbsp;&nbsp;<a href="https://github.com/TW527E/renexmoe-tw527e-edition/releases/latest"><img src="https://img.shields.io/github/v/release/TW527E/renexmoe-tw527e-edition.svg?include_prereleases&logo=GitHub&style=for-the-badge" alt="GitHub Release"></a>&nbsp;&nbsp;<a href="https://www.npmjs.com/package/renexmoe-tw527e-edition"><img src="https://img.shields.io/npm/v/renexmoe-tw527e-edition?logo=npm&style=for-the-badge" alt="npm"></a>&nbsp;&nbsp;<a href="https://gitlab.com/TW527E/renexmoe-tw527e-edition/-/releases"><img src="https://img.shields.io/gitlab/v/release/TW527E/renexmoe-tw527e-edition.svg?include_prereleases&logo=GitLab&style=for-the-badge" alt="GitHub Release"></a>&nbsp;&nbsp;
     <a href="https://t.me/Cheng_Group"><img src="https://img.shields.io/badge/Telegram-Group-blue?style=for-the-badge&logo=Telegram" alt="Telegran Gruop"></a>
     <br />
     <br />
@@ -26,7 +25,7 @@
 - 📍 **`backgroundm`** 選項調用至 **`網頁 Icon`**
 - 🔲 增加 **`背景毛玻璃`**
 - 🎨 **`主題顏色`** 調整為 **`奶茶色`**
-- 📦 **`CDN`** 透過 [**`多種`**](releases) 使用
+- 📦 **`CDN`** 提供 [**`多種`**](releases) 使用
 - 📺 **`影片播放器`** 更改為 [**`DPlayer`**](https://dplayer.js.org)
 - 🎵 **`音訊播放器`** 更改為 [**`APlayer`**](https://aplayer.js.org)
 - 🕓 增加 **`自動恢復上次播放時間`**
@@ -53,7 +52,7 @@
 - 🔠 將 **`字體`** 更改為 [Noto Sans TC SC HK](https://fonts.google.com/noto/fonts)
 - ⏏️ 新增 **`頁腳`**
 - 📶 修復 **`路徑未顯示盤名`**
-- 🪛 修復 **`登入按鈕`**
+- 📲 修復 **`登入按鈕`**
 
 </Pre>
 </Details>
@@ -75,7 +74,6 @@
 1. 登入您的 OneManager 後台，並進入設定
 2. 選擇 **`首頁`** 頁面
 3. 在 **`Update from`** 選擇 `Github` `TW527E` `OneManager-php` `master`
-- (僅提供 **`UNPKG`** 、 **`JsDelivr OriginFastly`** 版本)
 4. 點擊 **`一鍵更新`**
 5. 等待更新，完成
 
@@ -85,6 +83,7 @@
 2. 選擇 **`平台變數`** 頁面
 3. 在 **`customTheme`** 選項內，輸入 **`以下幾個 CDN 的其中一個`**
 - (UNPKG: **`https://unpkg.com/renexmoe-tw527e-edition@latest/renexmoe-tw527e-edition.html`**)
+- (饿了么 CDN: **`https://npm.elemecdn.com/renexmoe-tw527e-edition@latest/renexmoe-tw527e-edition-elemecdn.html`**)
 - (Statically: **`https://raw.githubusercontent.com/TW527E/renexmoe-tw527e-edition/master/renexmoe-tw527e-edition-statically.html`**)
 - (JsDelivr CDN: **`https://cdn.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@latest/renexmoe-tw527e-edition-jsdelivr-cdn.html`**)
 - (JsDelivr Fastly: **`https://fastly.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@latest/renexmoe-tw527e-edition-jsdelivr-fastly.html`**)
@@ -186,7 +185,7 @@ Readme 寫法及圖片做法來自 [qier222/YesPlayMusic](https://github.com/qie
 目前可以以下列方式支持我
 
 - ⭐ Star 這個專案
-- 🪛 Fork 這個專案
+- 🔌 Fork 這個專案
 - 👥 <a href="https://t.me/Cheng_Group">加入 Telegram 群組</a>
 - 🔴 目前還無法透過贊助的方式支持我 `(未成年又沒有銀行帳戶w)`
 
