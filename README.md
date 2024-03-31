@@ -8,7 +8,7 @@
   <p align="center">
     高顏值 OneManager 主題
     <br /><br />
-    <a href="README_ZH-CN.md"><img src="https://img.shields.io/badge/%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87-README.md-blue?style=for-the-badge&logo=Radar" alt="简体中文 README.MD"></a>&nbsp;&nbsp;<a href="https://replit-d.tw527e.eu.org"><img src="https://img.shields.io/badge/%E9%A0%90%E8%A6%BD-DEMO-blue?style=for-the-badge&logo=Cockpit" alt="預覽 DEMO"></a>&nbsp;&nbsp;<a href="https://github.com/TW527E/renexmoe-tw527e-edition/releases/latest"><img src="https://img.shields.io/github/v/release/TW527E/renexmoe-tw527e-edition.svg?include_prereleases&logo=GitHub&style=for-the-badge" alt="GitHub Release"></a>&nbsp;&nbsp;<a href="https://www.npmjs.com/package/renexmoe-tw527e-edition"><img src="https://img.shields.io/npm/v/renexmoe-tw527e-edition?logo=npm&style=for-the-badge" alt="npm"></a>&nbsp;&nbsp;<a href="https://gitlab.com/TW527E/renexmoe-tw527e-edition/-/releases"><img src="https://img.shields.io/gitlab/v/release/TW527E/renexmoe-tw527e-edition.svg?include_prereleases&logo=GitLab&style=for-the-badge" alt="GitHub Release"></a>&nbsp;&nbsp;
+    <a href="README_ZH-CN.md"><img src="https://img.shields.io/badge/%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87-README.md-blue?style=for-the-badge&logo=Radar" alt="简体中文 README.MD"></a>&nbsp;&nbsp;<a href="https://om.tw527e.eu.org"><img src="https://img.shields.io/badge/%E9%A0%90%E8%A6%BD-DEMO-blue?style=for-the-badge&logo=Cockpit" alt="預覽 DEMO"></a>&nbsp;&nbsp;<a href="https://github.com/TW527E/renexmoe-tw527e-edition/releases/latest"><img src="https://img.shields.io/github/v/release/TW527E/renexmoe-tw527e-edition.svg?include_prereleases&logo=GitHub&style=for-the-badge" alt="GitHub Release"></a>&nbsp;&nbsp;<a href="https://www.npmjs.com/package/renexmoe-tw527e-edition"><img src="https://img.shields.io/npm/v/renexmoe-tw527e-edition?logo=npm&style=for-the-badge" alt="npm"></a>&nbsp;&nbsp;
     <a href="https://t.me/Cheng_Group"><img src="https://img.shields.io/badge/Telegram-Group-blue?style=for-the-badge&logo=Telegram" alt="Telegran Gruop"></a>
     <br />
     <br />
@@ -62,22 +62,9 @@
 
 此版本由 [@TW527E](https://github.com/TW527E) 維護，作用於 [OneManager-php](https://github.com/qkqpttgf/OneManager-php)
 
-訪問此項目的 [Releases](releases) 頁面下載主題檔案
+訪問此項目的 [Releases](releases) 頁面取得主題檔案下載連結
 
-### ✅ 1: 下載至目錄
-
-1. 下載 [**`renexmoe-tw527e-edition`**](https://github.com/TW527E/renexmoe-tw527e-edition/releases)
-2. 將 **`renexmoe-tw527e-edition.html`** 複製至 **`/OneManager 根目錄/theme`**
-
-### 🔧 2: 使用我的 OneManager-php (不推薦)
-
-1. 登入您的 OneManager 後台，並進入設定
-2. 選擇 **`首頁`** 頁面
-3. 在 **`Update from`** 選擇 `Github` `TW527E` `OneManager-php` `master`
-4. 點擊 **`一鍵更新`**
-5. 等待更新，完成
-
-### 🍄 3: 透過 customTheme 選項 (推薦: 因為 🍄 終於修復好了!w 好耶!)
+### 🍄 1: 透過 customTheme 選項 (推薦: 因為 🍄 終於修復好了!w 好耶!)
 
 1. 登入您的 OneManager 後台，並進入設定
 2. 選擇 **`平台變數`** 頁面
@@ -92,6 +79,19 @@
 4. 套用設定
 5. 等待緩存刷新，完成
 
+### 📁 2: 下載至目錄
+
+1. 下載 [**`renexmoe-tw527e-edition`**](https://github.com/TW527E/renexmoe-tw527e-edition/releases)
+2. 將 **`renexmoe-tw527e-edition.html`** 複製至 **`/OneManager 根目錄/theme`**
+
+### 🔧 3: 使用我的 OneManager-php (不推薦)
+
+1. 登入您的 OneManager 後台，並進入設定
+2. 選擇 **`首頁`** 頁面
+3. 在 **`Update from`** 選擇 `Github` `TW527E` `OneManager-php` `master`
+4. 點擊 **`一鍵更新`**
+5. 等待更新，完成
+
 
 ## 🔧 主題設定
 
@@ -102,7 +102,7 @@
 1. 登入您的 OneManager 後台，並進入設定
 2. 選擇 **`平台變數`** 頁面
 3. 在 **`customScript`** 選項內，輸入 **`<script>document.querySelector('.blur').style = "backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px)"</script>`**
-- (可自行調整數字 "2" 的大小，越大越模糊，越小越清楚)
+- (可自行調整數字 "2" 的大小，越大背景越模糊，越小背景越清楚)
 4. 套用設定
 5. 等待緩存刷新，完成 **`(請等待至少30分鐘，使customScript選項生效)`**
 </Pre>
