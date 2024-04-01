@@ -73,7 +73,7 @@
 
 1. 登录您的 OneManager 后台，并进入设置
 2. 选择 **`首页`** 页面
-3. 在 **`Update from`** 选择 `Github` `TW527E` `OneManager-php` `master`
+3. 在 **`Update from`** 选择 `GitHub` `TW527E` `OneManager-php` `master`
 4. 点击 **`一鍵更新`**
 5. 等待更新，完成
 
