@@ -25,10 +25,11 @@
 - 📍 **`backgroundm`** 選項調用至 **`網頁 Icon`**
 - 🔲 增加 **`背景毛玻璃`**
 - 🎨 **`主題顏色`** 調整為 **`奶茶色`**
-- 📦 提供 **`多種`**  [**`CDN`**](releases) 選擇
-- 📺 **`影片播放器`** 更改為 [**`DPlayer`**](https://dplayer.js.org)
+- 📦 提供 **`多種`**  [**`CDN`**](releases) 選擇，以及不經過 CDN 載入 JS / CSS 的 **`本地版`**
+- 📺 **`影片播放器`** 更改為 [**`ArtPlayer`**](https://artplayer.org)
 - 🎵 **`音訊播放器`** 更改為 [**`APlayer`**](https://aplayer.js.org)
 - 🕓 增加 **`自動恢復上次播放時間`**
+- ⬆️ 增加 **`上傳檔案 / 資料夾`** (OneDrive / SharePoint)
 - 📶 **`路徑`** 顯示於畫面最上方
 
 
@@ -45,10 +46,13 @@
 - 📜 修復 **`PDF 預覽`**
 - 📑 修復 **`OFFICE 預覽排版`**
 - 📦 提供 **`多種`**  [**`CDN`**](releases) 選擇
-- 📺 **`影片播放器`** 更改為 [DPlayer](https://dplayer.js.org)
+- 📺 **`影片播放器`** 更改為 [ArtPlayer](https://artplayer.org)
 - 🎵 **`音訊播放器`** 更改為 [APlayer](https://aplayer.js.org)
 - 🕓 增加 **`自動恢復上次播放時間`**
 - 📟 增加 **`呼叫本地播放器`**
+- ⬆️ 增加 **`上傳檔案 / 資料夾`**
+- 🏠 增加不經過 CDN 載入 JS / CSS 的 **`本地版`**
+- 🔗 修復 **`jsDelivr / Statically 版本資源 404`**
 - 🔠 將 **`字體`** 更改為 [Noto Sans TC SC HK](https://fonts.google.com/noto/fonts)
 - ⏏️ 新增 **`頁腳`**
 - 📶 修復 **`路徑未顯示盤名`**
@@ -84,7 +88,17 @@
 1. 下載 [**`renexmoe-tw527e-edition`**](https://github.com/TW527E/renexmoe-tw527e-edition/releases)
 2. 將 **`renexmoe-tw527e-edition.html`** 複製至 **`/OneManager 根目錄/theme`**
 
-### 🔧 3: 使用我的 OneManager-php (不推薦)
+### 🏠 3: 本地版 (JS / CSS 不經過 CDN)
+
+OneManager 會把所有網址都交給 `index.php` 處理，主題沒辦法直接讀取同目錄的檔案，只能透過 OneManager 內建的 `?jsFile=` 讀取 **`OneManager 根目錄/js`** 裡的 `.js` 檔，所以本地版把 CSS 也打包成了 JS。
+
+1. 下載本專案的 **`local`** 資料夾與 **`renexmoe-tw527e-edition-local.html`**
+2. 將 **`local`** 資料夾內的所有 `.js` 檔複製至 **`/OneManager 根目錄/js`** (與 `sha1.min.js` 等檔案放在一起，不要建立子資料夾)
+3. 將 **`renexmoe-tw527e-edition-local.html`** 複製至 **`/OneManager 根目錄/theme`**，並在設定中選擇此主題
+- 字型與 PDF 的 cMap 不是 `.js` 檔，仍會從 unpkg 載入；連不上時會改用系統字型，不影響使用
+- Vercel 等透過 Git 部署的平台，需要把這些檔案一起加進部署的程式碼中
+
+### 🔧 4: 使用我的 OneManager-php (不推薦)
 
 1. 登入您的 OneManager 後台，並進入設定
 2. 選擇 **`首頁`** 頁面
@@ -105,6 +119,17 @@
 - (可自行調整數字 "2" 的大小，越大背景越模糊，越小背景越清楚)
 4. 套用設定
 5. 等待緩存刷新，完成 **`(請等待至少30分鐘，使customScript選項生效)`**
+</Pre>
+</Details>
+
+<Details>
+<Summary>⬆️ 上傳檔案</Summary>
+<Pre>
+
+- 管理員登入後，資料夾頁面上方會出現上傳區塊，可上傳檔案或整個資料夾
+- 在 OneManager 設定 **`guestup_path`** 後，訪客可以在該目錄上傳 (檔名會由 OneManager 改為檔案的 MD5)
+- 目前只支援 **`OneDrive / SharePoint`** (含世紀互聯)，其他網盤會顯示不支援
+- 大於 10MB 的檔案中斷後，重新選擇同一個檔案上傳即可從上次的位置繼續
 </Pre>
 </Details>
 
@@ -144,6 +169,17 @@
 </Details>
 
 
+## 🧑‍💻 開發
+
+所有主題 HTML 都由 **`src/renexmoe-tw527e-edition.html`** 產生，請修改這個檔案後執行 (需要 Node.js 18 以上)：
+
+```
+npm run build
+```
+
+會重新產生各 CDN 版本、本地版 HTML 與 **`local`** 資料夾。第一次執行會下載本地版需要的第三方套件，之後使用 **`.cache`** 內的快取。
+
+
 ## 📜 開源許可
 
 依據源專案之開源許可，本專案採用 [GPL-3.0 License](https://spdx.org/licenses/GPL-3.0-only.html)
@@ -161,7 +197,7 @@ Readme 寫法及圖片做法來自 [qier222/YesPlayMusic](https://github.com/qie
 
 - [zdhxiong/mdui](https://github.com/zdhxiong/mdui)
 
-- [DIYgod/DPlayer](https://github.com/DIYgod/DPlayer)
+- [zhw2590582/ArtPlayer](https://github.com/zhw2590582/ArtPlayer)
 
 - [DIYgod/APlayer](https://github.com/DIYgod/APlayer)
 
