@@ -25,10 +25,11 @@
 - 📍 **`backgroundm`** 选项调用至 **`网页 Icon`**
 - 🔲 增加 **`背景毛玻璃`**
 - 🎨 **`主題颜色`** 调整为 **`奶茶色`**
-- 📦 提供 **`多种`**  [**`CDN`**](releases) 选择
-- 📺 **`影片播放器`** 更改为 [**`DPlayer`**](https://dplayer.js.org)
+- 📦 提供 **`多种`**  [**`CDN`**](releases) 选择，以及不经过 CDN 加载 JS / CSS 的 **`本地版`**
+- 📺 **`影片播放器`** 更改为 [**`ArtPlayer`**](https://artplayer.org)
 - 🎵 **`音频播放器`** 更改为 [**`APlayer`**](https://aplayer.js.org)
 - 🕓 增加 **`自动恢复上次播放时间`**
+- ⬆️ 增加 **`上传文件 / 文件夹`** (OneDrive / SharePoint)
 - 📶 **`路径`** 显示于画面最上方
 
 
@@ -45,10 +46,13 @@
 - 📜 修复 **`PDF 预览`**
 - 📑 修复 **`OFFICE 预览排版`**
 - 📦 提供 **`多种`**  [**`CDN`**](releases) 选择
-- 📺 **`影片播放器`** 更改为 [DPlayer](https://dplayer.js.org)
+- 📺 **`影片播放器`** 更改为 [ArtPlayer](https://artplayer.org)
 - 🎵 **`音频播放器`** 更改为 [APlayer](https://aplayer.js.org)
 - 🕓 增加 **`自动恢复上次播放时间`**
 - 📟 增加 **`呼叫本地播放器`**
+- ⬆️ 增加 **`上传文件 / 文件夹`**
+- 🏠 增加不经过 CDN 加载 JS / CSS 的 **`本地版`**
+- 🔗 修复 **`jsDelivr / Statically 版本资源 404`**
 - 🔠 将 **`字体`** 更改为 [Noto Sans TC SC HK](https://fonts.google.com/noto/fonts)
 - ⏏️ 新增 **`页脚`**
 - 📶 修复 **`路径未显示盘名`**
@@ -91,6 +95,23 @@
 - (JsDelivr OriginFastly: **`https://originfastly.jsdelivr.net/gh/TW527E/renexmoe-tw527e-edition@latest/renexmoe-tw527e-edition-jsdelivr-originfastly.html`**)
 4. 套用设置
 5. 等待缓存刷新，完成
+
+### 🏠 4: 本地版 (JS / CSS 不经过 CDN)
+
+OneManager 会把所有网址都交给 `index.php` 处理，主题没办法直接读取同目录的文件，只能通过 OneManager 内置的 `?jsFile=` 读取 **`OneManager 根目录/js`** 里的 `.js` 文件，所以本地版把 CSS 也打包成了 JS。
+
+1. 下载本项目的 **`local`** 文件夹与 **`renexmoe-tw527e-edition-local.html`**
+2. 将 **`local`** 文件夹内的所有 `.js` 文件复制至 **`/OneManager 根目录/js`** (与 `sha1.min.js` 等文件放在一起，不要建立子文件夹)
+3. 将 **`renexmoe-tw527e-edition-local.html`** 复制至 **`/OneManager 根目录/theme`**，并在设置中选择此主题
+- 字体与 PDF 的 cMap 不是 `.js` 文件，仍会从 unpkg 加载；连不上时会改用系统字体，不影响使用
+- Vercel 等通过 Git 部署的平台，需要把这些文件一起加进部署的代码中
+
+### ⬆️ 上传文件
+
+- 管理员登录后，文件夹页面上方会出现上传区块，可上传文件或整个文件夹
+- 在 OneManager 设置 **`guestup_path`** 后，访客可以在该目录上传 (文件名会由 OneManager 改为文件的 MD5)
+- 目前只支持 **`OneDrive / SharePoint`** (含世纪互联)，其他网盘会显示不支持
+- 大于 10MB 的文件中断后，重新选择同一个文件上传即可从上次的位置继续
 
 
 ## 🔧 主題设置
@@ -144,6 +165,17 @@
 </Details>
 
 
+## 🧑‍💻 开发
+
+所有主题 HTML 都由 **`src/renexmoe-tw527e-edition.html`** 生成，请修改这个文件后运行 (需要 Node.js 18 以上)：
+
+```
+npm run build
+```
+
+会重新生成各 CDN 版本、本地版 HTML 与 **`local`** 文件夹。第一次运行会下载本地版需要的第三方包，之后使用 **`.cache`** 内的缓存。
+
+
 ## 📜 开源协议
 
 依据源仓库之开源协议，本仓库采用 [GPL-3.0 协议](https://spdx.org/licenses/GPL-3.0-only.html)进行开源
@@ -161,7 +193,7 @@ Readme 写法及图片做法来自 [qier222/YesPlayMusic](https://github.com/qie
 
 - [zdhxiong/mdui](https://github.com/zdhxiong/mdui)
 
-- [DIYgod/DPlayer](https://github.com/DIYgod/DPlayer)
+- [zhw2590582/ArtPlayer](https://github.com/zhw2590582/ArtPlayer)
 
 - [DIYgod/APlayer](https://github.com/DIYgod/APlayer)
 

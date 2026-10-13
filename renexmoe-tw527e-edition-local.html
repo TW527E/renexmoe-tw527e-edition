@@ -1,0 +1,1180 @@
+<!--IconValuesStart-->
+{
+  "music":"audiotrack",
+  "video":"ondemand_video",
+  "img":"image",
+  "pdf":"picture_as_pdf",
+  "txt":"description",
+  "apk":"android",
+  "exe":"desktop_windows",
+  "default":"insert_drive_file"
+}
+<!--IconValuesEnd-->
+
+<!DOCTYPE html>
+<html lang="<!--constStr@language-->">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#fff" />
+  <link rel="preconnect" href="https://unpkg.com" crossorigin />
+
+  <!--BackgroundMStart-->
+  <link rel="icon" href="<!--BackgroundMUrl-->" type="image/x-icon" />
+  <!--BackgroundMEnd-->
+  <title><!--Title--></title>
+  <meta name="keywords" content="<!--Keywords-->" />
+  <meta name="description" content="<!--Description-->" />
+
+  <script src="<!--base_path-->?jsFile=renexmoe-style.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/@fontsource/noto-sans-tc@5.3.1/500.css" media="print" onload="this.media='all'" />
+  <link rel="stylesheet" href="https://unpkg.com/@fontsource/noto-sans-sc@5.3.1/500.css" media="print" onload="this.media='all'" />
+  <link rel="stylesheet" href="https://unpkg.com/@fontsource/noto-sans-hk@5.3.1/500.css" media="print" onload="this.media='all'" />
+  <link rel="stylesheet" href="https://unpkg.com/@fontsource/fira-code@4.2.2/400.css" media="print" onload="this.media='all'" />
+
+  <script>
+    window.disableddarkmode = true;
+
+    window.renexmoeKit = (function () {
+      var loaded = {};
+      var officeResizeBound = false;
+
+      function whenReady(fn) {
+        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fn, { once: true });
+        else fn();
+      }
+
+      var kit = {
+        libs: {"aplayer":["<!--base_path-->?jsFile=renexmoe-aplayer.js"],"jsmediatags":"<!--base_path-->?jsFile=renexmoe-jsmediatags.js","artplayer":["<!--base_path-->?jsFile=renexmoe-artplayer.js","<!--base_path-->?jsFile=renexmoe-artplayer-zh-tw.js"],"pdf":"<!--base_path-->?jsFile=renexmoe-pdf.js","pdfWorker":"<!--base_path-->?jsFile=renexmoe-pdf.worker.js","pdfCMaps":"https://unpkg.com/pdfjs-dist@2.5.207/cmaps/","sparkMd5":"<!--base_path-->?jsFile=spark-md5.min.js"},
+
+        // 按需載入 JS / CSS，同一網址只載入一次。CSS 插在主題樣式之前，主題的覆寫才會維持優先
+        load: function (urls) {
+          return Promise.all([].concat(urls).map(function (url) {
+            if (!loaded[url]) {
+              loaded[url] = new Promise(function (resolve, reject) {
+                var isCss = /\.css$/.test(url);
+                var el = document.createElement(isCss ? 'link' : 'script');
+                el.onload = resolve;
+                el.onerror = function () {
+                  delete loaded[url];
+                  el.remove();
+                  reject(new Error('載入失敗：' + url));
+                };
+                if (isCss) {
+                  el.rel = 'stylesheet';
+                  el.href = url;
+                  document.head.insertBefore(el, document.getElementById('renexmoe-theme-style'));
+                } else {
+                  el.src = url;
+                  document.head.appendChild(el);
+                }
+              });
+            }
+            return loaded[url];
+          }));
+        },
+
+        toast: function (msg) {
+          whenReady(function () {
+            if (window.mdui) mdui.snackbar(msg);
+          });
+        },
+
+        // pjax 會在更新網址之前執行新頁面的腳本，跟目前網址有關的計算要延後執行
+        later: function (fn) {
+          setTimeout(fn, 0);
+        },
+
+        dir: function () {
+          return location.pathname.substring(0, location.pathname.lastIndexOf('/'));
+        },
+
+        abs: function (name) {
+          return location.origin + kit.dir() + '/' + name;
+        },
+
+        // 離開目前頁面（pjax 換頁）時執行一次
+        onLeave: function (fn) {
+          document.addEventListener('pjax:send', fn, { once: true });
+        },
+
+        copy: function (text) {
+          function fallback() {
+            var input = document.createElement('textarea');
+            input.value = text;
+            input.style.cssText = 'position: fixed; opacity: 0;';
+            document.body.appendChild(input);
+            input.select();
+            var ok = document.execCommand('copy');
+            input.remove();
+            kit.toast(ok ? '已複製到剪貼簿' : text);
+          }
+          if (navigator.clipboard && window.isSecureContext) {
+            navigator.clipboard.writeText(text).then(function () {
+              kit.toast('已複製到剪貼簿');
+            }, fallback);
+          } else {
+            fallback();
+          }
+        },
+
+        copyFileUrl: function () {
+          kit.copy(kit.abs(document.getElementById('file').getAttribute('data-src')));
+        },
+
+        // 記住播放進度，開頭與結尾 margin 秒內不記錄。回傳停止記錄的函式
+        resume: function (media, key, margin, seek) {
+          var restored = false, stopped = false, last = 0;
+          function restore() {
+            if (restored || !(media.duration > 0)) return;
+            restored = true;
+            var time = parseFloat(localStorage.getItem(key));
+            if (time > 0) {
+              seek(time - 5);
+              kit.toast('已恢復至上次播放位置');
+            }
+          }
+          function save() {
+            if (stopped || !restored || Date.now() - last < 1000) return;
+            last = Date.now();
+            if (media.currentTime >= margin && media.currentTime <= media.duration - margin) {
+              localStorage.setItem(key, media.currentTime);
+            } else {
+              localStorage.removeItem(key);
+            }
+          }
+          media.addEventListener('loadedmetadata', restore);
+          media.addEventListener('timeupdate', save);
+          restore();
+          return function () {
+            stopped = true;
+          };
+        },
+
+        externalPlayers: function (box, name) {
+          kit.later(function () {
+            var url = kit.abs(name);
+            [
+              ['openiina', 'IINA', 'iina://weblink?url=' + url],
+              ['openpot', 'PotPlayer', 'potplayer://' + url],
+              ['openvlc', 'VLC', 'vlc://' + url],
+              ['opennp', 'nPlayer', 'nplayer-' + url],
+              ['openmxfree', 'MXPlayer', 'intent:' + url + '#Intent;package=com.mxtech.videoplayer.ad;end'],
+              ['openmxpro', 'MXPlayer Pro', 'intent:' + url + '#Intent;package=com.mxtech.videoplayer.pro;end']
+            ].forEach(function (player) {
+              var a = document.createElement('a');
+              a.id = player[0];
+              a.className = 'clp mdui-btn mdui-ripple';
+              a.textContent = player[1];
+              a.href = player[2];
+              box.appendChild(a);
+            });
+          });
+        },
+
+        fitOffice: function () {
+          function fit() {
+            var frame = document.getElementById('office-a');
+            if (frame) frame.height = document.documentElement.clientHeight - 150;
+          }
+          fit();
+          if (!officeResizeBound) {
+            officeResizeBound = true;
+            window.addEventListener('resize', fit);
+          }
+        }
+      };
+      return kit;
+    })();
+  </script>
+
+  <style id="renexmoe-theme-style">
+    html {
+      background-color: #222222;
+      <!--BackgroundStart-->
+      background: url("<!--BackgroundUrl-->") fixed no-repeat, #222222;
+      <!--BackgroundEnd-->
+      margin: 0;
+      background-size: cover;
+    }
+
+    body {
+      background: inherit;
+      margin: 0;
+      background-attachment: fixed;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+
+    .mdui-theme-layout-dark {
+      background-color: #222222 !important;
+    }
+
+    *{
+      color: #ffd2b3;
+      font-family: 'Noto Sans TC','Noto Sans SC','Noto Sans HK',sans-serif;
+    }
+
+    #footer {
+      color: #fff;
+    }
+
+    .mdui-typo code,.mdui-typo kbd {
+      color: #7787ff;
+      background-color: #dfdfdf;
+      border-radius: 6px
+    }
+
+    .mdui-theme-layout-dark .mdui-list-item-active {
+      --color-active: #ff4081 !important;
+    }
+
+    .mdui-icon {
+      color: #fff8f3;
+    }
+
+    .mdui-menu {
+      background-color: rgb(22 22 22 / 43%);
+    }
+
+    .mdui-dialog {
+      background-color: rgb(38 38 38);
+    }
+
+    .mdui-chip .mdui-chip-title {
+      color: #fff;
+      font-weight: 600;
+    }
+
+    div#file {
+      background-color: rgb(22 22 22 / 43%);
+    }
+
+    .mdui-typo p {
+      margin: 0 0 0 0;
+    }
+
+    .markdown p {
+      margin: 0 0 1.2em 0;
+    }
+
+    .mdui-typo {
+      line-height: 1.8;
+    }
+
+    .markdown code, .mdui-typo code {
+      padding: 2px 4px !important;
+      color: #e3adff !important;
+      background-color: #464646 !important;
+    }
+
+    .markdown a *, .mdui-typo a * {
+      color: #ff4d7e !important;
+    }
+
+    .mdui-theme-layout-dark .mdui-list-item {
+      color: #ffd2b3;
+    }
+
+    .mdui-list-item:hover {
+      background-color: #ffffff29;
+    }
+
+    div#aplayer * {
+      color: #666;
+    }
+
+    input#url-input {
+    color: rgb(103 95 217);
+    }
+
+    label.mdui-textfield-label {
+    color: #e91e63 !important;
+    }
+
+    .clp {
+      margin: 0.25rem;
+      color: #1A202C;
+      font-weight: bold;
+      border-radius: 0.375rem;
+      height: 2.5rem;
+      width: auto;
+      line-height: 1.2;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #openiina {
+      background: #D6BCFA;
+    }
+
+    #openpot {
+      background: #FAF089;
+    }
+
+    #openvlc {
+      background: #FBD38D;
+    }
+
+    #opennp {
+      background: #81E6D9;
+    }
+
+    #openmxfree {
+      background: #90cdf4;
+    }
+
+    #openmxpro {
+      background: #90cdf4;
+    }
+
+    #clpp {
+      line-height: 1.2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      -webkit-box-pack: center;
+      list-style-type: none;
+      align-items: center;
+      padding: 0px;
+      margin: -0.25rem;
+    }
+
+    .blur{
+      z-index: 0;
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      filter: blur(0px);
+    }
+
+    ul.mdui-menu{
+      position: fixed !important;
+    }
+
+    .aplayer, .aplayer-pic {
+      padding: inherit;
+      border-radius: 10px;
+    }
+
+    .mdui-menu{
+      width: auto;
+    }
+
+    #artplayer {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .renexmoe-upload {
+      margin: 20px 0;
+      padding: 12px 16px;
+      border-radius: 8px;
+      background-color: rgb(22 22 22 / 43%);
+    }
+
+    .renexmoe-upload-btns {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .renexmoe-upload-list:empty {
+      display: none;
+    }
+
+    .renexmoe-upload .mdui-list-item-text {
+      white-space: normal;
+      word-break: break-all;
+    }
+
+    .renexmoe-upload .mdui-progress {
+      margin-top: 6px;
+      background-color: #ffffff29;
+    }
+
+    .renexmoe-upload .mdui-progress-determinate {
+      background-color: #ff4081;
+    }
+
+    .renexmoe-upload-error {
+      color: #ff6e6e !important;
+    }
+  </style>
+
+  <!--customCss-->
+</head>
+
+<body class="mdui-appbar-with-toolbar mdui-theme-layout-auto mdui-drawer-body-left mdui-theme-accent-pink">
+  <div class="blur"></div>
+  <header class="mdui-appbar mdui-appbar-fixed">
+    <div class="mdui-toolbar">
+      <span class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white"
+        onclick='mdui.$(".mdui-appbar-with-toolbar").toggleClass("mdui-drawer-body-left");' id="toggle-drawer"><i
+          class="mdui-icon material-icons">menu</i></span>
+      <a class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white" onclick="window.history.back()">
+        <i class="mdui-icon material-icons">arrow_back</i>
+      </a>
+      <a href="<!--base_path-->" class="mdui-typo-headline">
+        <!--Sitename-->
+      </a>
+      <!--DiskPathArrayStart-->
+      <i class="mdui-icon material-icons mdui-hidden-xs" style="margin: 0">chevron_right</i><a
+        href="<!--PathArrayLink-->" class="mdui-typo-subheading mdui-hidden-xs">
+        <!--PathArrayName-->
+      </a>
+      <!--DiskPathArrayEnd-->
+      <div class="mdui-toolbar-spacer"></div>
+    </div>
+  </header>
+  <div class="mdui-drawer" id="main-drawer">
+    <div class="mdui-list" mdui-collapse="{accordion: true}">
+      <!--LoginStart-->
+      <li class="mdui-list-item mdui-ripple" mdui-dialog="{target: '#login_input'}" >
+        <a class="mdui-list-item-icon mdui-icon material-icons">account_circle</a>
+        <a class="mdui-list-item-content" mdui-dialog="{target: '#login_input'}"><!--constStr@Login--></a>
+      </li>
+      <!--LoginEnd-->
+      <li class="mdui-list-item mdui-ripple">
+        <a href="<!--base_path-->" class="mdui-list-item-icon mdui-icon material-icons">home</a><a
+          href="<!--base_path-->" class="mdui-list-item-content" id="home">
+          <!--constStr@Home-->
+        </a>
+      </li>
+      <!--MultiDiskAreaStart-->
+      <div class="mdui-divider"></div>
+      <!--MultiDisksStart-->
+      <li class="mdui-list-item mdui-ripple">
+        <a href="<!--MultiDisksUrl-->" class="mdui-list-item-icon mdui-icon material-icons">cloud</a>
+        <a href="<!--MultiDisksUrl-->" class="mdui-list-item-content mdui-text-truncate disk_name">
+          <!--MultiDisksName-->
+        </a>
+      </li>
+      <!--MultiDisksEnd-->
+      <div class="mdui-divider"></div>
+      <!--MultiDiskAreaEnd-->
+      <a target="_blank" href="https://github.com/qkqpttgf/OneManager-php" class="mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons">code</i>
+        <div class="mdui-list-item-content">GitHub</div>
+      </a>
+      <li class="mdui-list-item mdui-ripple" id="about_theme">
+        <i class="mdui-list-item-icon mdui-icon material-icons">info</i>
+        <div class="mdui-list-item-content">關於主題</div>
+      </li>
+      <div class="mdui-divider"></div>
+      <li class="mdui-list-item mdui-ripple" id="select_language" style="overflow: visible;">
+        <i class="mdui-list-item-icon mdui-icon material-icons">language</i>
+        <div class="mdui-list-item-content" style="padding-top: 10px;padding-bottom: 10px;">
+          <select class="mdui-select" name="language" mdui-select onchange="changelanguage(this.value)">
+          <!--SelectLanguageStart-->
+            <option value="<!--SelectLanguageKey-->" <!--SelectLanguageSelected-->><!--SelectLanguageValue--></option>
+          <!--SelectLanguageEnd-->
+        </select>
+      </div>
+      </li>
+      <script>
+        function changelanguage(str) {
+          if (str == 'Language') str = '';
+          var expires = new Date(Date.now() + 2 * 60 * 60 * 1000).toUTCString();
+          document.cookie = 'language=' + str + '; path=/; expires=' + expires;
+          location.reload();
+        }
+      </script>
+    </div>
+  </div>
+  <div class="mdui-container" style="position: relative;">
+    <ul class="mdui-menu" id="admin-menu">
+      <li class="mdui-menu-item">
+        <a href="javascript:;" class="mdui-ripple back">
+          <i class="mdui-menu-item-icon mdui-icon material-icons">arrow_back</i>
+          返回上一頁
+        </a>
+      </li>
+    </ul>
+    <i id="mouseplace" style="position: fixed"></i>
+
+    <!--LoginStart-->
+    <div class="mdui-dialog" id="login_input">
+      <div class="mdui-dialog-title"><!--constStr@Login--></div>
+      <div class="mdui-dialog-content" style="height: 108px">
+        <form id="login_form" action="<!--IsPreview?-->login=admin" method="post" onsubmit="return sha1loginpass(this);">
+          <div class="mdui-textfield mdui-textfield-floating-label">
+            <i class="mdui-icon material-icons">lock</i><label class="mdui-textfield-label"><!--constStr@InputPassword--></label>
+            <input class="mdui-textfield-input" id="login_password" name="password1" type="password">
+            <input name="timestamp" type="hidden" value="">
+          </div>
+        </form>
+      </div>
+      <div class="mdui-dialog-actions">
+        <button type="button" class="mdui-btn mdui-ripple" mdui-dialog-close="" id="login_close">取消</button>
+        <button id="login_btn_bak" class="mdui-btn mdui-ripple" type="submit" form="login_form">
+          <!--constStr@Login-->
+        </button>
+      </div>
+    </div>
+    <!--LoginEnd-->
+    <!--EncryptedStart-->
+    <div class="mdui-center" style="margin: 20px auto;max-width: 600px;">
+      <br />
+      <center>
+        <div class="mdui-typo-title">
+          這是一個受保護的資料夾，您需要提供訪問密碼才能檢視。
+        </div>
+      </center>
+      <form action="" method="post">
+        <div class="mdui-textfield mdui-textfield-floating-label">
+          <i class="mdui-icon material-icons">https</i>
+          <label class="mdui-textfield-label">
+            <!--constStr@InputPassword-->
+          </label>
+          <input name="password1" class="mdui-textfield-input" type="password" />
+        </div>
+        <br />
+        <button type="submit" class="mdui-center mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme">
+          <i class="mdui-icon material-icons">fingerprint</i>
+          <!--constStr@Submit-->
+        </button>
+      </form>
+    </div>
+    <!--EncryptedEnd-->
+    <!--UploadJsStart-->
+    <div class="mdui-shadow-3 renexmoe-upload" id="upload_div">
+      <div class="renexmoe-upload-btns">
+        <i class="mdui-icon material-icons">cloud_upload</i>
+        <label class="mdui-btn mdui-ripple">
+          <i class="mdui-icon mdui-icon-left material-icons">insert_drive_file</i><!--constStr@UploadFile-->
+          <input type="file" multiple hidden />
+        </label>
+        <label class="mdui-btn mdui-ripple">
+          <i class="mdui-icon mdui-icon-left material-icons">folder</i><!--constStr@UploadFolder-->
+          <input type="file" multiple webkitdirectory hidden />
+        </label>
+      </div>
+      <ul class="mdui-list renexmoe-upload-list"></ul>
+    </div>
+    <script>
+      (function (kit) {
+        var isAdmin = false, onedrive = false;
+        /*--AdminStart--*/isAdmin = true;/*--AdminEnd--*/
+        /*--OnedriveUploadJsStart--*/onedrive = true;/*--OnedriveUploadJsEnd--*/
+
+        var MB = 1024 * 1024, PARALLEL = 3;
+        var text = {
+          calc: '<!--constStr@Calculate--> MD5',
+          link: '<!--constStr@GetUploadLink-->',
+          speed: '<!--constStr@AverageSpeed-->',
+          expect: '<!--constStr@Expect-->',
+          done: '<!--constStr@UploadComplete-->',
+          copy: '<!--constStr@CopyUrl-->',
+          tooLarge: '<!--constStr@UpFileTooLarge-->',
+          fail23: '<!--constStr@UploadFail23-->'
+        };
+        var card = document.getElementById('upload_div');
+        var list = card.querySelector('.renexmoe-upload-list');
+        // 佇列放在 window 上，pjax 換頁後上傳會繼續進行
+        var up = window.renexmoeUploader = window.renexmoeUploader || { queue: [], running: 0, changed: {} };
+
+        if (!onedrive) {
+          card.querySelector('.renexmoe-upload-btns').innerHTML =
+            '<i class="mdui-icon material-icons">cloud_off</i><span>此網盤暫不支援網頁上傳，目前只支援 OneDrive / SharePoint。</span>';
+          return;
+        }
+
+        if (!up.guarded) {
+          up.guarded = true;
+          window.addEventListener('beforeunload', function (e) {
+            if (up.running || up.queue.length) {
+              e.preventDefault();
+              e.returnValue = '';
+            }
+          });
+        }
+
+        card.querySelectorAll('input[type=file]').forEach(function (input) {
+          input.addEventListener('change', function () {
+            var base = location.href.split(/[?#]/)[0];
+            Array.prototype.forEach.call(input.files, function (file) {
+              up.queue.push(createItem(file, base));
+            });
+            input.value = '';
+            pump();
+          });
+        });
+
+        function pump() {
+          while (up.running < PARALLEL && up.queue.length) {
+            up.running++;
+            up.queue.shift()().then(function () {
+              up.running--;
+              pump();
+            });
+          }
+          if (!up.running && !up.queue.length) {
+            // 管理員上傳完成後重新載入目前資料夾（上傳時已清除該資料夾的列表快取）
+            var here = location.href.split(/[?#]/)[0];
+            var changed = up.changed[here];
+            up.changed = {};
+            if (isAdmin && changed && window.renexmoe) {
+              kit.toast(text.done);
+              window.renexmoe.pjax.loadUrl(here);
+            }
+          }
+        }
+
+        function createItem(file, base) {
+          var rel = file.webkitRelativePath || file.name;
+          var li = document.createElement('li');
+          li.className = 'mdui-list-item';
+          li.innerHTML = '<div class="mdui-list-item-content"><div class="mdui-list-item-title"></div>' +
+            '<div class="mdui-list-item-text"></div>' +
+            '<div class="mdui-progress"><div class="mdui-progress-determinate" style="width: 0;"></div></div></div>';
+          li.querySelector('.mdui-list-item-title').textContent = rel + ' (' + fmtSize(file.size) + ')';
+          list.appendChild(li);
+          var item = {
+            status: function (msg, isError) {
+              var el = li.querySelector('.mdui-list-item-text');
+              el.textContent = msg;
+              el.classList.toggle('renexmoe-upload-error', !!isError);
+            },
+            progress: function (percent) {
+              li.querySelector('.mdui-progress-determinate').style.width = percent + '%';
+            }
+          };
+          item.status('等待上傳…');
+          return function () {
+            return upload(file, rel, base, item).then(function (name) {
+              var url = base + name.split('/').map(encodeURIComponent).join('/');
+              var title = li.querySelector('.mdui-list-item-title');
+              var link = document.createElement('a');
+              link.href = url + '?preview';
+              link.target = '_blank';
+              link.textContent = title.textContent;
+              title.textContent = '';
+              title.appendChild(link);
+              item.progress(100);
+              item.status(text.done);
+              var copy = document.createElement('a');
+              copy.href = 'javascript:;';
+              copy.textContent = '　' + text.copy;
+              copy.onclick = function () {
+                kit.copy(url);
+              };
+              li.querySelector('.mdui-list-item-text').appendChild(copy);
+              up.changed[base] = true;
+            }, function (err) {
+              item.status(err.message, true);
+            });
+          };
+        }
+
+        function upload(file, rel, base, item) {
+          if (!file.size) return Promise.reject(new Error('不支援上傳空檔案'));
+          if (file.size > 100 * 1024 * MB) return Promise.reject(new Error(text.tooLarge));
+          // 訪客上傳由伺服器以 MD5 命名，管理員保留原檔名與資料夾結構
+          var named = isAdmin ? Promise.resolve({ name: rel }) : md5(file, item).then(function (hash) {
+            return { name: hash + ext(rel), md5: hash };
+          });
+          return named.then(function (info) {
+            item.status(text.link + '…');
+            return session(base, file, info, 0).then(function (uploadUrl) {
+              if (uploadUrl) return chunks(uploadUrl, file, item, /%23/.test(base) || rel.indexOf('#') > -1);
+            }).then(function () {
+              // 刪除續傳暫存檔並清除列表快取，失敗不影響上傳結果
+              return send('GET', base + '?action=del_upload_cache&' + new URLSearchParams({
+                filelastModified: file.lastModified,
+                filesize: file.size,
+                filename: info.name
+              }), null, { 'X-Requested-With': 'XMLHttpRequest' }).catch(function () {});
+            }).then(function () {
+              return info.name;
+            });
+          });
+        }
+
+        function session(base, file, info, retry) {
+          var body = new URLSearchParams({
+            upbigfilename: info.name,
+            filesize: file.size,
+            filelastModified: file.lastModified
+          });
+          if (info.md5) body.set('filemd5', info.md5);
+          return send('POST', base + '?action=upbigfile', body, { 'X-Requested-With': 'XMLHttpRequest' }).then(function (r) {
+            if (r.status === 200 && !r.text && retry < 3) return session(base, file, info, retry + 1);
+            // 訪客上傳以 MD5 命名，同名代表內容相同，視為已完成
+            if (r.status === 409 && !isAdmin) return null;
+            var res = parse(r.text);
+            if (r.status === 409) throw new Error('檔案已存在：' + errorText(r));
+            if (r.status !== 200 || !res || !res.uploadUrl) throw new Error(errorText(r));
+            return res.uploadUrl;
+          });
+        }
+
+        // OneDrive 分塊續傳：先查詢已上傳的位置，再依網速調整分塊大小（需為 320 KiB 的倍數）
+        function chunks(url, file, item, hasHash) {
+          var began, from;
+          return send('GET', url).then(function (r) {
+            var res = parse(r.text);
+            if (r.status !== 200 || !res || !res.nextExpectedRanges) throw new Error(hasHash ? text.fail23 : errorText(r));
+            from = parseInt(res.nextExpectedRanges[0], 10);
+            began = Date.now();
+            return put(from, 10 * MB, 0);
+          });
+
+          function put(offset, size, retry) {
+            var end = Math.min(offset + size, file.size), sentAt = Date.now();
+            return send('PUT', url, file.slice(offset, end), {
+              'Content-Range': 'bytes ' + offset + '-' + (end - 1) + '/' + file.size
+            }, function (loaded) {
+              var done = offset + loaded;
+              var speed = (done - from) * 1000 / Math.max(Date.now() - began, 1);
+              item.progress(done * 100 / file.size);
+              item.status(fmtSize(done) + ' / ' + fmtSize(file.size) + '　' + text.speed + ' ' + fmtSize(speed) + '/s　' +
+                text.expect + ' ' + fmtTime((file.size - done) / speed));
+            }).then(function (r) {
+              // 416 代表分塊範圍和伺服器紀錄不符（例如上一次其實已送達），重新同步後繼續
+              if (r.status >= 500 || r.status === 416) return retryLater(new Error(errorText(r)));
+              var res = parse(r.text);
+              if (res && (res.id || res.size > 0)) return res;
+              if (!res || !res.nextExpectedRanges) throw new Error(errorText(r));
+              var rate = (end - offset) * 1000 / Math.max(Date.now() - sentAt, 1);
+              return put(parseInt(res.nextExpectedRanges[0], 10), rate > 10 * MB ? 50 * MB : rate > 5 * MB ? 20 * MB : 10 * MB, 0);
+            }, retryLater);
+
+            // 稍候重試，並先向伺服器查詢已收到的位置，避免重送已送達的分塊
+            function retryLater(err) {
+              if (retry >= 5) throw err;
+              item.status(err.message + '，' + (retry + 1) * 2 + ' 秒後重試…', true);
+              return new Promise(function (resolve) {
+                setTimeout(resolve, (retry + 1) * 2000);
+              }).then(function () {
+                return send('GET', url);
+              }).then(function (r) {
+                var res = parse(r.text);
+                var next = res && res.nextExpectedRanges ? parseInt(res.nextExpectedRanges[0], 10) : offset;
+                return put(next, size, retry + 1);
+              }, function () {
+                return put(offset, size, retry + 1);
+              });
+            }
+          }
+        }
+
+        function md5(file, item) {
+          return kit.load(kit.libs.sparkMd5).then(function () {
+            var spark = new SparkMD5.ArrayBuffer();
+            function step(offset) {
+              if (offset >= file.size) return spark.end();
+              item.status(text.calc + ' ' + (offset * 100 / file.size).toFixed(1) + '%');
+              return file.slice(offset, offset + 10 * MB).arrayBuffer().then(function (buf) {
+                spark.append(buf);
+                return step(offset + 10 * MB);
+              });
+            }
+            return step(0);
+          });
+        }
+
+        function send(method, url, body, headers, onProgress) {
+          return new Promise(function (resolve, reject) {
+            var xhr = new XMLHttpRequest();
+            xhr.open(method, url);
+            Object.keys(headers || {}).forEach(function (key) {
+              xhr.setRequestHeader(key, headers[key]);
+            });
+            if (onProgress) xhr.upload.onprogress = function (e) {
+              onProgress(e.loaded);
+            };
+            xhr.onload = function () {
+              resolve({ status: xhr.status, text: xhr.responseText });
+            };
+            xhr.onerror = function () {
+              reject(new Error('網路連線失敗'));
+            };
+            xhr.send(body || null);
+          });
+        }
+
+        function parse(str) {
+          try {
+            return JSON.parse(str);
+          } catch (e) {
+            return null;
+          }
+        }
+
+        function errorText(r) {
+          var res = parse(r.text);
+          return (res && res.error && (res.error.message || res.error.code)) || (r.status + ' ' + r.text).slice(0, 200);
+        }
+
+        function ext(path) {
+          var name = path.split('/').pop(), dot = name.lastIndexOf('.');
+          return dot > 0 ? name.slice(dot).toLowerCase() : '';
+        }
+
+        function fmtSize(n) {
+          var units = ['B', 'KB', 'MB', 'GB', 'TB'], i = 0;
+          while (n >= 1024 && i < units.length - 1) {
+            n /= 1024;
+            i++;
+          }
+          return n.toFixed(2) + ' ' + units[i];
+        }
+
+        function fmtTime(s) {
+          if (!isFinite(s)) return '--';
+          s = Math.round(s);
+          var h = Math.floor(s / 3600), m = Math.floor(s % 3600 / 60);
+          return (h ? h + 'h' : '') + (h || m ? m + 'm' : '') + s % 60 + 's';
+        }
+      })(window.renexmoeKit);
+    </script>
+    <!--UploadJsEnd-->
+    <!--IsFolderStart-->
+    <!--HeadomfStart-->
+    <div class="mdui-typo mdui-shadow-3" style="padding: 20px; margin: 20px 0">
+      <!--HeadomfContent-->
+    </div>
+    <!--HeadomfEnd-->
+    <!--HeadmdStart-->
+    <div class="mdui-chip mdui-ripple mdui-hidden-xs" style="margin-top: 20px;">
+      <span class="mdui-chip-icon">
+        <i class="mdui-icon material-icons">face</i>
+      </span>
+      <span class="mdui-chip-title">HEAD.md</span>
+    </div>
+    <div class="mdui-typo mdui-shadow-3 markdown" style="padding: 20px; margin: 20px 0; overflow-x: scroll; border-radius: 8px; background-color: rgb(22 22 22 / 43%);" id="head">
+      <textarea id="head-md"><!--HeadmdContent--></textarea>
+    </div>
+    <!--HeadmdEnd-->
+    <div class="mdui-row mdui-shadow-3" style="margin: 20px 0; border-radius: 8px; background-color: rgb(22 22 22 / 43%);">
+      <ul class="mdui-list" id="file-list">
+        <li class="mdui-list-item mdui-ripple">
+          <div class="mdui-row mdui-col-xs-12">
+            <div class="mdui-col-xs-12 mdui-col-sm-7">
+              <!--constStr@File--><i class="mdui-icon material-icons icon-sort" data-sort="name"
+                data-order="less">expand_less</i>
+            </div>
+            <div class="mdui-col-sm-3 mdui-text-right">
+              <!--constStr@EditTime--><i class="mdui-icon material-icons icon-sort" data-sort="date"
+                data-order="less">expand_less</i>
+            </div>
+            <div class="mdui-col-sm-2 mdui-text-right">
+              <!--constStr@Size--><i class="mdui-icon material-icons icon-sort" data-sort="size"
+                data-order="less">expand_less</i>
+            </div>
+          </div>
+        </li>
+        <!--BackArrowStart-->
+        <li class="mdui-list-item mdui-ripple back-page">
+          <a href="<!--BackArrowUrl-->">
+            <div class="mdui-row mdui-col-sm-12">
+              <div class="mdui-col-xs-7">
+                <i class="mdui-icon material-icons">arrow_upward</i>
+              </div>
+              <div class="mdui-col-xs-3 mdui-text-right"></div>
+              <div class="mdui-col-xs-2 mdui-text-right"></div>
+            </div>
+          </a>
+        </li>
+        <!--BackArrowEnd-->
+        <!--FolderListStart-->
+        <li class="mdui-list-item mdui-ripple" data-sort data-sort-name="<!--FileEncodeReplaceName-->"
+          data-sort-date="<!--lastModifiedDateTime-->" data-sort-size="<!--size-->" style="padding-right: 3.3rem">
+          <a href="<!--FileEncodeReplaceUrl-->/">
+            <div class="mdui-row mdui-col-sm-12">
+              <div class="mdui-col-xs-12 mdui-col-sm-7 mdui-text-truncate">
+                <i class="mdui-icon material-icons">folder_open</i><span>
+                  <!--FileEncodeReplaceName-->
+                </span>
+              </div>
+              <div class="mdui-col-sm-3 mdui-text-right">
+                <!--lastModifiedDateTime-->
+              </div>
+              <div class="mdui-col-sm-2 mdui-text-right">
+                <!--size-->
+              </div>
+            </div>
+          </a>
+        </li>
+        <!--FolderListEnd-->
+        <!--FileListStart-->
+        <li class="mdui-list-item file mdui-ripple" data-sort data-sort-name="<!--FileEncodeReplaceName-->"
+          data-sort-date="<!--lastModifiedDateTime-->" data-sort-size="<!--size-->" data-readypreview="<!--FileExt-->">
+          <a class="<!--FileExtType-->" data-name="<!--FileEncodeReplaceName-->"
+            href="<!--FileEncodeReplaceUrl-->?preview" aria-label="File">
+            <div class="mdui-row mdui-col-sm-12">
+              <div class="mdui-col-xs-12 mdui-col-sm-7 mdui-text-truncate">
+
+                <i class="mdui-icon material-icons">
+                  <!--IconValue-->
+                </i>
+                <span>
+                  <!--FileEncodeReplaceName-->
+                </span>
+
+              </div>
+              <div class="mdui-col-sm-3 mdui-text-right">
+                <!--lastModifiedDateTime-->
+              </div>
+              <div class="mdui-col-sm-2 mdui-text-right">
+                <!--size-->
+              </div>
+            </div>
+          </a>
+          <div class="forcedownload mdui-text-right">
+            <a title="<!--constStr@Download-->" aria-label="Download" href="<!--FileEncodeReplaceUrl-->"
+              target="_blank"><button class="mdui-btn mdui-ripple mdui-btn-icon">
+                <i class="mdui-icon material-icons">file_download</i>
+              </button></a>
+          </div>
+        </li>
+        <!--FileListEnd-->
+      </ul>
+    </div>
+    <!--ReadmemdStart-->
+    <div class="mdui-chip mdui-ripple mdui-hidden-xs">
+      <span class="mdui-chip-icon"><i class="mdui-icon material-icons">face</i></span><span
+        class="mdui-chip-title">README.md</span>
+    </div>
+    <div class="mdui-typo mdui-shadow-3 markdown" style="padding: 20px; margin: 20px 0; overflow-x: scroll; background-color: rgb(22 22 22 / 43%);" id="readme">
+      <textarea id="readme-md"><!--ReadmemdContent--></textarea>
+    </div>
+    <!--ReadmemdEnd-->
+    <!--FootomfStart-->
+    <div class="mdui-typo mdui-shadow-3" style="padding: 20px; margin: 20px 0">
+      <!--FootomfContent-->
+    </div>
+    <!--FootomfEnd-->
+    <script>
+      document.querySelector("#admin-menu").insertAdjacentHTML('beforeend', '<li class="mdui-menu-item"><a class="mdui-ripple getalllink"><i class="mdui-menu-item-icon mdui-icon material-icons">link</i><!--constStr@CopyAllDownloadUrl--></a></li>');
+    </script>
+    <script>
+      window.MorePage = undefined;
+    </script>
+    <!--MorePageStart-->
+    <script>
+      window.MorePage = [
+      <!--MorePageListNowStart-->
+        <!--PageNum-->,
+      <!--MorePageListNowEnd-->
+      <!--MorePageListStart-->
+        <!--PageNum-->,
+      <!--MorePageListEnd-->
+      ];
+    </script>
+    <!--MorePageEnd-->
+    <!--IsFolderEnd-->
+
+
+    <!--IsFileStart-->
+    <script>
+      document.querySelector("#admin-menu").insertAdjacentHTML('beforeend', '<li class="mdui-menu-item"><a class="mdui-ripple" onclick="renexmoeKit.copyFileUrl()"><i class="mdui-menu-item-icon mdui-icon material-icons">link</i><!--constStr@CopyUrl--></a></li>');
+      document.querySelector(".mdui-toolbar").insertAdjacentHTML('beforeend', '<a class="mdui-btn mdui-btn-icon mdui-ripple downloadurl"><i class="mdui-icon material-icons">cloud_download</i></a>');
+    </script>
+    <div id="file" class="mdui-shadow-3" data-src="<!--FileDownUrl-->" style="margin: 20px 0px; padding: 20px; border-radius: 8px">
+      <!--IsimgFileStart-->
+      <img class="mdui-img-fluid mdui-center" src="<!--FileDownUrl-->" />
+      <!--IsimgFileEnd-->
+      <!--IsmusicFileStart-->
+      <div id="aplayer" class="mdui-text-center">音樂載入中...</div>
+      <br />
+      <div class="mdui-row" id="clpp"></div>
+      <script>
+        (function (kit) {
+          var box = document.getElementById('aplayer');
+          var src = document.getElementById('file').getAttribute('data-src');
+          kit.externalPlayers(document.getElementById('clpp'), src);
+
+          kit.load(kit.libs.aplayer).then(function () {
+            if (!document.body.contains(box)) return;
+            var name = src.substring(0, src.lastIndexOf('.'));
+            try {
+              name = decodeURIComponent(name);
+            } catch (e) {}
+            var ap = new APlayer({
+              container: box,
+              theme: 'rgb(242, 200, 171)',
+              autoplay: false,
+              loop: 'all',
+              audio: [{ name: name, artist: '　', url: kit.abs(src) }]
+            });
+            box.querySelector('.aplayer-author').textContent = '';
+            var stopResume = kit.resume(ap.audio, kit.dir() + '/' + src, 16, function (time) {
+              ap.seek(time);
+            });
+            kit.onLeave(function () {
+              stopResume();
+              ap.destroy();
+            });
+
+            kit.load(kit.libs.jsmediatags).then(function () {
+              window.jsmediatags.read(kit.abs(src), {
+                onSuccess: function (tag) {
+                  var tags = tag.tags;
+                  if (tags.picture) {
+                    var cover = URL.createObjectURL(new Blob([new Uint8Array(tags.picture.data)], { type: tags.picture.format }));
+                    ap.options.audio[0].cover = cover;
+                    box.querySelector('.aplayer-pic').style.backgroundImage = 'url("' + cover + '")';
+                  }
+                  if (tags.title) {
+                    ap.options.audio[0].name = tags.title;
+                    box.querySelector('.aplayer-title').textContent = tags.title;
+                  }
+                  if (tags.artist) {
+                    ap.options.audio[0].artist = tags.artist;
+                    box.querySelector('.aplayer-author').textContent = ' - ' + tags.artist;
+                  }
+                },
+                onError: function () {
+                  // 讀不到音樂標籤時改用瀏覽器內建播放器
+                  if (!document.body.contains(box)) return;
+                  stopResume();
+                  ap.destroy();
+                  var audio = document.createElement('audio');
+                  audio.className = 'mdui-center';
+                  audio.src = kit.abs(src);
+                  audio.controls = true;
+                  audio.autoplay = true;
+                  audio.style.width = '100%';
+                  box.parentNode.replaceChild(audio, box);
+                }
+              });
+            });
+          }).catch(function (e) {
+            box.textContent = e.message;
+          });
+        })(window.renexmoeKit);
+      </script>
+      <!--IsmusicFileEnd-->
+      <!--IsvideoFileStart-->
+      <div id="artplayer"></div>
+      <br />
+      <div class="mdui-row" id="clpp"></div>
+      <script>
+        (function (kit) {
+          var box = document.getElementById('artplayer');
+          var src = document.getElementById('file').getAttribute('data-src');
+          kit.externalPlayers(document.getElementById('clpp'), src);
+
+          kit.load(kit.libs.artplayer).then(function () {
+            if (!document.body.contains(box)) return;
+            // 沿用原本 DPlayer 提供的倍速選項
+            Artplayer.PLAYBACK_RATE = [0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6];
+            var art = new Artplayer({
+              container: box,
+              url: kit.abs(src),
+              theme: '#ffd2b3',
+              lang: (document.documentElement.lang || navigator.language).toLowerCase(),
+              i18n: { 'zh-tw': window['artplayer-i18n-zh-tw'] },
+              setting: true,
+              playbackRate: true,
+              aspectRatio: true,
+              screenshot: true,
+              pip: true,
+              fullscreen: true,
+              fullscreenWeb: true,
+              miniProgressBar: true,
+              moreVideoAttr: { controls: false, preload: 'auto' }
+            });
+            var stopResume = kit.resume(art.video, kit.dir() + '/' + src, 31, function (time) {
+              art.video.currentTime = time;
+            });
+            kit.onLeave(function () {
+              stopResume();
+              art.destroy();
+            });
+          }).catch(function (e) {
+            box.textContent = e.message;
+          });
+        })(window.renexmoeKit);
+      </script>
+      <!--IsvideoFileEnd-->
+      <!--IsofficeFileStart-->
+      <iframe id="office-a" src="https://view.officeapps.live.com/op/view.aspx?src=<!--FileEncodeDownUrl-->"
+        style="width: 100%" frameborder="0"></iframe>
+      <script>
+        window.renexmoeKit.fitOffice();
+      </script>
+      <!--IsofficeFileEnd-->
+      <!--IspdfFileStart-->
+      <div id="pdf-d" style="text-align:center;margin:0 auto;width: calc(100%);">Loading PDF</div>
+      <script>
+        (function (kit) {
+          var box = document.getElementById('pdf-d');
+          var src = document.getElementById('file').getAttribute('data-src');
+
+          kit.load(kit.libs.pdf).then(function () {
+            if (!document.body.contains(box)) return;
+            var pdfjsLib = window.pdfjsLib;
+            pdfjsLib.GlobalWorkerOptions.workerSrc = kit.libs.pdfWorker;
+            return pdfjsLib.getDocument({
+              url: kit.abs(src),
+              cMapUrl: kit.libs.pdfCMaps,
+              cMapPacked: true,
+              rangeChunkSize: 65535
+            }).promise.then(function (pdf) {
+              box.innerHTML = '';
+              // 逐頁依序繪製，避免大檔案一次佔用過多記憶體
+              var page = 1;
+              function render() {
+                if (page > pdf.numPages || !document.body.contains(box)) return;
+                return pdf.getPage(page++).then(function (p) {
+                  var viewport = p.getViewport({ scale: 1.5 });
+                  var canvas = box.appendChild(document.createElement('canvas'));
+                  canvas.height = viewport.height;
+                  canvas.width = viewport.width;
+                  canvas.style.width = 'inherit';
+                  return p.render({ canvasContext: canvas.getContext('2d'), viewport: viewport }).promise;
+                }).then(render);
+              }
+              return render();
+            });
+          }).catch(function (e) {
+            box.textContent = 'PDF 載入失敗：' + e.message;
+          });
+        })(window.renexmoeKit);
+      </script>
+      <!--IspdfFileEnd-->
+      <!--IstxtFileStart-->
+      <pre id="editor" style="white-space: pre-wrap; font-family: JetBrains Mono, Fira Code, Sarasa Mono SC, Cascadia Code, Menlo, Consolas, monaco, Noto Sans SC;"><code id="code"><!--TxtContent--></code></pre>
+      <script>
+        document.querySelector("#admin-menu").insertAdjacentHTML('beforeend',
+          '<li class="mdui-menu-item"><a class="mdui-ripple highlight"><i class="mdui-menu-item-icon mdui-icon material-icons">style</i>markdown解析</a></li>');
+        document.querySelector(".mdui-toolbar").insertAdjacentHTML('beforeend',
+          '<a class="mdui-btn mdui-btn-icon mdui-ripple mdui-hidden-sm-up highlight"><i class="mdui-icon material-icons">style</i></a>');
+      </script>
+      <!--IstxtFileEnd-->
+      <!--IsOtherFileStart-->
+      <!--constStr@FileNotSupport-->
+      <!--IsOtherFileEnd-->
+    </div>
+    <a href="<!--FileEncodeReplaceUrl-->" target="_blank" class="mdui-fab mdui-fab-fixed mdui-ripple mdui-color-theme-accent"><i class="mdui-icon material-icons">file_download</i></a>
+    <!--IsFileEnd-->
+  </div>
+  <div class="mdui-text-center mdui-typo" id="footer"  style="position: relative;"></div>
+</body>
+
+<script src="<!--base_path-->?jsFile=renexmoe-sha1.js"></script>
+<script src="<!--base_path-->?jsFile=renexmoe-extra.js"></script>
+<script src="<!--base_path-->?jsFile=renexmoe-app@qm97ssij9cnii7x8fnbkpq4hcgq35dyr.js"></script>
+<script src="<!--base_path-->?jsFile=renexmoe-app@59467336fgwnpx8qbfvtmpyeefv35e5i.js"></script>
+<script src="<!--base_path-->?jsFile=renexmoe-app@a7r8jgn2qe3eyfrkahwdnqcjf7uba95k.js"></script>
+<script src="<!--base_path-->?jsFile=renexmoe-app@keaxctnyw29nuzpsh66g7ki4h5wzy8zn.js"></script>
+<script src="<!--base_path-->?jsFile=renexmoe-app@pe2nahunr9aihucdgc2ssjbgnaccr5rz.js"></script>
+<script src="<!--base_path-->?jsFile=renexmoe-app@tsjmiafbhksy5pyb5tchy765wshmwwnd.js"></script>
+<script src="<!--base_path-->?jsFile=renexmoe-webpack-runtime@cx4vgpbaggjuhg8rh6m3yarhkkxy4dm3.js"></script>
+
+<script>
+  window.renexmoe.toggle_theme();
+</script>
+
+<!--customScript-->
+</html>
