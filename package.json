@@ -4,6 +4,7 @@
   "description": "高顏值 OneManager 主題，作用於 OneManager-php，提供多種CDN",
   "main": "renexmoe-tw527e-edition.html",
   "scripts": {
+    "build": "node scripts/build.mjs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
