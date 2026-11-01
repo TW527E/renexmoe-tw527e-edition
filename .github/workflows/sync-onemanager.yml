@@ -1,0 +1,65 @@
+name: Sync theme to OneManager-php
+
+# Copies the built theme into TW527E/OneManager-php whenever it changes here:
+#   *.html (the 8 variants)  -> theme/
+#   local/renexmoe-*.js      -> js/   (served by OneManager through ?jsFile=)
+#
+# Needs one secret, ONEMANAGER_DEPLOY_KEY: the private half of an SSH deploy key
+# that has write access on TW527E/OneManager-php. Deploy keys do not expire.
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'renexmoe-tw527e-edition*.html'
+      - 'local/**'
+      - '.github/workflows/sync-onemanager.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: sync-onemanager
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the theme
+        uses: actions/checkout@v4
+        with:
+          path: theme-src
+
+      - name: Check out OneManager-php
+        uses: actions/checkout@v4
+        with:
+          repository: TW527E/OneManager-php
+          ref: master
+          path: onemanager
+          ssh-key: ${{ secrets.ONEMANAGER_DEPLOY_KEY }}
+
+      - name: Copy the theme files
+        run: |
+          set -euo pipefail
+          cp theme-src/renexmoe-tw527e-edition*.html onemanager/theme/
+          # Drop renexmoe assets that no longer exist here, then copy the current set.
+          find onemanager/js -maxdepth 1 -name 'renexmoe-*.js' -delete
+          cp theme-src/local/renexmoe-*.js onemanager/js/
+
+      - name: Commit and push if anything changed
+        working-directory: onemanager
+        env:
+          SOURCE_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          git add -A theme js
+          if git diff --cached --quiet; then
+            echo "OneManager-php already has this version of the theme."
+            exit 0
+          fi
+          git -c user.name=TW527E -c user.email=github@tw527e.zip commit \
+            -m "Update renexmoe-tw527e-edition theme" \
+            -m "Synced from TW527E/renexmoe-tw527e-edition@${SOURCE_SHA}"
+          git push origin HEAD:master
