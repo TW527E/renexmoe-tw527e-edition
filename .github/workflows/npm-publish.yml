@@ -5,6 +5,14 @@ on:
     branches:
       - master
 
+# npm trusted publishing (OIDC): GitHub Actions proves to npm which repository
+# and workflow is publishing, so no npm token is stored anywhere. Configure it
+# once on npmjs.com → package Settings → Trusted Publisher (GitHub Actions,
+# TW527E / renexmoe-tw527e-edition / npm-publish.yml).
+permissions:
+  contents: read
+  id-token: write
+
 jobs:
   publish-npm:
     runs-on: ubuntu-latest
@@ -12,8 +20,10 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           registry-url: https://registry.npmjs.org/
+      # Trusted publishing needs npm 11.5.1 or later.
+      - run: npm install -g npm@11
       # npm refuses to publish a version twice, so a push without a version
       # bump used to fail this job. Publish only when package.json changed it.
       - name: Check whether this version is already on npm
@@ -29,5 +39,3 @@ jobs:
           fi
       - if: steps.version.outputs.publish == 'true'
         run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
