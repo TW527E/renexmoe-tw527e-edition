@@ -1116,7 +1116,10 @@
               url: kit.abs(src),
               cMapUrl: kit.libs.pdfCMaps,
               cMapPacked: true,
-              rangeChunkSize: 65535
+              rangeChunkSize: 65535,
+              // pdf.js 2.5.207 受 CVE-2024-4367 影響：惡意 PDF 的字型資料可在
+              // 本站來源執行任意 JS（可偷登入狀態）。官方緩解方式是關閉 eval。
+              isEvalSupported: false
             }).promise.then(function (pdf) {
               box.innerHTML = '';
               // 逐頁依序繪製，避免大檔案一次佔用過多記憶體
