@@ -416,9 +416,9 @@
   <div class="blur"></div>
   <header class="mdui-appbar mdui-appbar-fixed">
     <div class="mdui-toolbar">
-      <span class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white"
+      <button type="button" class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white" aria-label="Menu"
         onclick='mdui.$(".mdui-appbar-with-toolbar").toggleClass("mdui-drawer-body-left");' id="toggle-drawer"><i
-          class="mdui-icon material-icons">menu</i></span>
+          class="mdui-icon material-icons">menu</i></button>
       <a class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white" onclick="window.history.back()">
         <i class="mdui-icon material-icons">arrow_back</i>
       </a>
@@ -548,11 +548,11 @@
     <div class="mdui-shadow-3 renexmoe-upload" id="upload_div">
       <div class="renexmoe-upload-btns">
         <i class="mdui-icon material-icons">cloud_upload</i>
-        <label class="mdui-btn mdui-ripple">
+        <label class="mdui-btn mdui-ripple" tabindex="0" role="button">
           <i class="mdui-icon mdui-icon-left material-icons">insert_drive_file</i><!--constStr@UploadFile-->
           <input type="file" multiple hidden />
         </label>
-        <label class="mdui-btn mdui-ripple">
+        <label class="mdui-btn mdui-ripple" tabindex="0" role="button">
           <i class="mdui-icon mdui-icon-left material-icons">folder</i><!--constStr@UploadFolder-->
           <input type="file" multiple webkitdirectory hidden />
         </label>
@@ -597,7 +597,21 @@
           });
         }
 
+        // 換頁（pjax）後這段會重新執行、清單是新的：把進行中與已結束的項目掛回來，
+        // 進度、錯誤與下載連結才不會跟著舊頁面一起消失
+        up.items = up.items || [];
+        up.items.forEach(function (li) {
+          list.appendChild(li);
+        });
+
         card.querySelectorAll('input[type=file]').forEach(function (input) {
+          // 檔案選擇鈕是 label，讓鍵盤也能聚焦並用 Enter／空白鍵開啟
+          input.parentNode.addEventListener('keydown', function (e) {
+            if (e.target === input.parentNode && (e.key === 'Enter' || e.key === ' ')) {
+              e.preventDefault();
+              input.click();
+            }
+          });
           input.addEventListener('change', function () {
             var base = location.href.split(/[?#]/)[0];
             Array.prototype.forEach.call(input.files, function (file) {
@@ -637,6 +651,7 @@
             '<div class="mdui-progress"><div class="mdui-progress-determinate" style="width: 0;"></div></div></div>';
           li.querySelector('.mdui-list-item-title').textContent = rel + ' (' + fmtSize(file.size) + ')';
           list.appendChild(li);
+          up.items.push(li);
           var item = {
             status: function (msg, isError) {
               var el = li.querySelector('.mdui-list-item-text');
@@ -757,6 +772,9 @@
                 return send('GET', url);
               }).then(function (r) {
                 var res = parse(r.text);
+                // 最後一塊送出後回應遺失：OneDrive 完成檔案時會結束上傳工作階段，
+                // 查詢得到 404 代表檔案已經完成，不是失敗（重送只會得到 404 並誤報）
+                if (r.status === 404 && end === file.size) return { size: file.size };
                 var next = res && res.nextExpectedRanges ? parseInt(res.nextExpectedRanges[0], 10) : offset;
                 return put(next, size, retry + 1);
               }, function () {
@@ -1132,20 +1150,58 @@
               isEvalSupported: false
             }).promise.then(function (pdf) {
               box.innerHTML = '';
-              // 逐頁依序繪製，避免大檔案一次佔用過多記憶體
-              var page = 1;
-              function render() {
-                if (page > pdf.numPages || !document.body.contains(box)) return;
-                return pdf.getPage(page++).then(function (p) {
-                  var viewport = p.getViewport({ scale: 1.5 });
-                  var canvas = box.appendChild(document.createElement('canvas'));
-                  canvas.height = viewport.height;
-                  canvas.width = viewport.width;
-                  canvas.style.width = 'inherit';
-                  return p.render({ canvasContext: canvas.getContext('2d'), viewport: viewport }).promise;
-                }).then(render);
-              }
-              return render();
+              // 只繪製畫面附近的頁面，離開畫面的釋放掉：整份都留著 canvas 的話，
+              // 幾百頁的文件會佔用超過 1 GB 記憶體
+              return pdf.getPage(1).then(function (first) {
+                var size = first.getViewport({ scale: 1.5 });
+                var holders = [];
+                var queue = Promise.resolve();
+                function draw(holder) {
+                  if (holder.firstChild || !holder.near) return;
+                  var canvas = holder.appendChild(document.createElement('canvas'));
+                  queue = queue.then(function () {
+                    if (canvas.parentNode !== holder) return;
+                    return pdf.getPage(holder.pageNumber).then(function (p) {
+                      var viewport = p.getViewport({ scale: 1.5 });
+                      canvas.height = viewport.height;
+                      canvas.width = viewport.width;
+                      canvas.style.width = '100%';
+                      canvas.style.display = 'block';
+                      holder.style.aspectRatio = viewport.width + ' / ' + viewport.height;
+                      return p.render({ canvasContext: canvas.getContext('2d'), viewport: viewport }).promise;
+                    });
+                  }).catch(function () {});
+                }
+                function release(holder) {
+                  var canvas = holder.firstChild;
+                  if (!canvas) return;
+                  canvas.width = canvas.height = 0;
+                  holder.removeChild(canvas);
+                }
+                var watcher = new IntersectionObserver(function (entries) {
+                  entries.forEach(function (entry) {
+                    entry.target.near = entry.isIntersecting;
+                    if (entry.isIntersecting) draw(entry.target);
+                    else release(entry.target);
+                  });
+                }, { rootMargin: '150% 0px' });
+                for (var n = 1; n <= pdf.numPages; n++) {
+                  var holder = box.appendChild(document.createElement('div'));
+                  holder.pageNumber = n;
+                  holder.style.width = 'inherit';
+                  holder.style.aspectRatio = size.width + ' / ' + size.height;
+                  holders.push(holder);
+                  watcher.observe(holder);
+                }
+                // 離開這一頁（pjax）後停止繪製並釋放 PDF 與 worker
+                var gone = setInterval(function () {
+                  if (document.body.contains(box)) return;
+                  clearInterval(gone);
+                  watcher.disconnect();
+                  holders.forEach(release);
+                  pdf.destroy();
+                }, 2000);
+              });
             });
           }).catch(function (e) {
             box.textContent = 'PDF 載入失敗：' + e.message;
