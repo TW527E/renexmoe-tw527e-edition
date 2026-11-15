@@ -1003,12 +1003,19 @@
             try {
               name = decodeURIComponent(name);
             } catch (e) {}
+            // APlayer 以 innerHTML 寫入歌名與演出者（初始化與循環切歌時都會），
+            // 檔名與 ID3 標籤是外來內容（訪客也能上傳），交給它之前一律跳脫。
+            var escHtml = function (text) {
+              return String(text).replace(/[&<>"']/g, function (c) {
+                return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+              });
+            };
             var ap = new APlayer({
               container: box,
               theme: 'rgb(242, 200, 171)',
               autoplay: false,
               loop: 'all',
-              audio: [{ name: name, artist: '　', url: kit.abs(src) }]
+              audio: [{ name: escHtml(name), artist: '　', url: kit.abs(src) }]
             });
             box.querySelector('.aplayer-author').textContent = '';
             var stopResume = kit.resume(ap.audio, kit.dir() + '/' + src, 16, function (time) {
@@ -1029,11 +1036,11 @@
                     box.querySelector('.aplayer-pic').style.backgroundImage = 'url("' + cover + '")';
                   }
                   if (tags.title) {
-                    ap.options.audio[0].name = tags.title;
+                    ap.options.audio[0].name = escHtml(tags.title);
                     box.querySelector('.aplayer-title').textContent = tags.title;
                   }
                   if (tags.artist) {
-                    ap.options.audio[0].artist = tags.artist;
+                    ap.options.audio[0].artist = escHtml(tags.artist);
                     box.querySelector('.aplayer-author').textContent = ' - ' + tags.artist;
                   }
                 },
