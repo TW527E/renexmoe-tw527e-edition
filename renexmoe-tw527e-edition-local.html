@@ -574,7 +574,8 @@
           done: '<!--constStr@UploadComplete-->',
           copy: '<!--constStr@CopyUrl-->',
           tooLarge: '<!--constStr@UpFileTooLarge-->',
-          fail23: '<!--constStr@UploadFail23-->'
+          fail23: '<!--constStr@UploadFail23-->',
+          sessionGone: '上傳工作階段已失效，且找不到完整的檔案，請重新上傳'
         };
         var card = document.getElementById('upload_div');
         var list = card.querySelector('.renexmoe-upload-list');
@@ -699,7 +700,8 @@
           return named.then(function (info) {
             item.status(text.link + '…');
             return session(base, file, info, 0).then(function (uploadUrl) {
-              if (uploadUrl) return chunks(uploadUrl, file, item, /%23/.test(base) || rel.indexOf('#') > -1);
+              var dest = base + info.name.split('/').map(encodeURIComponent).join('/');
+              if (uploadUrl) return chunks(uploadUrl, file, item, /%23/.test(base) || rel.indexOf('#') > -1, dest);
             }).then(function () {
               // 刪除續傳暫存檔並清除列表快取，失敗不影響上傳結果
               return send('GET', base + '?action=del_upload_cache&' + new URLSearchParams({
@@ -732,7 +734,7 @@
         }
 
         // OneDrive 分塊續傳：先查詢已上傳的位置，再依網速調整分塊大小（需為 320 KiB 的倍數）
-        function chunks(url, file, item, hasHash) {
+        function chunks(url, file, item, hasHash, dest) {
           var began, from;
           return send('GET', url).then(function (r) {
             var res = parse(r.text);
@@ -762,6 +764,16 @@
               return put(parseInt(res.nextExpectedRanges[0], 10), rate > 10 * MB ? 50 * MB : rate > 5 * MB ? 20 * MB : 10 * MB, 0);
             }, retryLater);
 
+            function verify() {
+              return send('GET', dest + '?json=1', null, { 'X-Requested-With': 'XMLHttpRequest' }).then(function (r) {
+                var res = r.status === 200 ? parse(r.text) : null;
+                if (res && res.type === 'file' && Number(res.size) === file.size) return res;
+                throw new Error(text.sessionGone);
+              }, function () {
+                throw new Error(text.sessionGone);
+              });
+            }
+
             // 稍候重試，並先向伺服器查詢已收到的位置，避免重送已送達的分塊
             function retryLater(err) {
               if (retry >= 5) throw err;
@@ -772,9 +784,9 @@
                 return send('GET', url);
               }).then(function (r) {
                 var res = parse(r.text);
-                // 最後一塊送出後回應遺失：OneDrive 完成檔案時會結束上傳工作階段，
-                // 查詢得到 404 代表檔案已經完成，不是失敗（重送只會得到 404 並誤報）
-                if (r.status === 404 && end === file.size) return { size: file.size };
+                // 工作階段不見了（404）：可能是最後一塊其實已送達、OneDrive 完成檔案後結束工作階段，
+                // 也可能是工作階段過期。向 OneManager 查目的檔，存在且大小相符才算完成。
+                if (r.status === 404) return verify();
                 var next = res && res.nextExpectedRanges ? parseInt(res.nextExpectedRanges[0], 10) : offset;
                 return put(next, size, retry + 1);
               }, function () {
