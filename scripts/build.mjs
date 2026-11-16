@@ -55,7 +55,6 @@ const SPARK_MD5 = '<!--base_path-->?jsFile=spark-md5.min.js';
 
 const CDN_VARIANTS = {
   'renexmoe-tw527e-edition.html': 'https://unpkg.com/',
-  'renexmoe-tw527e-edition-elemecdn.html': 'https://npm.elemecdn.com/',
   'renexmoe-tw527e-edition-jsdelivr-cdn.html': 'https://cdn.jsdelivr.net/npm/',
   'renexmoe-tw527e-edition-jsdelivr-fastly.html': 'https://fastly.jsdelivr.net/npm/',
   'renexmoe-tw527e-edition-jsdelivr-gcore.html': 'https://gcore.jsdelivr.net/npm/',

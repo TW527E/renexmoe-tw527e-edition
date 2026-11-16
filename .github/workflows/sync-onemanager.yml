@@ -1,7 +1,7 @@
 name: Sync theme to OneManager-php
 
 # Copies the built theme into TW527E/OneManager-php whenever it changes here:
-#   *.html (the 8 variants)  -> theme/
+#   *.html (the variants)    -> theme/  (variants removed here are removed there too)
 #   local/renexmoe-*.js      -> js/   (served by OneManager through ?jsFile=)
 #
 # Needs one secret, ONEMANAGER_DEPLOY_KEY: the private half of an SSH deploy key
@@ -43,6 +43,8 @@ jobs:
       - name: Copy the theme files
         run: |
           set -euo pipefail
+          # Drop theme variants that no longer exist here, then copy the current set.
+          find onemanager/theme -maxdepth 1 -name 'renexmoe-tw527e-edition*.html' -delete
           cp theme-src/renexmoe-tw527e-edition*.html onemanager/theme/
           # Drop renexmoe assets that no longer exist here, then copy the current set.
           find onemanager/js -maxdepth 1 -name 'renexmoe-*.js' -delete
