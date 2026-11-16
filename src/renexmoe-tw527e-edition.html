@@ -413,9 +413,9 @@
   <div class="blur"></div>
   <header class="mdui-appbar mdui-appbar-fixed">
     <div class="mdui-toolbar">
-      <span class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white"
+      <button type="button" class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white" aria-label="Menu"
         onclick='mdui.$(".mdui-appbar-with-toolbar").toggleClass("mdui-drawer-body-left");' id="toggle-drawer"><i
-          class="mdui-icon material-icons">menu</i></span>
+          class="mdui-icon material-icons">menu</i></button>
       <a class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white" onclick="window.history.back()">
         <i class="mdui-icon material-icons">arrow_back</i>
       </a>
@@ -545,11 +545,11 @@
     <div class="mdui-shadow-3 renexmoe-upload" id="upload_div">
       <div class="renexmoe-upload-btns">
         <i class="mdui-icon material-icons">cloud_upload</i>
-        <label class="mdui-btn mdui-ripple">
+        <label class="mdui-btn mdui-ripple" tabindex="0" role="button">
           <i class="mdui-icon mdui-icon-left material-icons">insert_drive_file</i><!--constStr@UploadFile-->
           <input type="file" multiple hidden />
         </label>
-        <label class="mdui-btn mdui-ripple">
+        <label class="mdui-btn mdui-ripple" tabindex="0" role="button">
           <i class="mdui-icon mdui-icon-left material-icons">folder</i><!--constStr@UploadFolder-->
           <input type="file" multiple webkitdirectory hidden />
         </label>
@@ -571,7 +571,8 @@
           done: '<!--constStr@UploadComplete-->',
           copy: '<!--constStr@CopyUrl-->',
           tooLarge: '<!--constStr@UpFileTooLarge-->',
-          fail23: '<!--constStr@UploadFail23-->'
+          fail23: '<!--constStr@UploadFail23-->',
+          sessionGone: '上傳工作階段已失效，且找不到完整的檔案，請重新上傳'
         };
         var card = document.getElementById('upload_div');
         var list = card.querySelector('.renexmoe-upload-list');
@@ -594,7 +595,21 @@
           });
         }
 
+        // 換頁（pjax）後這段會重新執行、清單是新的：把進行中與已結束的項目掛回來，
+        // 進度、錯誤與下載連結才不會跟著舊頁面一起消失
+        up.items = up.items || [];
+        up.items.forEach(function (li) {
+          list.appendChild(li);
+        });
+
         card.querySelectorAll('input[type=file]').forEach(function (input) {
+          // 檔案選擇鈕是 label，讓鍵盤也能聚焦並用 Enter／空白鍵開啟
+          input.parentNode.addEventListener('keydown', function (e) {
+            if (e.target === input.parentNode && (e.key === 'Enter' || e.key === ' ')) {
+              e.preventDefault();
+              input.click();
+            }
+          });
           input.addEventListener('change', function () {
             var base = location.href.split(/[?#]/)[0];
             Array.prototype.forEach.call(input.files, function (file) {
@@ -634,6 +649,7 @@
             '<div class="mdui-progress"><div class="mdui-progress-determinate" style="width: 0;"></div></div></div>';
           li.querySelector('.mdui-list-item-title').textContent = rel + ' (' + fmtSize(file.size) + ')';
           list.appendChild(li);
+          up.items.push(li);
           var item = {
             status: function (msg, isError) {
               var el = li.querySelector('.mdui-list-item-text');
@@ -681,7 +697,8 @@
           return named.then(function (info) {
             item.status(text.link + '…');
             return session(base, file, info, 0).then(function (uploadUrl) {
-              if (uploadUrl) return chunks(uploadUrl, file, item, /%23/.test(base) || rel.indexOf('#') > -1);
+              var dest = base + info.name.split('/').map(encodeURIComponent).join('/');
+              if (uploadUrl) return chunks(uploadUrl, file, item, /%23/.test(base) || rel.indexOf('#') > -1, dest);
             }).then(function () {
               // 刪除續傳暫存檔並清除列表快取，失敗不影響上傳結果
               return send('GET', base + '?action=del_upload_cache&' + new URLSearchParams({
@@ -714,7 +731,7 @@
         }
 
         // OneDrive 分塊續傳：先查詢已上傳的位置，再依網速調整分塊大小（需為 320 KiB 的倍數）
-        function chunks(url, file, item, hasHash) {
+        function chunks(url, file, item, hasHash, dest) {
           var began, from;
           return send('GET', url).then(function (r) {
             var res = parse(r.text);
@@ -744,6 +761,16 @@
               return put(parseInt(res.nextExpectedRanges[0], 10), rate > 10 * MB ? 50 * MB : rate > 5 * MB ? 20 * MB : 10 * MB, 0);
             }, retryLater);
 
+            function verify() {
+              return send('GET', dest + '?json=1', null, { 'X-Requested-With': 'XMLHttpRequest' }).then(function (r) {
+                var res = r.status === 200 ? parse(r.text) : null;
+                if (res && res.type === 'file' && Number(res.size) === file.size) return res;
+                throw new Error(text.sessionGone);
+              }, function () {
+                throw new Error(text.sessionGone);
+              });
+            }
+
             // 稍候重試，並先向伺服器查詢已收到的位置，避免重送已送達的分塊
             function retryLater(err) {
               if (retry >= 5) throw err;
@@ -754,6 +781,9 @@
                 return send('GET', url);
               }).then(function (r) {
                 var res = parse(r.text);
+                // 工作階段不見了（404）：可能是最後一塊其實已送達、OneDrive 完成檔案後結束工作階段，
+                // 也可能是工作階段過期。向 OneManager 查目的檔，存在且大小相符才算完成。
+                if (r.status === 404) return verify();
                 var next = res && res.nextExpectedRanges ? parseInt(res.nextExpectedRanges[0], 10) : offset;
                 return put(next, size, retry + 1);
               }, function () {
@@ -996,12 +1026,19 @@
             try {
               name = decodeURIComponent(name);
             } catch (e) {}
+            // APlayer 以 innerHTML 寫入歌名與演出者（初始化與循環切歌時都會），
+            // 檔名與 ID3 標籤是外來內容（訪客也能上傳），交給它之前一律跳脫。
+            var escHtml = function (text) {
+              return String(text).replace(/[&<>"']/g, function (c) {
+                return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+              });
+            };
             var ap = new APlayer({
               container: box,
               theme: 'rgb(242, 200, 171)',
               autoplay: false,
               loop: 'all',
-              audio: [{ name: name, artist: '　', url: kit.abs(src) }]
+              audio: [{ name: escHtml(name), artist: '　', url: kit.abs(src) }]
             });
             box.querySelector('.aplayer-author').textContent = '';
             var stopResume = kit.resume(ap.audio, kit.dir() + '/' + src, 16, function (time) {
@@ -1022,11 +1059,11 @@
                     box.querySelector('.aplayer-pic').style.backgroundImage = 'url("' + cover + '")';
                   }
                   if (tags.title) {
-                    ap.options.audio[0].name = tags.title;
+                    ap.options.audio[0].name = escHtml(tags.title);
                     box.querySelector('.aplayer-title').textContent = tags.title;
                   }
                   if (tags.artist) {
-                    ap.options.audio[0].artist = tags.artist;
+                    ap.options.audio[0].artist = escHtml(tags.artist);
                     box.querySelector('.aplayer-author').textContent = ' - ' + tags.artist;
                   }
                 },
@@ -1107,39 +1144,103 @@
         (function (kit) {
           var box = document.getElementById('pdf-d');
           var src = document.getElementById('file').getAttribute('data-src');
+          var close = null;
 
-          kit.load(kit.libs.pdf).then(function () {
-            if (!document.body.contains(box)) return;
-            var pdfjsLib = window.pdfjsLib;
-            pdfjsLib.GlobalWorkerOptions.workerSrc = kit.libs.pdfWorker;
-            return pdfjsLib.getDocument({
-              url: kit.abs(src),
-              cMapUrl: kit.libs.pdfCMaps,
-              cMapPacked: true,
-              rangeChunkSize: 65535,
-              // pdf.js 2.5.207 受 CVE-2024-4367 影響：惡意 PDF 的字型資料可在
-              // 本站來源執行任意 JS（可偷登入狀態）。官方緩解方式是關閉 eval。
-              isEvalSupported: false
-            }).promise.then(function (pdf) {
-              box.innerHTML = '';
-              // 逐頁依序繪製，避免大檔案一次佔用過多記憶體
-              var page = 1;
-              function render() {
-                if (page > pdf.numPages || !document.body.contains(box)) return;
-                return pdf.getPage(page++).then(function (p) {
-                  var viewport = p.getViewport({ scale: 1.5 });
-                  var canvas = box.appendChild(document.createElement('canvas'));
-                  canvas.height = viewport.height;
-                  canvas.width = viewport.width;
-                  canvas.style.width = 'inherit';
-                  return p.render({ canvasContext: canvas.getContext('2d'), viewport: viewport }).promise;
-                }).then(render);
-              }
-              return render();
+          // 開啟整份文件。pdf.js 會快取失敗的頁面（主執行緒和 worker 都會），
+          // 同一份文件裡重新要那一頁只會拿到同一個錯誤，所以重試要整份重新開啟
+          function open() {
+            kit.load(kit.libs.pdf).then(function () {
+              if (!document.body.contains(box)) return;
+              var pdfjsLib = window.pdfjsLib;
+              pdfjsLib.GlobalWorkerOptions.workerSrc = kit.libs.pdfWorker;
+              return pdfjsLib.getDocument({
+                url: kit.abs(src),
+                cMapUrl: kit.libs.pdfCMaps,
+                cMapPacked: true,
+                rangeChunkSize: 65535,
+                // pdf.js 2.5.207 受 CVE-2024-4367 影響：惡意 PDF 的字型資料可在
+                // 本站來源執行任意 JS（可偷登入狀態）。官方緩解方式是關閉 eval。
+                isEvalSupported: false
+              }).promise.then(function (pdf) {
+                box.innerHTML = '';
+                // 只繪製畫面附近的頁面，離開畫面的釋放掉：整份都留著 canvas 的話，
+                // 幾百頁的文件會佔用超過 1 GB 記憶體
+                return pdf.getPage(1).then(function (first) {
+                  var size = first.getViewport({ scale: 1.5 });
+                  var holders = [];
+                  var queue = Promise.resolve();
+                  function draw(holder) {
+                    if (holder.firstChild || !holder.near) return;
+                    var canvas = holder.appendChild(document.createElement('canvas'));
+                    queue = queue.then(function () {
+                      if (canvas.parentNode !== holder) return;
+                      return pdf.getPage(holder.pageNumber).then(function (p) {
+                        var viewport = p.getViewport({ scale: 1.5 });
+                        canvas.height = viewport.height;
+                        canvas.width = viewport.width;
+                        canvas.style.width = '100%';
+                        canvas.style.display = 'block';
+                        holder.style.aspectRatio = viewport.width + ' / ' + viewport.height;
+                        return p.render({ canvasContext: canvas.getContext('2d'), viewport: viewport }).promise;
+                      });
+                    }).catch(function (e) {
+                      // 這一頁失敗（例如分段下載出錯）：拿掉空白的 canvas 改顯示錯誤與重試，
+                      // 其他頁照常繪製
+                      if (canvas.parentNode !== holder) return;
+                      release(holder);
+                      var failed = holder.appendChild(document.createElement('div'));
+                      failed.style.padding = '1em';
+                      failed.textContent = 'PDF 第 ' + holder.pageNumber + ' 頁載入失敗：' + ((e && e.message) || e) + ' ';
+                      var retry = failed.appendChild(document.createElement('button'));
+                      retry.type = 'button';
+                      retry.className = 'mdui-btn mdui-btn-raised';
+                      retry.textContent = '重新載入 PDF';
+                      retry.onclick = function () {
+                        close();
+                        box.textContent = 'Loading PDF';
+                        open();
+                      };
+                    });
+                  }
+                  function release(holder) {
+                    var canvas = holder.firstChild;
+                    if (!canvas) return;
+                    canvas.width = canvas.height = 0;
+                    holder.removeChild(canvas);
+                  }
+                  var watcher = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (entry) {
+                      entry.target.near = entry.isIntersecting;
+                      if (entry.isIntersecting) draw(entry.target);
+                      else release(entry.target);
+                    });
+                  }, { rootMargin: '150% 0px' });
+                  for (var n = 1; n <= pdf.numPages; n++) {
+                    var holder = box.appendChild(document.createElement('div'));
+                    holder.pageNumber = n;
+                    holder.style.width = 'inherit';
+                    holder.style.aspectRatio = size.width + ' / ' + size.height;
+                    holders.push(holder);
+                    watcher.observe(holder);
+                  }
+                  // 停止繪製並釋放 PDF 與 worker：離開這一頁（pjax）或重新載入時
+                  var gone;
+                  close = function () {
+                    clearInterval(gone);
+                    watcher.disconnect();
+                    holders.forEach(release);
+                    pdf.destroy();
+                  };
+                  gone = setInterval(function () {
+                    if (!document.body.contains(box)) close();
+                  }, 2000);
+                });
+              });
+            }).catch(function (e) {
+              box.textContent = 'PDF 載入失敗：' + e.message;
             });
-          }).catch(function (e) {
-            box.textContent = 'PDF 載入失敗：' + e.message;
-          });
+          }
+          open();
         })(window.renexmoeKit);
       </script>
       <!--IspdfFileEnd-->
