@@ -10,9 +10,9 @@ import { fileURLToPath } from 'node:url';
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const TEMPLATE = 'src/renexmoe-tw527e-edition.html';
 
-// css/ 與 js/ 內的主題檔案自 1.2.4 後沒有變動，CDN 版直接引用已發布到 npm 的 1.2.4。
-// 若之後修改了 css/ 或 js/，發布新版到 npm 後再更新這裡的版本號。
-const THEME = 'renexmoe-tw527e-edition@1.2.4/';
+// CDN 版引用已發布到 npm 的 css/ 與 js/。修改了 css/ 或 js/ 時，把這裡和
+// package.json 的版本號一起改成新版：推到 master 後 GitHub Actions 會發布到 npm。
+const THEME = 'renexmoe-tw527e-edition@1.3.2/';
 const THEME_CSS = [
   'css/app1@uw34ru4ehdn4pywddmebm79dnnb2jyei.css',
   'css/app2@eqge353pwpgivauvcvzejwrki4mdissj.css',
