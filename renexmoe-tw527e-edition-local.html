@@ -1182,7 +1182,23 @@
                       holder.style.aspectRatio = viewport.width + ' / ' + viewport.height;
                       return p.render({ canvasContext: canvas.getContext('2d'), viewport: viewport }).promise;
                     });
-                  }).catch(function () {});
+                  }).catch(function (e) {
+                    // 這一頁失敗（例如分段下載出錯）：拿掉空白的 canvas 改顯示錯誤與重試，
+                    // 不然 draw 看到已有內容就不會再畫；佇列照常給其他頁使用
+                    if (canvas.parentNode !== holder) return;
+                    release(holder);
+                    var failed = holder.appendChild(document.createElement('div'));
+                    failed.style.padding = '1em';
+                    failed.textContent = 'PDF 第 ' + holder.pageNumber + ' 頁載入失敗：' + ((e && e.message) || e) + ' ';
+                    var retry = failed.appendChild(document.createElement('button'));
+                    retry.type = 'button';
+                    retry.className = 'mdui-btn mdui-btn-raised';
+                    retry.textContent = '重試';
+                    retry.onclick = function () {
+                      release(holder);
+                      draw(holder);
+                    };
+                  });
                 }
                 function release(holder) {
                   var canvas = holder.firstChild;
