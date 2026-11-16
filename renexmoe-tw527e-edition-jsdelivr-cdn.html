@@ -1151,93 +1151,103 @@
         (function (kit) {
           var box = document.getElementById('pdf-d');
           var src = document.getElementById('file').getAttribute('data-src');
+          var close = null;
 
-          kit.load(kit.libs.pdf).then(function () {
-            if (!document.body.contains(box)) return;
-            var pdfjsLib = window.pdfjsLib;
-            pdfjsLib.GlobalWorkerOptions.workerSrc = kit.libs.pdfWorker;
-            return pdfjsLib.getDocument({
-              url: kit.abs(src),
-              cMapUrl: kit.libs.pdfCMaps,
-              cMapPacked: true,
-              rangeChunkSize: 65535,
-              // pdf.js 2.5.207 受 CVE-2024-4367 影響：惡意 PDF 的字型資料可在
-              // 本站來源執行任意 JS（可偷登入狀態）。官方緩解方式是關閉 eval。
-              isEvalSupported: false
-            }).promise.then(function (pdf) {
-              box.innerHTML = '';
-              // 只繪製畫面附近的頁面，離開畫面的釋放掉：整份都留著 canvas 的話，
-              // 幾百頁的文件會佔用超過 1 GB 記憶體
-              return pdf.getPage(1).then(function (first) {
-                var size = first.getViewport({ scale: 1.5 });
-                var holders = [];
-                var queue = Promise.resolve();
-                function draw(holder) {
-                  if (holder.firstChild || !holder.near) return;
-                  var canvas = holder.appendChild(document.createElement('canvas'));
-                  queue = queue.then(function () {
-                    if (canvas.parentNode !== holder) return;
-                    return pdf.getPage(holder.pageNumber).then(function (p) {
-                      var viewport = p.getViewport({ scale: 1.5 });
-                      canvas.height = viewport.height;
-                      canvas.width = viewport.width;
-                      canvas.style.width = '100%';
-                      canvas.style.display = 'block';
-                      holder.style.aspectRatio = viewport.width + ' / ' + viewport.height;
-                      return p.render({ canvasContext: canvas.getContext('2d'), viewport: viewport }).promise;
-                    });
-                  }).catch(function (e) {
-                    // 這一頁失敗（例如分段下載出錯）：拿掉空白的 canvas 改顯示錯誤與重試，
-                    // 不然 draw 看到已有內容就不會再畫；佇列照常給其他頁使用
-                    if (canvas.parentNode !== holder) return;
-                    release(holder);
-                    var failed = holder.appendChild(document.createElement('div'));
-                    failed.style.padding = '1em';
-                    failed.textContent = 'PDF 第 ' + holder.pageNumber + ' 頁載入失敗：' + ((e && e.message) || e) + ' ';
-                    var retry = failed.appendChild(document.createElement('button'));
-                    retry.type = 'button';
-                    retry.className = 'mdui-btn mdui-btn-raised';
-                    retry.textContent = '重試';
-                    retry.onclick = function () {
+          // 開啟整份文件。pdf.js 會快取失敗的頁面（主執行緒和 worker 都會），
+          // 同一份文件裡重新要那一頁只會拿到同一個錯誤，所以重試要整份重新開啟
+          function open() {
+            kit.load(kit.libs.pdf).then(function () {
+              if (!document.body.contains(box)) return;
+              var pdfjsLib = window.pdfjsLib;
+              pdfjsLib.GlobalWorkerOptions.workerSrc = kit.libs.pdfWorker;
+              return pdfjsLib.getDocument({
+                url: kit.abs(src),
+                cMapUrl: kit.libs.pdfCMaps,
+                cMapPacked: true,
+                rangeChunkSize: 65535,
+                // pdf.js 2.5.207 受 CVE-2024-4367 影響：惡意 PDF 的字型資料可在
+                // 本站來源執行任意 JS（可偷登入狀態）。官方緩解方式是關閉 eval。
+                isEvalSupported: false
+              }).promise.then(function (pdf) {
+                box.innerHTML = '';
+                // 只繪製畫面附近的頁面，離開畫面的釋放掉：整份都留著 canvas 的話，
+                // 幾百頁的文件會佔用超過 1 GB 記憶體
+                return pdf.getPage(1).then(function (first) {
+                  var size = first.getViewport({ scale: 1.5 });
+                  var holders = [];
+                  var queue = Promise.resolve();
+                  function draw(holder) {
+                    if (holder.firstChild || !holder.near) return;
+                    var canvas = holder.appendChild(document.createElement('canvas'));
+                    queue = queue.then(function () {
+                      if (canvas.parentNode !== holder) return;
+                      return pdf.getPage(holder.pageNumber).then(function (p) {
+                        var viewport = p.getViewport({ scale: 1.5 });
+                        canvas.height = viewport.height;
+                        canvas.width = viewport.width;
+                        canvas.style.width = '100%';
+                        canvas.style.display = 'block';
+                        holder.style.aspectRatio = viewport.width + ' / ' + viewport.height;
+                        return p.render({ canvasContext: canvas.getContext('2d'), viewport: viewport }).promise;
+                      });
+                    }).catch(function (e) {
+                      // 這一頁失敗（例如分段下載出錯）：拿掉空白的 canvas 改顯示錯誤與重試，
+                      // 其他頁照常繪製
+                      if (canvas.parentNode !== holder) return;
                       release(holder);
-                      draw(holder);
-                    };
-                  });
-                }
-                function release(holder) {
-                  var canvas = holder.firstChild;
-                  if (!canvas) return;
-                  canvas.width = canvas.height = 0;
-                  holder.removeChild(canvas);
-                }
-                var watcher = new IntersectionObserver(function (entries) {
-                  entries.forEach(function (entry) {
-                    entry.target.near = entry.isIntersecting;
-                    if (entry.isIntersecting) draw(entry.target);
-                    else release(entry.target);
-                  });
-                }, { rootMargin: '150% 0px' });
-                for (var n = 1; n <= pdf.numPages; n++) {
-                  var holder = box.appendChild(document.createElement('div'));
-                  holder.pageNumber = n;
-                  holder.style.width = 'inherit';
-                  holder.style.aspectRatio = size.width + ' / ' + size.height;
-                  holders.push(holder);
-                  watcher.observe(holder);
-                }
-                // 離開這一頁（pjax）後停止繪製並釋放 PDF 與 worker
-                var gone = setInterval(function () {
-                  if (document.body.contains(box)) return;
-                  clearInterval(gone);
-                  watcher.disconnect();
-                  holders.forEach(release);
-                  pdf.destroy();
-                }, 2000);
+                      var failed = holder.appendChild(document.createElement('div'));
+                      failed.style.padding = '1em';
+                      failed.textContent = 'PDF 第 ' + holder.pageNumber + ' 頁載入失敗：' + ((e && e.message) || e) + ' ';
+                      var retry = failed.appendChild(document.createElement('button'));
+                      retry.type = 'button';
+                      retry.className = 'mdui-btn mdui-btn-raised';
+                      retry.textContent = '重新載入 PDF';
+                      retry.onclick = function () {
+                        close();
+                        box.textContent = 'Loading PDF';
+                        open();
+                      };
+                    });
+                  }
+                  function release(holder) {
+                    var canvas = holder.firstChild;
+                    if (!canvas) return;
+                    canvas.width = canvas.height = 0;
+                    holder.removeChild(canvas);
+                  }
+                  var watcher = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (entry) {
+                      entry.target.near = entry.isIntersecting;
+                      if (entry.isIntersecting) draw(entry.target);
+                      else release(entry.target);
+                    });
+                  }, { rootMargin: '150% 0px' });
+                  for (var n = 1; n <= pdf.numPages; n++) {
+                    var holder = box.appendChild(document.createElement('div'));
+                    holder.pageNumber = n;
+                    holder.style.width = 'inherit';
+                    holder.style.aspectRatio = size.width + ' / ' + size.height;
+                    holders.push(holder);
+                    watcher.observe(holder);
+                  }
+                  // 停止繪製並釋放 PDF 與 worker：離開這一頁（pjax）或重新載入時
+                  var gone;
+                  close = function () {
+                    clearInterval(gone);
+                    watcher.disconnect();
+                    holders.forEach(release);
+                    pdf.destroy();
+                  };
+                  gone = setInterval(function () {
+                    if (!document.body.contains(box)) close();
+                  }, 2000);
+                });
               });
+            }).catch(function (e) {
+              box.textContent = 'PDF 載入失敗：' + e.message;
             });
-          }).catch(function (e) {
-            box.textContent = 'PDF 載入失敗：' + e.message;
-          });
+          }
+          open();
         })(window.renexmoeKit);
       </script>
       <!--IspdfFileEnd-->
